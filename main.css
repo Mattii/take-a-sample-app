@@ -244,33 +244,29 @@ main {
 	padding: 0.5rem 1rem;
     margin-top: 1rem;
     border: none;
-    border-bottom: 2px solid var(--secondary-variant);
+    border: 2px solid var(--secondary-variant);
+	background-color: var(--surface) ;
+	border-radius: 1rem;
 	outline: none;
 	
 }
 .btn-primery {
+}
+.btn-to-action {
 	background-color: var(--secondary) ;
 }
-
 .btn-primery:hover{
 	transition: .5s;
 	background-color: #1EAE988f;
 }
 .btn-cancel{
-	border-bottom: 2px solid var(--error);
+	border: 2px solid var(--error);
 }
 .btn-cancel:hover,
 .btn-cancel:focus-visible{
 	transition: .5s;
 	background-color: #FA1E0E8f;
 }
-nav{
-	position: fixed;
-	bottom: 1.5rem;
-	right: 1.5rem;
-	z-index: 10;
-}
-
 .btn-round{
 	font-family: 'Cabin Sketch', 'Cinzel Decorative', cursive;
 	background-color: var(--secondary);

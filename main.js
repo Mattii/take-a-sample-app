@@ -15,9 +15,9 @@ let SampleListItem = {
                 <button class="btn btn-primery" @click="addRemarkToVarietyt(item.id)">Add Remark</button>
             </div>
             <div class="varietyListActions">
-                <button class="btn btn-primery" @click="editVariety(item.id)">Edit</button>
-                <button class="btn btn-primery" @click="showRemark = !showRemark">Remark</button>
-                <button class="btn btn-primery">Add to chart</button>
+                <button class="btn" @click="editVariety(item.id)">Edit</button>
+                <button class="btn" @click="showRemark = !showRemark">Remark</button>
+                <button class="btn">Add to chart</button>
                 <button class="btn btn-cancel" @click="deleteVariety(item.id)">Delete</button>
             </div>		
         </li>
