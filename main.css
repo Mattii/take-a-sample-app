@@ -7,10 +7,10 @@
 :root {
 	--background: #eeeeee;
 	--surface: #ffffff;
-	--primary: #6200ee;
-	--primery-variant: #3700b3;
-	--secondary: #00ffe5;
-	--secondary-variant: #018786;
+	--primary: #ffcd00;
+	--primary-variant: #ffa733;
+	--secondary: #00d7df;
+	--secondary-variant: #00b6bd;
 	--error: #b00020;
 	
 	--on-primary: #ffffff;
@@ -177,23 +177,122 @@ main {
 	width: 100%;
 	top: 62px;
 }
+@media (max-width: 1120px) {
+	main {
+		top: 58px;
+	}
+}
+
+@media (max-width: 780px) {
+	main {
+		top: 44px;
+	}
+}
 
 /* 
 	main sections 
 */
 
-.sample-section{
+.base-section{
 	background-color: var(--surface);
-	padding: 0 4rem;
+	padding: 0 6rem;
 }
 
-.slampleList{
+
+.sample-list{
 	overflow: auto;
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(3, 1fr);
 	width: 100%;
     gap: 3rem;
     list-style: none;
+}
+
+@media (max-width: 1250px) {
+	.base-section{
+		padding: 0 3rem;
+	}
+}
+
+@media (max-width: 1120px) {
+	.sample-list {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (max-width: 780px) {
+	.sample-list {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 480px) {
+	.base-section{
+		padding: 0 1rem;
+	}
+	.sample-list {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}
+/* 
+	hero element  
+*/
+
+.hero-element {
+	margin-top: 3rem;
+    border: 1px solid lightgray;
+    border-radius: 1rem;
+	padding: 4rem;   
+	display: grid;
+    grid-template-columns: 2fr 1fr;
+	grid-template-rows: auto 1fr;
+	gap: 1rem;
+}
+.hero-element h2{
+	font-size: 3rem;
+	font-family: 'Roboto Slab', serif;
+	letter-spacing: .1rem;
+}
+.hero-element button{
+	justify-self: start;
+	grid-column-start: 1;
+}
+.hero-element h2 span{
+	background-color: var(--primary-variant);
+	padding: 0 1rem;
+}
+@media (max-width: 1250px) {
+
+}
+
+@media (max-width: 1120px) {
+	.hero-element h2{
+		font-size: 2.5rem;
+	}
+}
+
+@media (max-width: 780px) {
+	.hero-element {
+		margin-top: 2rem;
+		padding: 2rem 2rem;
+		grid-template-columns: 1fr;
+	}
+	.hero-element h2{
+		font-size: 2rem;
+	}
+
+}
+
+@media (max-width: 480px) {
+	.hero-element {
+		margin-top: 1rem;
+		padding: 2rem 1rem;
+	}
+	.hero-element h2{
+		font-size: 1.5rem;
+		font-family: 'Roboto Slab', serif;
+		letter-spacing: 0;
+	}
 }
 /* 
 	new sample sections 
@@ -211,7 +310,6 @@ main {
     border: 1px solid lightgray;
     border-radius: 1rem;
     overflow: hidden;
-	max-width: 320px;
 }
 
 
@@ -253,11 +351,12 @@ main {
 .btn-primery {
 }
 .btn-to-action {
-	background-color: var(--secondary) ;
+	background-color: var(--primary-variant);
+	border: 2px solid var(--primary);
 }
-.btn-primery:hover{
+.btn-to-action:hover{
 	transition: .5s;
-	background-color: #1EAE988f;
+	background-color: var(--primary);
 }
 .btn-cancel{
 	border: 2px solid var(--error);

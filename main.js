@@ -59,7 +59,7 @@ let SampleList = {
     template: `
     <div class="sample-list-wrapper">
         <h2><slot></slot> ({{ items.length }})</h2>
-        <ul class="slampleList">
+        <ul class="sample-list">
             <sample-list-item 
                 v-for="item in items" 
                 :key="item.id" 

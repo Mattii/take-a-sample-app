@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
 	<meta charset="UTF-8">
-	<title>SimpleSample</title>
+	<title>TaS</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="main.css">
 </head>
@@ -10,7 +10,7 @@
 <div id="shopping-list">
 	<the-header
 		@show-add-form="showAddForm"
-	>Take a Sample</the-header>
+	>TaS</the-header>
 	<section id="addingForm" v-if="displayAddingForm">
 		<h2>Add new sample</h2>
 		<form @submit.prevent="submitForm" id="sampleAddForm">
@@ -99,7 +99,13 @@
 		</form>
 	</section>
 	<main>
-	<section class="sample-section" v-if="newSample.length > 0" id="newSampleVarietyList">
+	<section class="base-section">
+		<div class="hero-element">
+			<h2>Predict the future and <br /><span>take a sample</span> of innovation</h2>
+			<button class="btn btn-to-action">Make an order</button>
+		</div>
+	</section>
+	<section class="base-section" v-if="newSample.length > 0" id="newSampleVarietyList">
 		<sample-list 
 			:items="newSample"
 			@edit-variety="editVariety"
@@ -108,7 +114,7 @@
 		>New Sample</sample-list>
 	</section>
 
-	<section class="sample-section" v-if="items.length > 0" id="sampleVarietyList">
+	<section class="base-section" v-if="items.length > 0" id="sampleVarietyList">
 		<sample-list 
 			:items="items"
 			@edit-variety="editVariety"
