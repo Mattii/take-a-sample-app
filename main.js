@@ -59,7 +59,7 @@ let SampleList = {
     template: `
     <div class="sample-list-wrapper">
         <h2><slot></slot> ({{ items.length }})</h2>
-        <ul class="slampleList" v-else>
+        <ul class="slampleList">
             <sample-list-item 
                 v-for="item in items" 
                 :key="item.id" 
@@ -179,7 +179,7 @@ const shoppingListApp = Vue.createApp({
     },
     computed: {
         newSample() {
-            return this.items.filter(e => new Date(e.createdAt).toLocaleDateString() == new Date().toLocaleDateString())
+            return this.items.filter(e => new Date(e.createdAt).getTime() > new Date().getTime() - (63158400000 / 100))
         }
     },
     methods:{
