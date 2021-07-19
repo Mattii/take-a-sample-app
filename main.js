@@ -15,10 +15,10 @@ let SampleListItem = {
                 <button class="btn btn-primery" @click="addRemarkToVarietyt(item.id)">Add Remark</button>
             </div>
             <div class="varietyListActions">
-                <button class="btn" @click="editVariety(item.id)">Edit</button>
-                <button class="btn" @click="showRemark = !showRemark">Remark</button>
-                <button class="btn">Add to chart</button>
-                <button class="btn btn-cancel" @click="deleteVariety(item.id)">Delete</button>
+                <base-button class="btn" @click="editVariety(item.id)">Edit</base-button>
+                <base-button class="btn" @click="showRemark = !showRemark">Remark</base-button>
+                <base-button class="btn">Add to chart</base-button>
+                <base-button class="btn btn-cancel" @click="deleteVariety(item.id)">Delete</base-button>
             </div>		
         </li>
     `,
@@ -274,4 +274,29 @@ const shoppingListApp = Vue.createApp({
         }
     }
 } )
+.component('BaseButton', {
+    template: `
+            <button v-if="btnType === 'button'"><slot></slot></button>
+    `,
+    name: 'BaseButton',
+    props: {
+        btnType: {
+            type: String,
+            default: 'button',
+        }
+    },
+    data() {
+        return {
+
+        }
+    },
+})
+.component('BaseSection', {
+    template: `
+        <section class="base-section">
+            <slot></slot>
+        </section>
+    `,
+    name: 'BaseSection',
+})
 .mount('#shopping-list');

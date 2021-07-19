@@ -94,34 +94,34 @@
 				/>
 			</div>
 			
-			<button class="btn btn-primery btn-to-action" type="submit">{{!isEdited ? 'Add sample' : 'Edit sample'}}</button>
-			<button class="btn btn-cancel" type="reset" @click="clearForm">Cancle</button>
+			<base-button class="btn btn-primery btn-to-action" type="submit">{{!isEdited ? 'Add sample' : 'Edit sample'}}</base-button>
+			<base-button class="btn btn-cancel" type="reset" @click="clearForm">Cancle</base-button>
 		</form>
 	</section>
 	<main>
-	<section class="base-section">
+	<base-section>
 		<div class="hero-element">
 			<h2>Predict the future and <br /><span>take a sample</span> of innovation</h2>
-			<button class="btn btn-to-action">Make an order</button>
+			<base-button class="btn btn-to-action">Go to chart</base-button>
 		</div>
-	</section>
-	<section class="base-section" v-if="newSample.length > 0" id="newSampleVarietyList">
+	</base-section>
+	<base-section v-if="newSample.length > 0" id="newSampleVarietyList">
 		<sample-list 
 			:items="newSample"
 			@edit-variety="editVariety"
 			@delete-variety="deleteVariety"
 			@add-remark-to-varietyt="addRemarkToVarietyt"
 		>New Sample</sample-list>
-	</section>
+	</base-section>
 
-	<section class="base-section" v-if="items.length > 0" id="sampleVarietyList">
+	<base-section v-if="items.length > 0" id="sampleVarietyList">
 		<sample-list 
 			:items="items"
 			@edit-variety="editVariety"
 			@delete-variety="deleteVariety"
 			@add-remark-to-varietyt="addRemarkToVarietyt"
 		>Sample on stoc</sample-list>
-	</section>
+	</base-section>
 	</main>
 	<footer></footer>
 </div>
