@@ -1,3 +1,5 @@
+import store from "./store.js";
+
 let SampleListItem = {
     template: `
         <li class="sampleListItem">
@@ -91,8 +93,16 @@ let SampleList = {
         },
     }
 }
+const About = { template: '<div>About</div>' }
 
-
+const routes = [
+    { path: '/about', component: About },
+  ]
+const router = VueRouter.createRouter({
+    // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
+    history: VueRouter.createWebHistory(),
+    routes, // short for `routes: routes`
+  })
 
 const shoppingListApp = Vue.createApp({
     components: { 'SampleList': SampleList },
@@ -124,60 +134,12 @@ const shoppingListApp = Vue.createApp({
             cropFormPackingDate: null,
             cropFormBatch: null,
             displayAddingForm: false,
-            items: [
-                {
-                    createdAt: "7/8/2021, 10:29:46 AM",
-                    creator: "Mateusz Ś",
-                    cropBatch: "555555",
-                    cropName: "adanto",
-                    cropPacking: "100",
-                    cropQuantity: "4",
-                    cropSegment: "sałata",
-                    id: 1625732986787,
-                    packingDate: "2019-07-08",
-                    remarks: [],
-                },
-                {
-                    createdAt: "7/15/2021, 10:29:46 AM",
-                    creator: "Mateusz Ś",
-                    cropBatch: "555555",
-                    cropName: "fairly",
-                    cropPacking: "100",
-                    cropQuantity: "4",
-                    cropSegment: "sałata",
-                    id: 1625732986790,
-                    packingDate: "2021-07-15",
-                    remarks: [],
-                },
-                {
-                    createdAt: "7/15/2021, 10:29:46 AM",
-                    creator: "Mateusz Ś",
-                    cropBatch: "555555",
-                    cropName: "dabi",
-                    cropPacking: "500",
-                    cropQuantity: "7",
-                    cropSegment: "sałata",
-                    id: 1625732986900,
-                    packingDate: "2020-07-15",
-                    remarks: [],
-                },
-                {
-                    createdAt: "7/6/2021, 10:29:46 AM",
-                    creator: "Mateusz Ś",
-                    cropBatch: "555555",
-                    cropName: "dabi",
-                    cropPacking: "500",
-                    cropQuantity: "7",
-                    cropSegment: "sałata",
-                    id: 1625732986900,
-                    packingDate: "2020-07-08",
-                    remarks: [],
-                },
-                
-            ],
         }
     },
     computed: {
+        items() {
+            return this.$store.getters.getItems
+        },
         newSample() {
             return this.items.filter(e => new Date(e.createdAt).getTime() > new Date().getTime() - (63158400000 / 100))
         }
@@ -259,7 +221,7 @@ const shoppingListApp = Vue.createApp({
 	        <img src="/img/pie-chart.svg" alt="pie-chart">
             <h1><slot></slot></h1>
             <nav>
-		        <button @click="showAddForm" class="btn btn-round">Add</button>
+		        <base-button @click="showAddForm" class="btn">Add</base-button>
 	        </nav>
         </header>
     `,
@@ -298,5 +260,6 @@ const shoppingListApp = Vue.createApp({
         </section>
     `,
     name: 'BaseSection',
-})
-.mount('#shopping-list');
+});
+shoppingListApp.use(store);
+shoppingListApp.mount('#shopping-list');
