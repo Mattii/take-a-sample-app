@@ -12,91 +12,7 @@
 		@show-add-form="showAddForm"
 	>TaS</the-header>
 	<section id="addingForm" v-if="displayAddingForm">
-		<h2>Add new sample</h2>
-		<form @submit.prevent="submitForm" id="sampleAddForm">
-			<div>
-				<label for="cropFormSegment">Segment</label>
-				<input 
-					list="cropFormTypes" 
-					id="cropFormSegment" 
-					placeholder="Choose Crop"  
-					v-model="cropFormSegment"
-					required					
-				/>
-				<datalist id="cropFormTypes">
-					<option 
-						v-for="cropSegment in cropSegments" 
-						:key="cropSegment" 
-						:value="cropSegment" 
-					/>
-				</datalist>
-			</div>
-			<div>
-				<label for="cropFormName">Name</label>
-				<input 
-					id="cropFormName" 
-					type="text" 
-					v-model.lazy="cropFormName" 
-					placeholder="Add an Name of Crop"
-					autocomplete="username"
-					required
-				/>
-			</div>
-			<div>
-				<label for="cropFormPackingType">Packing</label>
-				<input 
-					id="cropFormPackingType"
-					list="cropFormPackingTypes"
-					v-model="cropFormPackingType"
-					placeholder="Add an packing type"
-					required
-				/>
-				<datalist id="cropFormPackingTypes">
-					<option 
-						v-for="packing in cropPackings" 
-						:key="packing" 
-						:value="packing" 
-					>
-				</datalist>
-			</div>
-			<div>
-				<label for="cropFormPackQuantity">Number of pack</label>
-				<input 
-					id="cropFormPackQuantity"
-					type="number"
-					v-model="cropFormPackQuantity"
-					min="1"
-					placeholder="At least 1"
-					required
-				/>
-			</div>
-			<div>
-				<label for="cropFormPackingDate">Packing date</label>
-				<input 
-					type="date" 
-					id="cropFormPackingDate" 
-					v-model="cropFormPackingDate" 
-					required
-				> 
-			</div>
-			<div>
-				<label for="cropFormBatch">Batch</label>
-				<input 
-					id="cropFormBatch" 
-					type="text"
-					v-model.lazy="cropFormBatch" 
-					placeholder="Add an Batch of Crop"
-					minlength="6"
-					maxlength="6"
-					pattern="\d+"
-					autocomplete="off"
-					required
-				/>
-			</div>
-			
-			<base-button class="btn btn-primery btn-to-action" type="submit">{{!isEdited ? 'Add sample' : 'Edit sample'}}</base-button>
-			<base-button class="btn btn-cancel" type="reset" @click="clearForm">Cancle</base-button>
-		</form>
+		<add-sample-form></add-sample-form>
 	</section>
 	<main>
 	<base-section>
@@ -108,18 +24,14 @@
 	<base-section v-if="newSample.length > 0" id="newSampleVarietyList">
 		<sample-list 
 			:items="newSample"
-			@edit-variety="editVariety"
-			@delete-variety="deleteVariety"
-			@add-remark-to-varietyt="addRemarkToVarietyt"
+			@show-form="showForm"
 		>New Sample</sample-list>
 	</base-section>
 
 	<base-section v-if="items.length > 0" id="sampleVarietyList">
 		<sample-list 
 			:items="items"
-			@edit-variety="editVariety"
-			@delete-variety="deleteVariety"
-			@add-remark-to-varietyt="addRemarkToVarietyt"
+			@show-form="showForm"
 		>Sample on stoc</sample-list>
 	</base-section>
 	</main>

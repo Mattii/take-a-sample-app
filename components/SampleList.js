@@ -10,9 +10,7 @@ export default {
                 v-for="item in items" 
                 :key="item.id" 
                 :item="item"
-                @deleteVariety="deleteVariety"
-                @editVariety="editVariety"
-                @addRemarkToVarietyt="addRemarkToVarietyt"
+                @show-form="showForm"
             ></sample-list-item>
         </ul>
     </div>
@@ -26,14 +24,8 @@ export default {
         }
     },
     methods: {
-        deleteVariety(id) {
-            this.$emit('deleteVariety', id)
-        },
-        editVariety(id) {
-            this.$emit( 'editVariety', id)
-        },
-        addRemarkToVarietyt(id, remarkText) {
-            this.$emit('addRemarkToVarietyt', id, remarkText)
-        },
+        showForm(state) {
+            this.$emit( 'showForm', state)
+        }
     },
 }

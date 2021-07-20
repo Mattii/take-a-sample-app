@@ -52,6 +52,8 @@ const store = new Vuex.createStore({
     state() {
         return {
             items: [],
+            editedItemId: null,
+            logedInUser: 'Mateusz Ś',
         }
     },
     mutations: {
@@ -67,6 +69,12 @@ const store = new Vuex.createStore({
         },
         deleteItem(state, id) {
             state.items = state.items.filter(e => e.id !== id)
+        },
+        setLogedInUser(state, name) {
+            state.logedInUser = name
+        },
+        setEditedItem(state, id) {
+            state.editedItemId = id
         }
     },
     actions: {
@@ -83,11 +91,17 @@ const store = new Vuex.createStore({
         },
         deleteSampleItem(context, id) {
             context.commit('deleteItem', id)
+        },
+        editedSampleItem(context, id) {
+            context.commit('setEditedItem', id)
         }
     },
     getters: {
         getItems(state) {
             return state.items
+        },
+        getLogedInUser(state) {
+            return state.logedInUser
         }
     }
 })

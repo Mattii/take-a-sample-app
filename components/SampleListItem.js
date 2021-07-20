@@ -43,15 +43,22 @@ export default {
             return expDatePlusTwoYears < now
         },
         addRemarkToVarietyt(id) {
-            this.$emit('addRemarkToVarietyt', id, this.remarkText)
             this.remarkText = ''
             this.showRemark = false
+            const varietyIndex = this.items.findIndex(e => e.id === id)
+            const remark = {
+                createdRemarkAt: new Date().toLocaleString(),
+                creatorOfRemark: this.logedInUser,
+                text: remarkText,
+            }
+            this.items[varietyIndex].remarks.push(remark)
         },
         deleteVariety(id) {
-            this.$emit('deleteVariety', id)
+            this.$store.dispatch('deleteSampleItem', id);
         },
         editVariety(id) {
-            this.$emit( 'edit-variety', id)
+            this.$store.dispatch( 'editedSampleItem', id)
+            this.$emit( 'showForm', true)
         }
     }
 }
