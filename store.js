@@ -73,7 +73,7 @@ const store = new Vuex.createStore({
         setLogedInUser(state, name) {
             state.logedInUser = name
         },
-        setEditedItem(state, id) {
+        setEditedId(state, id) {
             state.editedItemId = id
         }
     },
@@ -92,8 +92,8 @@ const store = new Vuex.createStore({
         deleteSampleItem(context, id) {
             context.commit('deleteItem', id)
         },
-        editedSampleItem(context, id) {
-            context.commit('setEditedItem', id)
+        editedSampleId(context, id) {
+            context.commit('setEditedId', id)
         }
     },
     getters: {
@@ -102,6 +102,9 @@ const store = new Vuex.createStore({
         },
         getLogedInUser(state) {
             return state.logedInUser
+        },
+        editedItemId(state) {
+            return state.editedItemId
         }
     }
 })

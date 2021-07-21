@@ -30,10 +30,12 @@ const shoppingListApp = Vue.createApp({
     methods:{
         showAddForm() {
             this.displayAddingForm = !this.displayAddingForm
+            if(this.displayAddingForm == false){
+                this.$store.dispatch( 'editedSampleId', null)
+            }
         },
         showForm(state) {
             this.displayAddingForm = state
-            this.isEdited = true
         }
     },
     created() {

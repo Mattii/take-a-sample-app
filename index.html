@@ -12,7 +12,9 @@
 		@show-add-form="showAddForm"
 	>TaS</the-header>
 	<section id="addingForm" v-if="displayAddingForm">
-		<add-sample-form></add-sample-form>
+		<keep-alive>
+			<add-sample-form></add-sample-form>
+		</keep-alive>
 	</section>
 	<main>
 	<base-section>

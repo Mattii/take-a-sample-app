@@ -90,7 +90,6 @@ export default {
     data(){
         return {
             isEdited: false,
-            editedId: null,
             cropFormSegment: null,
             cropSegments: [
                 'pomidor',
@@ -115,12 +114,19 @@ export default {
             cropFormBatch: null,
         }
     },
+    watch: {
+        editedId: function(newId, oldId) {
+            if(this.editedId !== null){
+                this.editVariety(this.editedId)
+            }
+        }
+    },
     methods: {
         submitForm() {
             if(this.isEdited){
                 const indexItem = this.$store.getters.getItems.findIndex(e => e.id === this.editedId)
                 const editedItem = {
-                    ...this.items[indexItem],
+                    ...this.$store.getters.getItems[indexItem],
                     updatedAt: new Date().toLocaleString(),
                     updatedBy: this.logedInUser,
                     cropSegment: this.cropFormSegment,						
@@ -132,7 +138,6 @@ export default {
                 }
                 this.$store.dispatch('editSampleItem', editedItem)
                 this.isEdited = false
-                this.showAddForm()
             } else {
                 const newItem = {
                     id: new Date().getTime(),
@@ -158,6 +163,7 @@ export default {
                 this.cropFormPackingDate = null
                 this.cropFormBatch = null
                 this.isEdited = false
+                this.$store.dispatch( 'editedSampleId', null)
         }, 
         editVariety(id) {
             this.isEdited = true
@@ -174,6 +180,15 @@ export default {
     computed: {
         logedInUser() {
             return this.$store.getters.getLogedInUser
+        },
+        editedId: {
+            get: function() {
+                return this.$store.getters.editedItemId
+            },
+            set: function(newValue) {
+                console.log('test');
+            }
         }
-    }
+    },
+
 }

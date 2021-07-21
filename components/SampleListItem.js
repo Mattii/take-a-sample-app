@@ -57,8 +57,14 @@ export default {
             this.$store.dispatch('deleteSampleItem', id);
         },
         editVariety(id) {
-            this.$store.dispatch( 'editedSampleItem', id)
-            this.$emit( 'showForm', true)
+            const editPromis = new Promise((resolve, reject) => {
+                this.$emit( 'showForm', true)
+                resolve()
+            })
+            editPromis.then(() => {
+                    this.$store.dispatch( 'editedSampleId', id)
+            })
+            
         }
     }
 }
