@@ -1,10 +1,10 @@
-const About = { template: '<div>About</div>' }
-
+import Home from "./views/Home.js";
+// import AddSample from "./views/AddSample.js"
 const routes = [
-    { path: '/about', component: About },
+    { path: '/', name: 'Home', component: Home },
+    { path: '/addsample', name: 'AddSample', component: () => import("./views/AddSample.js") },
   ]
 const router = VueRouter.createRouter({
-    // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
     history: VueRouter.createWebHistory(),
     routes, // short for `routes: routes`
   })

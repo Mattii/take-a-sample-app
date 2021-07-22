@@ -1,11 +1,14 @@
 export default {
     template: `
         <header>
-	        <img src="/img/pie-chart.svg" alt="pie-chart">
-            <h1><slot></slot></h1>
-            <nav>
-		        <base-button @click="showAddForm" class="btn">Add</base-button>
-	        </nav>
+            <router-link to="/" class="logo">
+                <img src="/img/pie-chart.svg" alt="pie-chart">
+                <h1><slot></slot></h1>
+            </router-link>
+            <nav class="header-nav">
+                <router-link to="/">Home</router-link>
+                <router-link to="/addsample">Add Sample</router-link>
+            </nav>
         </header>
     `,
     data() {
@@ -14,8 +17,5 @@ export default {
         }
     },
     methods: {
-        showAddForm() {
-            this.$emit('showAddForm')
-        }
     }
 }

@@ -8,35 +8,8 @@
 </head>
 <body>
 <div id="shopping-list">
-	<the-header
-		@show-add-form="showAddForm"
-	>TaS</the-header>
-	<section id="addingForm" v-if="displayAddingForm">
-		<keep-alive>
-			<add-sample-form></add-sample-form>
-		</keep-alive>
-	</section>
-	<main>
-	<base-section>
-		<div class="hero-element">
-			<h2>Predict the future and <br /><span>take a sample</span> of innovation</h2>
-			<base-button class="btn btn-to-action">Go to chart</base-button>
-		</div>
-	</base-section>
-	<base-section v-if="newSample.length > 0" id="newSampleVarietyList">
-		<sample-list 
-			:items="newSample"
-			@show-form="showForm"
-		>New Sample</sample-list>
-	</base-section>
-
-	<base-section v-if="items.length > 0" id="sampleVarietyList">
-		<sample-list 
-			:items="items"
-			@show-form="showForm"
-		>Sample on stoc</sample-list>
-	</base-section>
-	</main>
+	<the-header>TaS</the-header>
+	<router-view></router-view>
 	<footer></footer>
 </div>
 	<script src="https://unpkg.com/vue@next"></script>

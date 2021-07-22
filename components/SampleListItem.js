@@ -14,7 +14,7 @@ export default {
                 <textarea v-model="remarkText" cols="25" rows="1" placeholder="Add an remark"></textarea>
                 <button class="btn btn-primery" @click="addRemarkToVarietyt(item.id)">Add Remark</button>
             </div>
-            <div class="varietyListActions">
+            <div v-if="info === 'edit'" class="varietyListActions">
                 <base-button class="btn" @click="editVariety(item.id)">Edit</base-button>
                 <base-button class="btn" @click="showRemark = !showRemark">Remark</base-button>
                 <base-button class="btn">Add to chart</base-button>
@@ -24,6 +24,9 @@ export default {
     `,
     name: 'SampleListItem',
     props: {
+        info: {
+            type: String,
+        },
         item: {
             type: Object,
             required: true,    

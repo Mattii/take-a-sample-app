@@ -11,6 +11,7 @@ export default {
                 :key="item.id" 
                 :item="item"
                 @show-form="showForm"
+                :info="info"
             ></sample-list-item>
         </ul>
     </div>
@@ -18,6 +19,9 @@ export default {
     name: 'SampleList',
     components: { 'SampleListItem': SampleListItem },
     props: {
+        info: {
+            type: String
+        },
         items: {
             type: Array,
             required: true,

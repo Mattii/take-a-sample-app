@@ -30,6 +30,7 @@ header{
 	top: 0;
 	width: 100%;
 	display: flex;
+	justify-content: space-between;
 	font-family: 'Roboto Slab', serif;
 	background-color: var(--surface);
 	color: var(--on-surface);
@@ -37,7 +38,10 @@ header{
 	border-bottom: 1px solid lightgrey;
 	z-index: 10;
 }
-header img {
+.logo{
+	display: flex;
+}
+header .logo img {
 	width: 2rem;
 	margin-right: 1rem;
 }
@@ -70,8 +74,12 @@ header img {
 /* 
 	main navigation 
 */
+.header-nav{
+	display: flex;
+}
 
-nav{
+
+.add-sample-nav{
 	position: fixed;
 	bottom: 1.5rem;
 	right: 1.5rem;
