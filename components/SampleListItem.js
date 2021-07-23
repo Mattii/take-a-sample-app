@@ -10,13 +10,13 @@ export default {
             <ul class="remarkList" v-if="item.remarks.length > 0">
                 <li v-for="remark in item.remarks" class="varietyRemark">{{ remark.text }}</li>
             </ul>
-            <div v-if="showRemark" class="remark">
+            <div v-if="false" class="remark">
                 <textarea v-model="remarkText" cols="25" rows="1" placeholder="Add an remark"></textarea>
                 <button class="btn btn-primery" @click="addRemarkToVarietyt(item.id)">Add Remark</button>
             </div>
             <div v-if="info === 'edit'" class="varietyListActions">
                 <base-button class="btn" @click="editVariety(item.id)">Edit</base-button>
-                <base-button class="btn" @click="showRemark = !showRemark">Remark</base-button>
+                <router-link :to="{name: 'details.show', params: {id: item.id}}">Details</router-link>
                 <base-button class="btn">Add to chart</base-button>
                 <base-button class="btn btn-cancel" @click="deleteVariety(item.id)">Delete</base-button>
             </div>		
@@ -34,7 +34,6 @@ export default {
     },
     data() {
         return {
-            showRemark: false,
             remarkText: '',
         }
     },

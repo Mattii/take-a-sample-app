@@ -5,7 +5,7 @@ export default {
         <base-section>
             <div class="hero-element">
                 <h2>Predict the future and <br /><span>take a sample</span> of innovation</h2>
-                <base-button class="btn btn-to-action">Go to chart</base-button>
+                <base-button class="btn btn-to-action">Take some</base-button>
             </div>
         </base-section>
         <base-section v-if="newSample.length > 0" id="newSampleVarietyList">
@@ -33,7 +33,7 @@ export default {
             return this.$store.getters.getItems
         },
         newSample() {
-            return this.items.filter(e => new Date(e.createdAt).getTime() > new Date().getTime() - (63158400000 / 100))
+            return this.items.filter(e => new Date(e.createdAt).getTime() > new Date().getTime() - (63158400000 / 50))
         }
     },
     methods:{

@@ -7,7 +7,7 @@ export default {
         <nav class="add-sample-nav">
 		        <base-button @click="showAddForm" class="btn">Add</base-button>
 	    </nav>
-    	<section id="addingForm" v-if="displayAddingForm">
+    	<section id="addingForm" v-if="displayForm">
 			<add-sample-form></add-sample-form>
         </section>
         <main>
@@ -35,7 +35,7 @@ export default {
     },
     data(){
         return {
-            displayAddingForm: false,
+            displayForm: false,
             isEdited: null
         }
     },
@@ -49,13 +49,13 @@ export default {
     },
     methods:{
         showAddForm() {
-            this.displayAddingForm = !this.displayAddingForm
-            if(this.displayAddingForm == false){
+            this.displayForm = !this.displayForm
+            if(this.displayForm == false){
                 this.$store.dispatch( 'editedSampleId', null)
             }
         },
         showForm(state) {
-            this.displayAddingForm = state
+            this.displayForm = state
         }
     }
 }
