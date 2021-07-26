@@ -3,7 +3,7 @@ export default {
     template: `
     <main>
         <base-section>
-            <button class="btn" @keyup.esc="this.$router.back()" @click="this.$router.back()">Go Back</button>
+            <button class="btn"  @click="this.$router.back()">Go Back</button>
             <div>
                 <h1>Variety deatails</h1>
                 <div>

@@ -26,12 +26,16 @@ a {
 	color: var(--on-surface);
 }
 
+#shopping-list {
+	min-height: 100%;
+}
+
 /*
 	main header
 */
 
 header{
-	position: fixed;
+	position: sticky;
 	top: 0;
 	width: 100%;
 	display: flex;
@@ -199,18 +203,11 @@ main {
 	justify-items: center;
 	gap: 1rem;
 	width: 100%;
-	top: 62px;
 }
 @media (max-width: 1120px) {
-	main {
-		top: 58px;
-	}
 }
 
 @media (max-width: 780px) {
-	main {
-		top: 44px;
-	}
 }
 
 /* 
@@ -401,6 +398,12 @@ main {
 	border-radius: 50%;
 }
 
+footer {
+	width: 100%;
+    margin-top: 2rem;
+    padding: 2rem 3rem;
+    border-top: 1px solid lightgrey;
+}
 
 /*
 .remark{ 
