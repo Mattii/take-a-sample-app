@@ -16,6 +16,8 @@
 	--on-primary: #ffffff;
 	--on-surface: #333333;
 	
+
+	--display-font: 'Roboto Slab', serif;
 }
 body{
 	font-family: sans-serif;
@@ -48,7 +50,7 @@ header{
 }
 .logo{
 	display: flex;
-	font-family: 'Roboto Slab', serif;
+	font-family: var(--display-font);
 	border: none !important;
 	padding: 0 !important;
 }
@@ -162,7 +164,7 @@ header .logo img {
 		z-index: 9;
 	}
 	#addingForm h2 {
-		font-family: 'Roboto Slab', serif;
+		font-family: var(--display-font);
 	}
 	#sampleAddForm{
 		grid-template-columns: repeat(2, 1fr);
@@ -216,7 +218,7 @@ main {
 
 .base-section{
 	background-color: var(--surface);
-	padding: 0 6rem;
+	padding: 1rem 6rem 0 6rem;
 }
 
 
@@ -230,8 +232,8 @@ main {
 }
 
 .sample-list-wrapper h2{
-	padding: 1rem 0;
-	font-family: 'Roboto Slab', serif;
+	padding-bottom: 1rem;
+	font-family: var(--display-font);
 }
 
 .sampleListItem{
@@ -245,7 +247,7 @@ main {
 
 @media (max-width: 1250px) {
 	.base-section{
-		padding: 0 3rem;
+		padding: 1rem 3rem 0 3rem;
 	}
 }
 
@@ -274,7 +276,6 @@ main {
 */
 
 .hero-element {
-	margin-top: 2rem;
     border: 1px solid lightgray;
     border-radius: 1rem;
 	padding: 4rem;   
@@ -285,7 +286,7 @@ main {
 }
 .hero-element h2{
 	font-size: 3rem;
-	font-family: 'Roboto Slab', serif;
+	font-family: var(--display-font);
 	letter-spacing: .1rem;
 }
 .hero-element button{
@@ -308,7 +309,6 @@ main {
 
 @media (max-width: 780px) {
 	.hero-element {
-		margin-top: 2rem;
 		padding: 2rem 2rem;
 	}
 	.hero-element h2{
@@ -396,6 +396,46 @@ main {
 	width: 3rem;
 	height: 3rem;
 	border-radius: 50%;
+}
+
+.login {
+	margin-top: 1rem;
+	min-width: 25vw;
+}
+.login h1 {
+	font-family: var(--display-font);
+	padding-bottom: 2rem;
+} 
+.login div{
+	display: flex;
+	flex-direction: column;
+}
+.login form{
+	display: grid;
+	gap: 1REM;
+}
+@media (max-width: 1250px) {
+	.login {
+		min-width: 30vw;
+	}
+}
+
+@media (max-width: 1120px) {
+	.login {
+		min-width: 40vw;
+	}
+}
+
+@media (max-width: 780px) {
+	.login {
+		min-width: 60vw;
+	}
+}
+
+@media (max-width: 480px) {
+	.login {
+		min-width: 80vw;
+	}
 }
 
 footer {

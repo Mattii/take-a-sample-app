@@ -8,6 +8,7 @@ export default {
             <nav class="header-nav">
                 <router-link to="/">Home</router-link>
                 <router-link :to="{name: 'add.sample'}">Add Sample</router-link>
+                <router-link :to="{name: 'login.user'}">Login</router-link>
             </nav>
         </header>
     `,

@@ -101,6 +101,9 @@ const store = new Vuex.createStore({
         },
         additionOfRemark(context, remark){
             context.commit('setRemark', remark)
+        },
+        setLogedinUser(context, user) {
+            context.commit('setLogedInUser', user)
         }
     },
     getters: {
