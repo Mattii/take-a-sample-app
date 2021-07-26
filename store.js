@@ -43,7 +43,7 @@ const items = [
         cropPacking: "500",
         cropQuantity: "7",
         cropSegment: "sałata",
-        id: 1625732986900,
+        id: 1625732988900,
         packingDate: "2020-07-08",
         remarks: [],
     }
@@ -75,6 +75,10 @@ const store = new Vuex.createStore({
         },
         setEditedId(state, id) {
             state.editedItemId = id
+        },
+        setRemark(state, remark){
+            const itemIndex = state.items.findIndex(e => e.id === remark.id)
+            state.items[itemIndex].remarks.unshift(remark.payload)
         }
     },
     actions: {
@@ -94,6 +98,9 @@ const store = new Vuex.createStore({
         },
         editedSampleId(context, id) {
             context.commit('setEditedId', id)
+        },
+        additionOfRemark(context, remark){
+            context.commit('setRemark', remark)
         }
     },
     getters: {
