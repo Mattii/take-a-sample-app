@@ -4,7 +4,7 @@ export default {
         <base-section>
             <button class="btn"  @click="this.$router.back()">Go Back</button>
 	    <div class="login">
-            <h1>Login</h1>
+            <h1>Hello please login</h1>
             <form @submit.prevent="loginUser">
                 <div>
                     <label for="userEmail">User E-mail</label>
@@ -15,7 +15,7 @@ export default {
                     <input id="userPassword" v-model="userPassword" type="password" placeholder="Enter your password"/>
                     </div>
                 <div>
-                    <base-button class="btn">Submit</base-button>
+                    <base-button class="btn btn-to-action">Login</base-button>
                     <base-button class="btn btn-cancel" type="reset">Cancel</base-button>
                 </div>	
             </form>

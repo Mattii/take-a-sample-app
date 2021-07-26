@@ -4,7 +4,7 @@ export default {
         <main>
         <base-section>
             <div class="hero-element">
-                <h2>Predict the future and <br /><span>take a sample</span> of innovation</h2>
+                <h2>Predict the future and <br /><span>take a sample</span> <br /> of innovation</h2>
                 <base-button class="btn btn-to-action">Take some</base-button>
             </div>
         </base-section>

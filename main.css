@@ -276,11 +276,16 @@ main {
 */
 
 .hero-element {
+	color: var(--on-primary);
+	background-image: url('/img/hero-bg.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
     border: 1px solid lightgray;
     border-radius: 1rem;
-	padding: 4rem;   
+	padding: 10rem 4rem 4rem 4rem;   
 	display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
 	grid-template-rows: auto 1fr;
 	gap: 1rem;
 }
@@ -401,9 +406,11 @@ main {
 .login {
 	margin-top: 1rem;
 	min-width: 25vw;
+	height: 67vh;
 }
 .login h1 {
 	font-family: var(--display-font);
+	font-size: 2rem;
 	padding-bottom: 2rem;
 } 
 .login div{
@@ -438,6 +445,20 @@ main {
 	}
 }
 
+.variety-details-wraper {
+	height: 75vh;
+}
+.variety-details {
+	display: grid;
+	gap: 1rem;
+}
+.variety-details h1{
+	padding-top: 1rem;
+	font-size: 2rem;
+	font-family: var(--display-font);
+}
+
+
 footer {
 	width: 100%;
     margin-top: 2rem;
@@ -445,6 +466,15 @@ footer {
     border-top: 1px solid lightgrey;
 }
 
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 /*
 .remark{ 
 	display: flex;

@@ -9,7 +9,11 @@
 <body>
 <div id="shopping-list">
 	<the-header>TaS</the-header>
-	<router-view></router-view>
+	<router-view v-slot="{ Component }">
+		<transition name="fade" mode="out-in">
+		  <component :is="Component" />
+		</transition>
+	  </router-view>
 	<footer>
 		<p>App Created by Mateusz Śliwowski</p>
 	</footer>
