@@ -16,6 +16,8 @@ export default {
                 <base-button class="btn">Add to chart</base-button>
                 <base-button class="btn btn-cancel" @click="deleteVariety(item.id)">Delete</base-button>
             </div>		
+            
+	        <img :src="'./img/vegetables/'+ item.cropSegment +'.png'" alt="lt_butter_leaf" >
         </li>
     `,
     name: 'SampleListItem',

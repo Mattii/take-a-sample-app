@@ -466,7 +466,7 @@ footer {
     padding: 2rem 3rem;
     border-top: 1px solid lightgrey;
 }
-
+/* page transition */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;
@@ -476,6 +476,20 @@ footer {
 .fade-leave-to {
   opacity: 0;
 }
+
+.sampleListItem {
+	position: relative;
+}
+
+.sampleListItem img{
+	z-index: 0;
+	position: absolute;
+	width: 10rem;
+	right: -4rem;
+	top: -4rem;
+}
+
+
 /*
 .remark{ 
 	display: flex;
