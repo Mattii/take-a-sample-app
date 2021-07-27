@@ -7,9 +7,6 @@ import TheHeader from "./components/TheHeader.js";
 
 
 const shoppingListApp = Vue.createApp({
-    created() {
-        this.$store.dispatch('fetchSampleItems')
-    }
 })
 .component('TheHeader', TheHeader)
 .component('BaseButton', BaseButton)

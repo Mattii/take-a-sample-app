@@ -15,7 +15,7 @@ export default {
                     <p>Packing date: {{ variety.packingDate }}</p>
                     <p>Quantity: {{ variety.cropQuantity }}</p>
                     <p>Packing: {{ variety.cropPacking }}</p>
-                    <div v-if="variety.remarks.length > 0">
+                    <div v-if="variety.remarks && variety.remarks.length > 0">
                         <h3>Remarks</h3>
                         <ul v-for="remark in variety.remarks" :key="remark.createdAt">
                             <li>{{ remark.text }}</li>
@@ -35,7 +35,7 @@ export default {
     name: 'SampleDetails',
     props: {
         id: {
-            type: Number,
+            type: String,
             required: true,
         }
     },

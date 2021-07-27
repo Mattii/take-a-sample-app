@@ -38,4 +38,8 @@ export default {
     },
     methods:{
     },
+    created() {
+        this.$store.dispatch('fetchSampleItems')
+    }
+    
 }

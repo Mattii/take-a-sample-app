@@ -140,7 +140,6 @@ export default {
                 this.isEdited = false
             } else {
                 const newItem = {
-                    id: new Date().getTime(),
                     createdAt: new Date().toLocaleString(),
                     creator: this.logedInUser,
                     cropSegment: this.cropFormSegment,						

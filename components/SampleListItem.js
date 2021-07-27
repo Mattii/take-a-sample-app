@@ -7,7 +7,7 @@ export default {
             </div>
             <p class="varietyPackingDate">Data pakowania: <span :class="{expired: expired(item.packingDate)}">{{ item.packingDate }}</span></p>
             <p class="varietyStock">{{ item.cropPacking }} nasion x {{ item.cropQuantity }} opakowania ( {{ +item.cropPacking * +item.cropQuantity }} nasoin )</p>
-            <p class="remarkCounter" v-if="item.remarks.length > 0">
+            <p class="remarkCounter" v-if="item.remarks && item.remarks.length > 0">
                there is {{ item.remarks.length }} remark
             </p>
             <div v-if="info === 'edit'" class="varietyListActions">

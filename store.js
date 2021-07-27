@@ -1,53 +1,3 @@
-const items = [
-    {
-        createdAt: "7/8/2021, 10:29:46 AM",
-        creator: "Mateusz Ś",
-        cropBatch: "555555",
-        cropName: "adanto",
-        cropPacking: "100",
-        cropQuantity: "4",
-        cropSegment: "sałata",
-        id: 1625732986787,
-        packingDate: "2019-07-08",
-        remarks: [],
-    },
-    {
-        createdAt: "7/15/2021, 10:29:46 AM",
-        creator: "Mateusz Ś",
-        cropBatch: "555555",
-        cropName: "fairly",
-        cropPacking: "100",
-        cropQuantity: "4",
-        cropSegment: "sałata",
-        id: 1625732986790,
-        packingDate: "2021-07-15",
-        remarks: [],
-    },
-    {
-        createdAt: "7/15/2021, 10:29:46 AM",
-        creator: "Mateusz Ś",
-        cropBatch: "555555",
-        cropName: "dabi",
-        cropPacking: "500",
-        cropQuantity: "7",
-        cropSegment: "sałata",
-        id: 1625732986900,
-        packingDate: "2020-07-15",
-        remarks: [],
-    },
-    {
-        createdAt: "7/6/2021, 10:29:46 AM",
-        creator: "Mateusz Ś",
-        cropBatch: "555555",
-        cropName: "dabi",
-        cropPacking: "500",
-        cropQuantity: "7",
-        cropSegment: "sałata",
-        id: 1625732988900,
-        packingDate: "2020-07-08",
-        remarks: [],
-    }
-]
 const store = new Vuex.createStore({
     state() {
         return {
@@ -83,18 +33,41 @@ const store = new Vuex.createStore({
     },
     actions: {
         fetchSampleItems(context) {
-            setTimeout(() => {
-                context.commit('setItems', items)
-            }, 1000)
+            fetch('https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/samples.json')
+                .then(res => res.json())
+                .then(items => {
+                    let arr = [];
+                    for(let key in items){
+                        arr.unshift({...items[key], id: key })
+                    }
+                    console.log('[Success]: fetch data from data base');
+                    context.commit('setItems', arr)
+                })
+                .catch(err => console.log(err))
         },
         postSampleItem(context, item) {
-            context.commit('addItem', item)
+            fetch('https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/samples.json', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                    },
+                body: JSON.stringify(item)
+                }).then( res => {
+                    return res.json();
+                }).then(data => {
+                    context.commit('addItem', {...item, id: data.name})
+                }).catch(err => new Error(err))
         },
         editSampleItem(context, item) {
             context.commit('editItem', item)
         },
         deleteSampleItem(context, id) {
-            context.commit('deleteItem', id)
+            fetch(`https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/samples/${id}.json`, {
+                method: 'DELETE'
+            })
+              .then(res => {
+                context.commit('deleteItem', id)
+              })
         },
         editedSampleId(context, id) {
             context.commit('setEditedId', id)

@@ -276,11 +276,10 @@ main {
 */
 
 .hero-element {
-	color: var(--on-primary);
-	background-image: url('/img/hero-bg.jpg');
+	color: var(--on-surface);
+	background-image: url('/img/vege-hero-bg.jpg');
 	background-position: center;
-	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: cover;
     border: 1px solid lightgray;
     border-radius: 1rem;
 	padding: 10rem 4rem 4rem 4rem;   
@@ -303,7 +302,9 @@ main {
 	padding: 0 1rem;
 }
 @media (max-width: 1250px) {
-
+	.hero-element {
+		grid-template-columns: 2fr 1fr;
+	}
 }
 
 @media (max-width: 1120px) {
@@ -325,7 +326,7 @@ main {
 @media (max-width: 480px) {
 	.hero-element {
 		margin-top: 1rem;
-		padding: 2rem 1rem;
+		padding: 3rem 2rem;
 		grid-template-columns: 1fr;
 	}
 	.hero-element h2{
