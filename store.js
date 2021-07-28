@@ -4,6 +4,7 @@ const store = new Vuex.createStore({
             items: [],
             editedItemId: null,
             logedInUser: 'Mateusz Ś',
+            tokenId: true,
         }
     },
     mutations: {
@@ -19,6 +20,9 @@ const store = new Vuex.createStore({
         },
         deleteItem(state, id) {
             state.items = state.items.filter(e => e.id !== id)
+        },
+        setToken(state, token) {
+            state.tokenId = token
         },
         setLogedInUser(state, name) {
             state.logedInUser = name
@@ -76,7 +80,8 @@ const store = new Vuex.createStore({
             context.commit('setRemark', remark)
         },
         setLogedinUser(context, user) {
-            context.commit('setLogedInUser', user)
+            context.commit('setLogedInUser', user.email)
+            context.commit('setToken', true)
         }
     },
     getters: {
@@ -88,6 +93,9 @@ const store = new Vuex.createStore({
         },
         editedItemId(state) {
             return state.editedItemId
+        },
+        getToken(state) {
+            return state.tokenId
         }
     }
 })

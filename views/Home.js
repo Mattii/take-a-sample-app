@@ -1,20 +1,20 @@
 import SampleList from "../components/SampleList.js";
+import HeroBaner from "../components/HeroBaner.js";
+import LoginBaner from "../components/LoginBaner.js";
 export default {
     template: `
         <main>
         <base-section>
-            <div class="hero-element">
-                <h2>Predict the future and <br /><span>take a sample</span> <br /> of innovation</h2>
-                <base-button class="btn btn-to-action">Take some</base-button>
-            </div>
+            <hero-baner v-if="isToken"/>
+            <login-baner v-else />
         </base-section>
-        <base-section v-if="newSample.length > 0" id="newSampleVarietyList">
+        <base-section v-if="newSample.length > 0 && isToken" id="newSampleVarietyList">
             <sample-list 
                 :items="newSample"
             >New Sample</sample-list>
         </base-section>
 
-        <base-section v-if="items.length > 0" id="sampleVarietyList">
+        <base-section v-if="items.length > 0 && isToken" id="sampleVarietyList">
             <sample-list 
                 :items="items"
             >Sample on stoc</sample-list>
@@ -23,6 +23,8 @@ export default {
     `,
     components: { 
         'SampleList': SampleList,
+        'HeroBaner': HeroBaner,
+        'LoginBaner': LoginBaner,
     },
     data(){
         return {
@@ -34,6 +36,9 @@ export default {
         },
         newSample() {
             return this.items.filter(e => new Date(e.createdAt).getTime() > new Date().getTime() - (63158400000 / 50))
+        },
+        isToken() {
+            return this.$store.getters.getToken
         }
     },
     methods:{

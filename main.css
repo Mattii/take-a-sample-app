@@ -276,24 +276,28 @@ main {
 */
 
 .hero-element {
+	overflow: hidden;
+	position: relative;
 	color: var(--on-surface);
-	background-image: url('/img/vege-hero-bg.jpg');
-	background-position: center;
-	background-size: cover;
     border: 1px solid lightgray;
     border-radius: 1rem;
 	padding: 10rem 4rem 4rem 4rem;   
 	display: grid;
     grid-template-columns: 1fr 1fr;
 	grid-template-rows: auto 1fr;
-	gap: 1rem;
+	gap: 2rem;
+	background-size: cover;
+    background-position: center;
 }
+
 .hero-element h2{
+	z-index: 1;
 	font-size: 3rem;
 	font-family: var(--display-font);
 	letter-spacing: .1rem;
 }
-.hero-element button{
+.hero-element a{
+	z-index: 1;
 	justify-self: start;
 	grid-column-start: 1;
 }
@@ -326,8 +330,9 @@ main {
 @media (max-width: 480px) {
 	.hero-element {
 		margin-top: 1rem;
-		padding: 3rem 2rem;
+		padding: 5rem 2rem 2rem 2rem;
 		grid-template-columns: 1fr;
+		gap: 5rem;
 	}
 	.hero-element h2{
 		font-size: 1.5rem;

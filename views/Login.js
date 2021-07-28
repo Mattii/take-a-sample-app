@@ -32,7 +32,8 @@ export default {
     methods: {
         loginUser() {
             console.log({email: this.userEmail, password: this.userPassword});
-            this.$store.dispatch('setLogedinUser', this.userEmail)
+            this.$store.dispatch('setLogedinUser', { email: this.userEmail, password: this.userPassword })
+            this.$router.push('/')
         }
     },
 }
