@@ -222,18 +222,19 @@ main {
 
 @media (max-width: 1024px) {
 	.base-section{
-		padding: 1rem 3rem 0 3rem;
+		padding: 1rem 3rem;
 	}
 }
 
 @media (max-width: 768px) {
-
+	.base-section{
+		width: 100%;
+	}
 }
 
 @media (max-width: 360px) {
 	.base-section{
 		padding:1rem;
-		width: 100%;
 	}
 }
 
