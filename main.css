@@ -30,7 +30,6 @@ a {
 
 #shopping-list {
 	min-height: 100%;
-    overflow: hidden;
 }
 
 /*
@@ -201,10 +200,8 @@ header .logo img {
 	main  
 */
 main {
-	position: relative;
 	display: grid;
 	justify-items: center;
-	gap: 1rem;
 	width: 100%;
 }
 @media (max-width: 1120px) {
@@ -218,6 +215,7 @@ main {
 */
 
 .base-section{
+    overflow: hidden;
 	background-color: var(--surface);
 	padding: 1rem 6rem 0 6rem;
 }
@@ -234,13 +232,14 @@ main {
 
 @media (max-width: 360px) {
 	.base-section{
-		padding: 0 1rem;
+		padding:1rem;
+		width: 100%;
 	}
 }
 
 
 .sample-list-wrapper h2{
-	padding: 1rem;
+	padding: 0 .5rem 1rem .5rem;
 	font-family: var(--display-font);
 }
 
@@ -248,24 +247,22 @@ main {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	width: 100%;
-    gap: 2rem;
+    gap: 2rem 3rem;
     list-style: none;
 }
 .sample-list-item{
+	max-width: 300px;
 	background-color: var(--surface);
     padding: 1.5rem;
     display: grid;
 	grid-template-columns: 1fr 1fr;
-    gap: .5rem ;
+    gap: 1rem ;
     border: 1px solid lightgray;
     border-radius: 1rem;
 	position: relative;
 	transition: .3s ease-out;
 }
 
-.sample-list-item:hover {
-	transform: scale(1.03);
-}
 .sample-list-item div{
 	z-index: 1;
 }
@@ -292,6 +289,7 @@ main {
 	position: absolute;
 }
 .sample-list-item img:first-child{
+	transform: rotate(45deg);
 	width: 9rem;
 	right: -3rem;
 	top: -3rem;
@@ -302,24 +300,32 @@ main {
     top: 7rem;
 	filter: blur(3px);
 }
-.sample-list-item:hover img:first-child{
-	transform: scale(1.1);
-	filter: blur(2px);
+
+.expired-date{
+	color: #b00020;
 }
-.sample-list-item:hover img:last-child{
-	transform: scale(.90);
-	filter: blur(0);
+
+@media (min-width: 1024px) {
+	.sample-list-item:hover {
+		transform: scale(1.03);
+	}
+	.sample-list-item:hover img:first-child{
+		transform: scale(1.1) rotate(45deg);
+		filter: blur(2px);
+	}
+	.sample-list-item:hover img:last-child{
+		transform: scale(.90);
+		filter: blur(0);
+	}
 }
 
 @media (max-width: 1024px) {
 	.sample-list-item {
 		transition: none;
 	}
-	.base-section{
-		padding: 1rem 3rem 0 3rem;
-	}
 	.sample-list {
 		grid-template-columns: repeat(3, 1fr);
+		gap: 2rem;
 	}
 }
 
@@ -330,13 +336,23 @@ main {
 }
 
 @media (max-width: 360px) {
-	.base-section{
-		padding: 0 1rem;
-	}
 	.sample-list {
 		grid-template-columns: repeat(1, 1fr);
+		gap: 1.5rem;
+	}
+	.sample-list-item {
+		gap: .5rem;
+		padding: 1rem;
+	}
+	.sample-list-item img:last-child{
+		display: none;
 	}
 }
+
+
+
+
+
 
 .sampleListItem{
     padding: 1rem;
@@ -414,7 +430,6 @@ main {
 
 @media (max-width: 480px) {
 	.hero-element {
-		margin-top: 1rem;
 		padding: 5rem 2rem 2rem 2rem;
 		grid-template-columns: 1fr;
 		gap: 5rem;

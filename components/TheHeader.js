@@ -9,7 +9,6 @@ export default {
                 <router-link to="/">Home</router-link>
                 <router-link :to="{name: 'Sample'}">Samples</router-link>
                 <router-link :to="{name: 'login.user'}">Login</router-link>
-                <router-link to="/user">User</router-link>
             </nav>
         </header>
     `,
