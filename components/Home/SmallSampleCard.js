@@ -24,7 +24,7 @@ export default {
         <p class="remark-counter" v-if="item.remarks && item.remarks.length > 0">
         there is {{ item.remarks.length }} remark
         </p>
-        <div>
+        <div class="varietyImages">
             <img :src="'./img/vegetables/'+ item.cropSegment +'.png'" alt="lt_butter_leaf" >		
             <img :src="'./img/vegetables/'+ item.cropSegment +'.png'" alt="lt_butter_leaf" >
         </div>

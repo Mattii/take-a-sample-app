@@ -1,23 +1,43 @@
 export default {
     template: `
-        <li class="sampleListItem">
-            <div>
-                <p class="varietySegment">{{ item.cropSegment }}</p>
-                <h3 class="varietyName">{{ item.cropName.toLocaleUpperCase() }}</h3>
-            </div>
-            <p class="varietyPackingDate">Data pakowania: <span :class="{expired: expired(item.packingDate)}">{{ item.packingDate }}</span></p>
-            <p class="varietyStock">{{ item.cropPacking }} nasion x {{ item.cropQuantity }} opakowania ( {{ +item.cropPacking * +item.cropQuantity }} nasoin )</p>
-            <p class="remarkCounter" v-if="item.remarks && item.remarks.length > 0">
-               there is {{ item.remarks.length }} remark
-            </p>
-            <div v-if="info === 'edit'" class="varietyListActions">
-                <base-button class="btn" @click="editVariety(item.id)">Edit</base-button>
+    <li  class="sample-list-item">
+        <div>
+            <p class="variety-segment varietyLabel">{{ item.cropSegment }}</p>
+            <h3 class="variety-name">{{ item.cropName.toLocaleUpperCase() }}</h3>
+        </div>
+        <div>
+            <p class="varietyLabel">rozmiar pakowania</p> 
+            <p class="variety-packing">{{ item.cropPacking }}</p>
+        </div>
+        <div>
+            <p class="varietyLabel">ilość opakowań</p>
+            <p class="variety-quantity">{{ item.cropQuantity }}</p>
+        </div>
+        <div>
+            <p class="varietyLabel">ilość nasion</p>
+            <p class="variety-stoc=quantity">{{ +item.cropPacking * +item.cropQuantity }}</p>
+        </div>
+        <div>
+            <p class="varietyLabel">data pakowania</p>
+            <p class="variety-packing-date" :class="{'expired-date': expired(item.packingDate)}">{{ item.packingDate }}</p>
+        </div>
+        <p class="remark-counter" v-if="item.remarks && item.remarks.length > 0">
+        there is {{ item.remarks.length }} remark
+        </p>
+        <div class="varietyListActions">
+                <div class="varietyListChartCounter">
+                    <base-button class="btn">Add <span style="font-weight:bold">{{ toChartQnt }}</span> to chart <br /> {{ +toChartQnt * +item.cropPacking}} seeds</base-button>
+                    <base-button class="btn" @click="increaseAmount">+</base-button>
+                    <base-button class="btn" @click="decreseAmount">-</base-button>
+                </div>
+                <base-button v-if="info === 'edit'" class="btn" @click="editVariety(item.id)">Edit</base-button>
                 <router-link class="btn" :to="{name: 'details.show', params: {id: item.id}}">Details</router-link>
-                <base-button class="btn">Add to chart</base-button>
-                <base-button class="btn btn-cancel" @click="deleteVariety(item.id)">Delete</base-button>
-            </div>		
-            
-	        <img :src="'./img/vegetables/'+ item.cropSegment +'.png'" alt="lt_butter_leaf" >
+                <base-button v-if="info === 'edit'" class="btn btn-cancel" @click="deleteVariety(item.id)">Delete</base-button>
+        </div>		
+        <div class="varietyImages">
+            <img :src="'./img/vegetables/'+ item.cropSegment +'.png'" alt="lt_butter_leaf" >		
+            <img :src="'./img/vegetables/'+ item.cropSegment +'.png'" alt="lt_butter_leaf" >
+        </div>
         </li>
     `,
     name: 'SampleListItem',
@@ -33,9 +53,22 @@ export default {
     data() {
         return {
             remarkText: '',
+            toChartQnt: 0,
         }
     },
     methods: {
+        increaseAmount() {
+            if(this.item.cropQuantity > 0){
+                this.toChartQnt++
+                this.item.cropQuantity--
+            }
+        },
+        decreseAmount() {
+            if(this.toChartQnt > 0){
+                this.toChartQnt--
+                this.item.cropQuantity++
+            }
+        },
         expired(date) {
             const now = new Date().getTime();
             const expDate = new Date(date).getTime()

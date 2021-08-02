@@ -5,17 +5,17 @@ export default {
     template: `
         <div>
         <nav class="add-sample-nav">
-		        <base-button @click="showAddForm" class="btn">Add</base-button>
+		        <base-button @click="showAddForm" class="btn btn-to-action">Order</base-button>
 	    </nav>
     	<section id="addingForm" v-if="displayForm">
-			<add-sample-form></add-sample-form>
+            <h2>Your ordered Samples</h2>
+            
         </section>
         <main>
         <base-section v-if="newSample.length > 0" id="newSampleVarietyList">
             <sample-list 
                 :items="newSample"
                 @show-form="showForm"
-                info="edit"
             >New Sample</sample-list>
         </base-section>
 
@@ -23,7 +23,6 @@ export default {
             <sample-list 
                 :items="items"
                 @show-form="showForm"
-                info="edit"
             >Sample on stoc</sample-list>
         </base-section>
         </main>
