@@ -8,8 +8,10 @@ export default {
 		        <base-button @click="showAddForm" class="btn btn-to-action">Order</base-button>
 	    </nav>
     	<section id="addingForm" v-if="displayForm">
-            <h2>Your ordered Samples</h2>
-            
+            <h2>Samples in order</h2>
+            <ul v-if="chartItems.length > 0">
+                <li v-for="chartItem in chartItems" :key="chartItem.id">{{ chartItem.qty }}</li>
+            </ul>
         </section>
         <main>
         <base-section v-if="newSample.length > 0" id="newSampleVarietyList">
@@ -28,19 +30,22 @@ export default {
         </main>
         </div>
     `,
-     components: { 
+    name: 'Samples',
+    components: { 
         'SampleList': SampleList, 
         'AddSampleForm': AddSampleForm 
     },
     data(){
         return {
             displayForm: false,
-            isEdited: null
         }
     },
     computed: {
         items() {
             return this.$store.getters.getItems
+        },
+        chartItems() {
+            return this.$store.getters.getChartItems
         },
         newSample() {
             return this.items.filter(e => new Date(e.createdAt).getTime() > new Date().getTime() - (63158400000 / 100))

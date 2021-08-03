@@ -11,11 +11,11 @@ export default {
         </div>
         <div>
             <p class="varietyLabel">ilość opakowań</p>
-            <p class="variety-quantity">{{ item.cropQuantity }}</p>
+            <p class="variety-quantity">{{ itemChartDifrence }}</p>
         </div>
         <div>
             <p class="varietyLabel">ilość nasion</p>
-            <p class="variety-stoc=quantity">{{ +item.cropPacking * +item.cropQuantity }}</p>
+            <p class="variety-stoc=quantity">{{ +item.cropPacking * +itemChartDifrence }}</p>
         </div>
         <div>
             <p class="varietyLabel">data pakowania</p>
@@ -26,7 +26,7 @@ export default {
         </p>
         <div class="varietyListActions">
                 <div class="varietyListChartCounter">
-                    <base-button class="btn">Add <span style="font-weight:bold">{{ toChartQnt }}</span> to chart <br /> {{ +toChartQnt * +item.cropPacking}} seeds</base-button>
+                    <base-button class="btn" :class="{'btn-to-action': toChartQnt > 0}" @click="addItemToChart">Add <span style="font-weight:bold">{{ toChartQnt }}</span> to chart <br /> {{ +toChartQnt * +item.cropPacking}} seeds</base-button>
                     <base-button class="btn" @click="increaseAmount">+</base-button>
                     <base-button class="btn" @click="decreseAmount">-</base-button>
                 </div>
@@ -56,17 +56,27 @@ export default {
             toChartQnt: 0,
         }
     },
+    computed: {
+        itemChartDifrence(){
+            return this.item.cropQuantity - this.toChartQnt
+        }
+    },
     methods: {
         increaseAmount() {
-            if(this.item.cropQuantity > 0){
+            if(this.itemChartDifrence > 0){
                 this.toChartQnt++
-                this.item.cropQuantity--
             }
         },
         decreseAmount() {
             if(this.toChartQnt > 0){
                 this.toChartQnt--
-                this.item.cropQuantity++
+            }
+        },
+        addItemToChart(){
+            if(this.toChartQnt > 0){ 
+                this.$store.dispatch('addItemToChart', {qty: this.toChartQnt, id: this.item.id})
+                this.item.cropQuantity -= this.toChartQnt
+                this.toChartQnt = 0
             }
         },
         expired(date) {

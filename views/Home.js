@@ -36,6 +36,7 @@ export default {
         </base-section>
         </main>
     `,
+    name: 'Home',
     components: { 
         'HeroBaner': HeroBaner,
         'LoginBaner': LoginBaner,
@@ -61,10 +62,4 @@ export default {
     },
     methods:{
     },
-    created() {
-        if(this.isToken){
-            this.$store.dispatch('fetchSampleItems')
-        }
-    }
-    
 }

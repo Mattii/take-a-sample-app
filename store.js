@@ -2,6 +2,7 @@ const store = new Vuex.createStore({
     state() {
         return {
             items: [],
+            chartItems: [],
             editedItemId: null,
             logedInUser: 'Mateusz Ś',
             tokenId: true,
@@ -33,6 +34,14 @@ const store = new Vuex.createStore({
         setRemark(state, remark){
             const itemIndex = state.items.findIndex(e => e.id === remark.id)
             state.items[itemIndex].remarks.unshift(remark.payload)
+        },
+        addItemToChart(state, chartItem) {
+            const chartItemIndex = state.chartItems.findIndex(e => e.id === chartItem.id)
+            if(chartItemIndex === -1){
+                state.chartItems.unshift(chartItem)
+            }else{
+                state.chartItems[chartItemIndex].qty += chartItem.qty
+            }
         }
     },
     actions: {
@@ -82,6 +91,9 @@ const store = new Vuex.createStore({
         setLogedinUser(context, user) {
             context.commit('setLogedInUser', user.email)
             context.commit('setToken', true)
+        },
+        addItemToChart(context, chartItem) {
+            context.commit('addItemToChart', chartItem)
         }
     },
     getters: {
@@ -96,6 +108,9 @@ const store = new Vuex.createStore({
         },
         getToken(state) {
             return state.tokenId
+        },
+        getChartItems(state) {
+            return state.chartItems
         }
     }
 })

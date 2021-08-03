@@ -174,7 +174,7 @@ header .logo img {
 
 @media (max-width: 480px) {
 	#addingForm {
-		padding: 44px 0 0 0;
+		padding: calc(58px + .5rem) 0 0 0;
 		width: 100vw;
 		height: 100vh;
 		position: fixed;
