@@ -37,10 +37,17 @@ const store = new Vuex.createStore({
         },
         addItemToChart(state, chartItem) {
             const chartItemIndex = state.chartItems.findIndex(e => e.id === chartItem.id)
-            if(chartItemIndex === -1){
+            const itemIndex = state.items.findIndex(e => e.id === chartItem.id)
+            if(chartItemIndex === -1 && itemIndex > -1){
+                chartItem.name = state.items[itemIndex].cropName
+                chartItem.packingSize = state.items[itemIndex].cropPacking
+                state.items[itemIndex].cropQuantity -= +chartItem.qty
                 state.chartItems.unshift(chartItem)
-            }else{
+            }else if( chartItemIndex > -1 && itemIndex > -1){
                 state.chartItems[chartItemIndex].qty += chartItem.qty
+                state.items[itemIndex].cropQuantity -= +chartItem.qty
+            }else{
+                throw new Error("some thing went wrong in adding to chart functon")
             }
         }
     },

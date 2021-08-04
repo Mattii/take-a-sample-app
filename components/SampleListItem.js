@@ -75,7 +75,6 @@ export default {
         addItemToChart(){
             if(this.toChartQnt > 0){ 
                 this.$store.dispatch('addItemToChart', {qty: this.toChartQnt, id: this.item.id})
-                this.item.cropQuantity -= this.toChartQnt
                 this.toChartQnt = 0
             }
         },
