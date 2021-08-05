@@ -39,8 +39,8 @@ const store = new Vuex.createStore({
             const chartItemIndex = state.chartItems.findIndex(e => e.id === chartItem.id)
             const itemIndex = state.items.findIndex(e => e.id === chartItem.id)
             if(chartItemIndex === -1 && itemIndex > -1){
-                chartItem.name = state.items[itemIndex].cropName
-                chartItem.packingSize = state.items[itemIndex].cropPacking
+                // chartItem.name = state.items[itemIndex].cropName
+                // chartItem.packingSize = state.items[itemIndex].cropPacking
                 state.items[itemIndex].cropQuantity -= +chartItem.qty
                 state.chartItems.unshift(chartItem)
             }else if( chartItemIndex > -1 && itemIndex > -1){

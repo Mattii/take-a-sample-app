@@ -112,14 +112,15 @@ header .logo img {
 	adding crop form sections 
 */
 
-#addingForm {
+#addingForm,
+.showSection {
 	background-color: var(--surface);
 	padding: 1rem 4rem;
 	height: max-content;
 	width: 100%;
     z-index: 9;
 	position: sticky;
-    top: 62px;
+    top: 57px;
 	border-bottom: 1px solid lightgrey;
 }
 #sampleAddForm{
@@ -173,7 +174,8 @@ header .logo img {
 }
 
 @media (max-width: 480px) {
-	#addingForm {
+	#addingForm,
+	.showSection {
 		padding: calc(58px + .5rem) 0 0 0;
 		width: 100vw;
 		height: 100vh;
@@ -194,6 +196,34 @@ header .logo img {
 		gap: 0;
 	}
 
+}
+
+
+/*
+	order section
+*/
+.showSection {
+	padding: 1rem 0 !important;
+}
+.showSection > div{
+	overflow: auto;
+}
+.showSection > h2{
+	padding:0 3rem 1rem 3rem;
+}
+
+.order-sample-list {
+	display: inline-flex;
+	gap: 2rem;
+	padding: 0 3rem;
+    margin-bottom: 1rem;
+}
+.samples-order-list-item {
+    width: max-content;
+	list-style: none;
+	padding: 1rem;
+    border: 1px solid lightgray;
+    border-radius: 1rem;
 }
 
 /* 
@@ -217,7 +247,7 @@ main {
 .base-section{
     overflow: hidden;
 	background-color: var(--surface);
-	padding: 1rem 6rem 0 6rem;
+	padding: 1rem 6rem;
 }
 
 @media (max-width: 1024px) {
@@ -582,7 +612,7 @@ main {
 footer {
 	width: 100%;
     margin-top: 2rem;
-    padding: 2rem 3rem;
+    padding: 1rem 3rem;
     border-top: 1px solid lightgrey;
 }
 /* page transition */

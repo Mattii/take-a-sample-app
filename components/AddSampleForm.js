@@ -75,8 +75,8 @@ export default {
                 type="text"
                 v-model.lazy="cropFormBatch" 
                 placeholder="Add an Batch of Crop"
-                minlength="6"
-                maxlength="6"
+                minlength="7"
+                maxlength="7"
                 autocomplete="off"
                 required
             />

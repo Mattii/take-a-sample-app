@@ -1,17 +1,20 @@
 import AddSampleForm from "../components/AddSampleForm.js";
 import SampleList from "../components/SampleList.js";
+import OrderSampleCard from "../components/Samples/OrderSampleCard.js";
 
 export default {
     template: `
-        <div>
+        <div style="min-height: 79vh">
         <nav class="add-sample-nav">
-		        <base-button @click="showAddForm" class="btn btn-to-action">Order</base-button>
+		        <base-button @click="showAddForm" class="btn btn-to-action">Order<span v-if="chartItems.length > 0">{{ chartItems.length }}</span></base-button>
 	    </nav>
-    	<section id="addingForm" v-if="displayForm">
+    	<section class="showSection" v-if="showSection">
             <h2>Samples in order</h2>
-            <ul v-if="chartItems.length > 0">
-                <li v-for="chartItem in chartItems" :key="chartItem.id">{{ chartItem.qty }}</li>
-            </ul>
+            <div>
+                <ul class="order-sample-list" v-if="chartItems.length > 0">
+                    <order-sample-card class="samples-order-list-item" v-for="chartItem in chartItems" :key="chartItem.id" :chartItem="chartItem"></order-sample-card>
+                </ul>
+            </div>
         </section>
         <main>
         <base-section v-if="newSample.length > 0" id="newSampleVarietyList">
@@ -33,16 +36,17 @@ export default {
     name: 'Samples',
     components: { 
         'SampleList': SampleList, 
-        'AddSampleForm': AddSampleForm 
+        'AddSampleForm': AddSampleForm,
+        'OrderSampleCard': OrderSampleCard,
     },
     data(){
         return {
-            displayForm: false,
+            showSection: false,
         }
     },
     computed: {
         items() {
-            return this.$store.getters.getItems
+            return this.$store.getters.getItems.filter(e => e.cropQuantity > 0)
         },
         chartItems() {
             return this.$store.getters.getChartItems
@@ -53,8 +57,8 @@ export default {
     },
     methods:{
         showAddForm() {
-            this.displayForm = !this.displayForm
-            if(this.displayForm == false){
+            this.showSection = !this.showSection
+            if(this.showSection == false){
                 this.$store.dispatch( 'editedSampleId', null)
             }
         },
