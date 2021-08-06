@@ -49,6 +49,14 @@ const store = new Vuex.createStore({
             }else{
                 throw new Error("some thing went wrong in adding to chart functon")
             }
+        },
+        deleteItemFromChart(state, chartItem) {
+            const chartItemIndex = state.chartItems.findIndex(e => e.id === chartItem.id)
+            const itemIndex = state.items.findIndex(e => e.id === chartItem.id)
+            if(chartItemIndex > -1 && itemIndex > -1){
+                state.items[itemIndex].cropQuantity += chartItem.qty
+                state.chartItems.splice(chartItemIndex, 1)
+            }
         }
     },
     actions: {
@@ -101,6 +109,9 @@ const store = new Vuex.createStore({
         },
         addItemToChart(context, chartItem) {
             context.commit('addItemToChart', chartItem)
+        },
+        deleteItemFromChart(context, chartItem) {
+            context.commit( 'deleteItemFromChart', chartItem)
         }
     },
     getters: {

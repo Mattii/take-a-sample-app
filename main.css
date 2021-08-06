@@ -3,6 +3,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	scroll-behavior: smooth;
 }
 :root {
 	--background: #eeeeee;
@@ -26,6 +27,9 @@ a {
 	text-decoration: none;
 	font-family: sans-serif;
 	color: var(--on-surface);
+}
+button{
+	cursor: pointer;
 }
 
 #shopping-list {
@@ -204,12 +208,15 @@ header .logo img {
 */
 .showSection {
 	padding: 1rem 0 !important;
+	display: grid;
+    gap: 1rem;
 }
 .showSection > div{
 	overflow: auto;
 }
-.showSection > h2{
-	padding:0 3rem 1rem 3rem;
+.showSection > h2,
+.showSection > p{
+	padding:0 3rem 0 3rem;
 }
 
 .order-sample-list {
@@ -219,11 +226,57 @@ header .logo img {
     margin-bottom: 1rem;
 }
 .samples-order-list-item {
+	position: relative;
     width: max-content;
 	list-style: none;
 	padding: 1rem;
     border: 1px solid lightgray;
     border-radius: 1rem;
+}
+.samples-order-list-item button{
+	appearance: none;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    right: .6rem;
+	top: .6rem;
+}
+.chart-counter{
+	background-color: var(--secondary-variant);
+	border: 1px solid var(--secondary);
+	color: #eeeeee;
+	position: absolute;
+	text-align: center;
+	top: -.6rem;
+	left: -.8rem;
+	padding: .3rem .6rem;
+	border-radius: 1rem;
+}
+.chart-counter::after{
+	content: '';
+	width: 100%;
+	height: 100%;
+}
+@media (max-width: 480px) {
+	.showSection {
+		padding: calc(58px + 1rem) 1rem 1rem 1rem !important;
+	}
+	.showSection > h2{
+		padding: 0 1rem 1rem 1rem;
+	}
+	.showSection > div{
+		overflow: auto;
+		height: 80vh;
+	}
+	.order-sample-list {
+		display: grid;
+		gap: 1rem;
+		padding: 0;
+	}
+	.samples-order-list-item {
+		width: auto;
+		margin-right: 1rem;
+	}
 }
 
 /* 
