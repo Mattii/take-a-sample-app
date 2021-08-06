@@ -48,7 +48,7 @@ export default {
     },
     computed: {
         items() {
-            return this.$store.getters.getItems
+            return this.$store.getters.getItems.filter(e => e.cropQuantity > 0)
         },
         newSample() {
             return this.items.filter(e => new Date(e.createdAt).getTime() > new Date().getTime() - (63158400000 / 50))

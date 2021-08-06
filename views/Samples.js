@@ -1,6 +1,7 @@
 import AddSampleForm from "../components/AddSampleForm.js";
 import SampleList from "../components/SampleList.js";
-import OrderSampleCard from "../components/Samples/OrderSampleCard.js";
+import OrderItemTab from "../components/Samples/OrderItemTab.js";
+import OrderCustomerTab from "../components/Samples/OrderCustomerTab.js";
 
 export default {
     template: `
@@ -9,13 +10,12 @@ export default {
 		        <base-button @click="showAddForm" class="btn btn-to-action">Order<span v-if="chartItems.length > 0" class="chart-counter">{{ chartItems.length }}</span></base-button>
 	    </nav>
     	<section class="showSection" v-if="showSection">
-            <h2>Samples in order</h2>
-            <div v-if="chartItems.length > 0">
-                <ul class="order-sample-list">
-                    <order-sample-card class="samples-order-list-item" v-for="chartItem in chartItems" :key="chartItem.id" :chartItem="chartItem"></order-sample-card>
-                </ul>
-            </div>
-            <p v-else>There's no samples in order &#128533 change that &#128522</p>
+            <div>
+            <h2>Your order</h2>
+            <button @click="currentTab = 'Items'">Items</button>
+            <button @click="currentTab = 'Customer'">Customer</button>
+        </div>
+            <component :is="currentTabComponent" :chartItems="chartItems" class="tab"></component>
         </section>
         <main>
         <base-section v-if="newSample.length > 0" id="newSampleVarietyList">
@@ -38,11 +38,14 @@ export default {
     components: { 
         'SampleList': SampleList, 
         'AddSampleForm': AddSampleForm,
-        'OrderSampleCard': OrderSampleCard,
+        'ItemsTab': OrderItemTab,
+        'CustomerTab': OrderCustomerTab,
     },
     data(){
         return {
             showSection: false,
+            currentTab: 'Items',
+            tabs:['Items','Customer'],
         }
     },
     computed: {
@@ -54,7 +57,10 @@ export default {
         },
         newSample() {
             return this.items.filter(e => new Date(e.createdAt).getTime() > new Date().getTime() - (63158400000 / 100))
-        }
+        },
+        currentTabComponent(){
+            return this.currentTab.toLowerCase() + '-tab'
+        },
     },
     methods:{
         showAddForm() {

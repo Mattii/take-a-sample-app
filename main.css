@@ -214,8 +214,11 @@ header .logo img {
 .showSection > div{
 	overflow: auto;
 }
-.showSection > h2,
-.showSection > p{
+.showSection > h2{
+	padding:0 3rem 0 3rem;
+}
+.showSection > div > p{
+	text-align: center;
 	padding:0 3rem 0 3rem;
 }
 
@@ -251,6 +254,10 @@ header .logo img {
 	left: -.8rem;
 	padding: .3rem .6rem;
 	border-radius: 1rem;
+	transition: .3s;
+}
+.btn-to-action:hover .chart-counter{
+	background-color: var(--secondary);
 }
 .chart-counter::after{
 	content: '';
@@ -262,7 +269,7 @@ header .logo img {
 		padding: calc(58px + 1rem) 1rem 1rem 1rem !important;
 	}
 	.showSection > h2{
-		padding: 0 1rem 1rem 1rem;
+		padding: 0 1rem;
 	}
 	.showSection > div{
 		overflow: auto;
@@ -585,7 +592,7 @@ main {
 	border: 2px solid var(--primary);
 }
 .btn-to-action:hover{
-	transition: .5s;
+	transition: .3s;
 	background-color: var(--primary);
 }
 .btn-cancel{
@@ -593,7 +600,7 @@ main {
 }
 .btn-cancel:hover,
 .btn-cancel:focus-visible{
-	transition: .5s;
+	transition: .3s;
 	background-color: #FA1E0E8f;
 }
 .btn-round{
