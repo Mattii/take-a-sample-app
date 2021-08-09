@@ -43,9 +43,11 @@ const store = new Vuex.createStore({
                 // chartItem.packingSize = state.items[itemIndex].cropPacking
                 state.items[itemIndex].cropQuantity -= +chartItem.qty
                 state.chartItems.unshift(chartItem)
+                localStorage.setItem(chartItem.id, chartItem.qty)
             }else if( chartItemIndex > -1 && itemIndex > -1){
-                state.chartItems[chartItemIndex].qty += chartItem.qty
+                state.chartItems[chartItemIndex].qty += +chartItem.qty
                 state.items[itemIndex].cropQuantity -= +chartItem.qty
+                localStorage.setItem(chartItem.id,  state.chartItems[chartItemIndex].qty)
             }else{
                 throw new Error("some thing went wrong in adding to chart functon")
             }
@@ -56,6 +58,7 @@ const store = new Vuex.createStore({
             if(chartItemIndex > -1 && itemIndex > -1){
                 state.items[itemIndex].cropQuantity += chartItem.qty
                 state.chartItems.splice(chartItemIndex, 1)
+                localStorage.removeItem(chartItem.id)
             }
         }
     },
@@ -70,6 +73,16 @@ const store = new Vuex.createStore({
                     }
                     console.log('[Success]: fetch data from data base');
                     context.commit('setItems', arr)
+                    return arr
+                }).then(sampleArr => {
+                    sampleArr.forEach(e => {
+                        if(localStorage[e.id]) {
+                            context.commit('addItemToChart', {
+                                id: e.id,
+                                qty: +localStorage.getItem(e.id)
+                            })
+                        }
+                    })
                 })
                 .catch(err => console.log(err))
         },

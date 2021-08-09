@@ -11,11 +11,13 @@ export default {
 	    </nav>
     	<section class="showSection" v-if="showSection">
             <div>
-            <h2>Your order</h2>
-            <button @click="currentTab = 'Items'">Items</button>
-            <button @click="currentTab = 'Customer'">Customer</button>
-        </div>
-            <component :is="currentTabComponent" :chartItems="chartItems" class="tab"></component>
+                <h2>Your order</h2>
+                <button @click="currentTab = 'Items'">Items</button>
+                <button @click="currentTab = 'Customer'">Customer</button>
+            </div>
+            <keep-alive>
+                <component :is="currentTabComponent" :chartItems="chartItems" class="tab"></component>
+            </keep-alive>
         </section>
         <main>
         <base-section v-if="newSample.length > 0" id="newSampleVarietyList">
