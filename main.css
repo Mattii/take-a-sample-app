@@ -214,12 +214,18 @@ header .logo img {
 .showSection > div{
 	overflow: auto;
 }
+.showSection > div:first-child{
+	display: flex;
+	gap: 1rem;
+	padding: 0 3rem;
+	align-items: center;
+}
 .showSection > h2{
 	padding:0 3rem 0 3rem;
 }
 .showSection > div > p{
 	text-align: center;
-	padding:0 3rem 0 3rem;
+	padding:1rem 3rem ;
 }
 
 .order-sample-list {
@@ -357,8 +363,9 @@ main {
 .sample-list-item div{
 	z-index: 1;
 }
-.sample-list-item div:first-child{
+.sample-list-item > div:first-child{
 	grid-column: span 2;
+	align-self: center;
 }
 .varietyImages{
 	z-index: 0 !important;
@@ -577,7 +584,7 @@ main {
 */
 
 .btn {
-	padding: 0.5rem 1rem;
+	padding: 0.3rem .9rem;
     border: none;
     border: 2px solid var(--secondary-variant);
 	background-color: var(--surface) ;

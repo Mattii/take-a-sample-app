@@ -2,7 +2,7 @@ export default {
     template: `
     <li  class="sample-list-item">
         <div>
-            <p class="variety-segment varietyLabel">{{ item.cropSegment }}</p>
+            <p class="variety-segment varietyLabel"><strong v-if="newSample" style="color: red">NEW</strong> {{ item.cropSegment }}</p>
             <h3 class="variety-name">{{ item.cropName.toLocaleUpperCase() }}</h3>
         </div>
         <div>
@@ -59,7 +59,10 @@ export default {
     computed: {
         itemChartDifrence(){
             return this.item.cropQuantity - this.toChartQnt
-        }
+        },
+        newSample() {
+            return new Date(this.item.createdAt).getTime() > new Date().getTime() - (63158400000 / 100)
+        },
     },
     methods: {
         increaseAmount() {

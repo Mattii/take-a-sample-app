@@ -12,26 +12,26 @@ export default {
     	<section class="showSection" v-if="showSection">
             <div>
                 <h2>Your order</h2>
-                <button @click="currentTab = 'Items'">Items</button>
-                <button @click="currentTab = 'Customer'">Customer</button>
+                <base-button class="btn" @click="currentTab = 'Items'">Items</base-button>
+                <base-button class="btn" @click="currentTab = 'Customer'">Customer</base-button>
             </div>
             <keep-alive>
                 <component :is="currentTabComponent" :chartItems="chartItems" class="tab"></component>
             </keep-alive>
         </section>
         <main>
-        <base-section v-if="newSample.length > 0" id="newSampleVarietyList">
+        <!-- <base-section v-if="newSample.length > 0" id="newSampleVarietyList">
             <sample-list 
                 :items="newSample"
                 @show-form="showForm"
             >New Sample</sample-list>
-        </base-section>
+        </base-section> -->
 
         <base-section v-if="items.length > 0" id="sampleVarietyList">
             <sample-list 
                 :items="items"
                 @show-form="showForm"
-            >Sample on stoc</sample-list>
+            >Sample on stock</sample-list>
         </base-section>
         </main>
         </div>
@@ -56,9 +56,6 @@ export default {
         },
         chartItems() {
             return this.$store.getters.getChartItems
-        },
-        newSample() {
-            return this.items.filter(e => new Date(e.createdAt).getTime() > new Date().getTime() - (63158400000 / 100))
         },
         currentTabComponent(){
             return this.currentTab.toLowerCase() + '-tab'
