@@ -62,7 +62,7 @@ export default {
         <div>
             <label for="cropFormPackingDate">Packing date</label>
             <input 
-                type="date" 
+                type="datetime-local" 
                 id="cropFormPackingDate" 
                 v-model="cropFormPackingDate" 
                 required

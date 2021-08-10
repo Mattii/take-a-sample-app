@@ -12,8 +12,8 @@ export default {
     	<section class="showSection" v-if="showSection">
             <div>
                 <h2>Your order</h2>
-                <base-button class="btn" @click="currentTab = 'Items'">Items</base-button>
-                <base-button class="btn" @click="currentTab = 'Customer'">Customer</base-button>
+                <base-button class="btn" :class="{'btn-tab': currentTab === 'Items' }" @click="currentTab = 'Items'">Items</base-button>
+                <base-button :disabled="chartItems.length === 0" class="btn" :class="{'btn-tab': currentTab === 'Customer' }" @click="currentTab = 'Customer'">Customer</base-button>
             </div>
             <keep-alive>
                 <component :is="currentTabComponent" :chartItems="chartItems" class="tab"></component>

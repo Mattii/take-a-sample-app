@@ -562,8 +562,7 @@ main {
 	imputs
 */
 
-#shopping-list input,
-.remark textarea,
+#shopping-list input, textarea,
 #shopping-list select{
 	margin-top: 0.2rem;
     padding: 0.2rem;
@@ -593,7 +592,13 @@ main {
 	cursor: pointer;
     text-align: center;
 }
+.btn:hover{
+	background-color: var(--secondary) ;
+}
 
+.btn-tab{
+	background-color: var(--secondary) ;
+}
 .btn-to-action {
 	background-color: var(--primary-variant);
 	border: 2px solid var(--primary);
@@ -601,6 +606,13 @@ main {
 .btn-to-action:hover{
 	transition: .3s;
 	background-color: var(--primary);
+}
+.btn:disabled {
+    border: 2px solid lightgray;
+	background-color: transparent;
+}
+.btn:disabled:hover {
+    background-color: whitesmoke;
 }
 .btn-cancel{
 	border: 2px solid var(--error);
@@ -675,6 +687,26 @@ main {
 	font-family: var(--display-font);
 }
 
+#orderCustomerTab {
+	padding: 1rem 3rem;
+    width: 100%;
+}
+#orderCustomerTab form{
+	display: grid;
+	gap: 2rem 4rem;
+	grid-template-columns: repeat(3, 1fr);
+}
+#orderCustomerTab div{
+	display: flex;
+	flex-direction: column;
+}
+
+.order-remarks-wrapper{
+	grid-row: span 2;
+}
+.order-remarks-wrapper textarea{
+	height: 100%;
+}
 
 footer {
 	width: 100%;

@@ -13,6 +13,7 @@ export default {
             <strong>Change that</strong> &#128522</p>
         </div>
     `,
+    name:"OrderItemTab",
     props: {
         chartItems: {
             type: Object,
