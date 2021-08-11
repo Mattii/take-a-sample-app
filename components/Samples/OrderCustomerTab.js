@@ -33,7 +33,7 @@ export default {
                         placeholder="Enter additional remark">
                     </textarea>
                 </div>
-                <base-button :disabled="isFeald === false" type="submit" class="btn btn-to-action">Send Order</base-button>
+                <base-button :disabled="isFilled === false" type="submit" class="btn btn-to-action">Send Order</base-button>
             </form>
         </div>
     `,
@@ -60,13 +60,37 @@ export default {
         }
     },
     computed:{
-        isFeald(){
+        isFilled(){
             return this.orderCustomer !== '' && this.paymentTerm !== ''
         }
     },
     methods: {
         sendOrderToCustomerService(){
-            console.log("test");
+            if(this.isFilled){
+                const chart = []
+                const items = this.$store.getters.getItems
+                this.chartItems.forEach(element => {
+                    const item = items.find(e => element.id === e.id)
+                    if(item){
+                        chart.push({
+                            ...item,
+                            chartQty: element.qty
+                        })
+                    }
+                });
+                const order = {
+                    chart,
+                    paymentTerm: this.paymentTerm,
+                    orderCustomer: this.orderCustomer.toUpperCase(),
+                    orderRemark: this.orderRemark,
+                    orderedBy: this.$store.getters.getLogedInUser,
+                    orderedAt: new Date().toLocaleString()
+                }
+                this.paymentTerm = ''
+                this.orderRemark = ''
+                this.orderCustomer = ''
+                this.$store.dispatch('makeOrder', order)
+            }
         }
     },
 }

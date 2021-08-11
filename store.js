@@ -105,10 +105,9 @@ const store = new Vuex.createStore({
         deleteSampleItem(context, id) {
             fetch(`https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/samples/${id}.json`, {
                 method: 'DELETE'
-            })
-              .then(res => {
-                context.commit('deleteItem', id)
-              })
+                }).then(res => {
+                    context.commit('deleteItem', id)
+                }).catch(err => new Error(err))
         },
         editedSampleId(context, id) {
             context.commit('setEditedId', id)
@@ -125,6 +124,14 @@ const store = new Vuex.createStore({
         },
         deleteItemFromChart(context, chartItem) {
             context.commit( 'deleteItemFromChart', chartItem)
+        },
+        makeOrder(context, order){
+            context.dispatch('makeEmail', order)
+        },
+        makeEmail(context, order) {
+            console.log(order);
+            window.location.href = 
+            `mailto:zamowienia@enzazaden.pl?subject=Sample order&body=name:%0D%0A${order.orderedBy} `
         }
     },
     getters: {

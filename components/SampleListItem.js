@@ -35,8 +35,8 @@ export default {
                 <base-button v-if="info === 'edit'" class="btn btn-cancel" @click="deleteVariety(item.id)">Delete</base-button>
         </div>		
         <div class="varietyImages">
-            <img :src="'./img/vegetables/'+ item.cropSegment +'.png'" alt="lt_butter_leaf" >		
-            <img :src="'./img/vegetables/'+ item.cropSegment +'.png'" alt="lt_butter_leaf" >
+            <img :src="'../img/vegetables/'+ item.cropSegment +'.png'" alt="lt_butter_leaf" >		
+            <img :src="'../img/vegetables/'+ item.cropSegment +'.png'" alt="lt_butter_leaf" >
         </div>
         </li>
     `,
