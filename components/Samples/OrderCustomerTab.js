@@ -2,7 +2,7 @@ export default {
     components: {
     },
     template: `
-        <div id="orderCustomerTab">
+        <div class="tab" id="orderCustomerTab">
             <form @submit.prevent="sendOrderToCustomerService">
                 <div>
                     <label for="order-customer">Customer</label>

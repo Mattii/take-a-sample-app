@@ -5,7 +5,7 @@ export default {
         'OrderSampleCard': OrderSampleCard,
     },
     template: `
-        <div>
+        <div  class="tab">
             <ul class="order-sample-list" v-if="chartItems.length > 0">
                 <order-sample-card class="samples-order-list-item" v-for="chartItem in chartItems" :key="chartItem.id" :chartItem="chartItem"></order-sample-card>
             </ul>

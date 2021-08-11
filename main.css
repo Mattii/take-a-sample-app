@@ -124,7 +124,7 @@ header .logo img {
 	width: 100%;
     z-index: 9;
 	position: sticky;
-    top: 57px;
+    top: 58px;
 	border-bottom: 1px solid lightgrey;
 }
 #sampleAddForm{
@@ -208,8 +208,6 @@ header .logo img {
 */
 .showSection {
 	padding: 1rem 0 !important;
-	display: grid;
-    gap: 1rem;
 }
 .showSection > div{
 	overflow: auto;
@@ -217,11 +215,13 @@ header .logo img {
 .showSection > div:first-child{
 	display: flex;
 	gap: 1rem;
-	padding: 0 3rem;
+	padding: 0 4rem 1rem 4rem;
 	align-items: center;
+    height: max-content;
+	
 }
 .showSection > h2{
-	padding:0 3rem 0 3rem;
+	padding:0 4rem;
 }
 .showSection > div > p{
 	text-align: center;
@@ -231,7 +231,7 @@ header .logo img {
 .order-sample-list {
 	display: inline-flex;
 	gap: 2rem;
-	padding: 0 3rem;
+	padding: 0 4rem;
     margin-bottom: 1rem;
 }
 .samples-order-list-item {
@@ -277,14 +277,16 @@ header .logo img {
 	.showSection > h2{
 		padding: 0 1rem;
 	}
-	.showSection > div{
-		overflow: auto;
-		height: 80vh;
+	.showSection > div:first-child{
+		display: flex;
+		padding:0 0 1rem 1rem;
+		gap: 1rem;
+		align-items: center;
 	}
 	.order-sample-list {
 		display: grid;
 		gap: 1rem;
-		padding: 0;
+		padding: 0 0 0 1rem;
 	}
 	.samples-order-list-item {
 		width: auto;
@@ -687,14 +689,17 @@ main {
 	font-family: var(--display-font);
 }
 
+.tab {
+	max-height: 80vh;
+}
 #orderCustomerTab {
-	padding: 1rem 3rem;
-    width: 100%;
+	padding: 0 4rem 1rem 4rem;
 }
 #orderCustomerTab form{
 	display: grid;
 	gap: 2rem 4rem;
 	grid-template-columns: repeat(3, 1fr);
+
 }
 #orderCustomerTab div{
 	display: flex;
@@ -703,10 +708,38 @@ main {
 
 .order-remarks-wrapper{
 	grid-row: span 2;
+    max-height: 100px;
+    width: 100%;
 }
 .order-remarks-wrapper textarea{
 	height: 100%;
 }
+@media (max-width: 1120px) {
+
+}
+
+@media (max-width: 780px) {
+	#orderCustomerTab form{
+		display: grid;
+		gap: 2rem 4rem;
+		grid-template-columns: repeat(2, 1fr);
+	
+	}
+}
+
+@media (max-width: 480px) {
+	#orderCustomerTab{
+		padding: 1rem;
+	}
+	#orderCustomerTab form{
+		grid-template-columns:1fr;
+	
+	}
+	.order-remarks-wrapper{
+		max-width: 256px;
+	}
+}
+
 
 footer {
 	width: 100%;

@@ -11,7 +11,7 @@ export default {
 	    </nav>
     	<section class="showSection" v-if="showSection">
             <div>
-                <h2>Your order</h2>
+                <h2>Order</h2>
                 <base-button class="btn" :class="{'btn-tab': currentTab === 'Items' }" @click="currentTab = 'Items'">Items</base-button>
                 <base-button :disabled="chartItems.length === 0" class="btn" :class="{'btn-tab': currentTab === 'Customer' }" @click="currentTab = 'Customer'">Customer</base-button>
             </div>
