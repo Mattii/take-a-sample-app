@@ -11,13 +11,13 @@ export default {
 			<add-sample-form></add-sample-form>
         </section>
         <main>
-        <base-section v-if="newSample.length > 0" id="newSampleVarietyList">
+        <!-- <base-section v-if="newSample.length > 0" id="newSampleVarietyList">
             <sample-list 
                 :items="newSample"
                 @show-form="showForm"
                 info="edit"
             >New Sample</sample-list>
-        </base-section>
+        </base-section> -->
 
         <base-section v-if="items.length > 0" id="sampleVarietyList">
             <sample-list 

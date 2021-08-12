@@ -1,3 +1,6 @@
+import obj from './const.js'
+
+console.log(obj.API_KEY);
 const store = new Vuex.createStore({
     state() {
         return {
@@ -5,7 +8,7 @@ const store = new Vuex.createStore({
             chartItems: [],
             editedItemId: null,
             logedInUser: 'Mateusz Ś',
-            tokenId: true,
+            tokenId: null,
         }
     },
     mutations: {
@@ -97,17 +100,37 @@ const store = new Vuex.createStore({
                     return res.json();
                 }).then(data => {
                     context.commit('addItem', {...item, id: data.name})
+                    console.log('[Success]: fetch data to data base');
                 }).catch(err => new Error(err))
         },
         editSampleItem(context, item) {
-            context.commit('editItem', item)
+            fetch(`https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/samples/${item.id}.json`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(item)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    context.commit('editItem', data)
+                    console.log('[Success]: updated data to data base');
+                })
+                .catch(err => console.error(err))
         },
         deleteSampleItem(context, id) {
-            fetch(`https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/samples/${id}.json`, {
-                method: 'DELETE'
-                }).then(res => {
-                    context.commit('deleteItem', id)
-                }).catch(err => new Error(err))
+            const item = context.getters.getItems.find(e => e.id === id)
+            console.log(item);
+            const result = confirm('Are You shure to delete '+ item.cropName)
+            if(result){
+                fetch(`https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/samples/${id}.json`, {
+                    method: 'DELETE'
+                    }).then(res => {
+                        context.commit('deleteItem', id)
+                    }).catch(err => new Error(err))
+            } else {
+                alert('Operation was canceld!')
+            }
         },
         editedSampleId(context, id) {
             context.commit('setEditedId', id)
@@ -115,7 +138,21 @@ const store = new Vuex.createStore({
         additionOfRemark(context, remark){
             context.commit('setRemark', remark)
         },
-        setLogedinUser(context, user) {
+        loginUser(context, user) {
+            fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]`, {
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email,
+                    password,
+                    returnSecureToken: true
+                }),
+            })
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.error(err))
             context.commit('setLogedInUser', user.email)
             context.commit('setToken', true)
         },
