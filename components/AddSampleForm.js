@@ -178,7 +178,7 @@ export default {
     },
     computed: {
         logedInUser() {
-            return this.$store.getters.getLogedInUser
+            return this.$store.getters.getLogedInUser.email
         },
         editedId: {
             get: function() {

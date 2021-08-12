@@ -83,7 +83,7 @@ export default {
                     paymentTerm: this.paymentTerm,
                     orderCustomer: this.orderCustomer.toUpperCase(),
                     orderRemark: this.orderRemark,
-                    orderedBy: this.$store.getters.getLogedInUser,
+                    orderedBy: this.$store.getters.getLogedInUser.email,
                     orderedAt: new Date().toLocaleString()
                 }
                 this.paymentTerm = ''

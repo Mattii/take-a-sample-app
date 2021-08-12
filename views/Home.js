@@ -46,6 +46,11 @@ export default {
         return {
         }
     },
+    created() {
+        if(this.$store.getters.getToken){
+            this.$store.dispatch('fetchSampleItems')
+        }
+    },
     computed: {
         items() {
             return this.$store.getters.getItems.filter(e => e.cropQuantity > 0)

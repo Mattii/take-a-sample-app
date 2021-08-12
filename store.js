@@ -1,13 +1,12 @@
-import obj from './const.js'
+import obj from './dotenv.js'
 
-console.log(obj.API_KEY);
 const store = new Vuex.createStore({
     state() {
         return {
             items: [],
             chartItems: [],
             editedItemId: null,
-            logedInUser: 'Mateusz Ś',
+            logedInUser: null,
             tokenId: null,
         }
     },
@@ -138,8 +137,8 @@ const store = new Vuex.createStore({
         additionOfRemark(context, remark){
             context.commit('setRemark', remark)
         },
-        loginUser(context, user) {
-            fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]`, {
+        loginUser(context, { email, password }) {
+            return fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${obj.API_KEY}`, {
                 method: 'POST',
                 headers:{
                     'Content-Type': 'application/json'
@@ -151,10 +150,11 @@ const store = new Vuex.createStore({
                 }),
             })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                context.commit('setLogedInUser', data)
+                context.commit('setToken', data.idToken)
+            })
             .catch(err => console.error(err))
-            context.commit('setLogedInUser', user.email)
-            context.commit('setToken', true)
         },
         addItemToChart(context, chartItem) {
             context.commit('addItemToChart', chartItem)

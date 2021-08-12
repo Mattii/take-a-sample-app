@@ -32,7 +32,7 @@ export default {
     methods: {
         loginUser() {
             this.$store.dispatch('loginUser', { email: this.userEmail, password: this.userPassword })
-            this.$router.push('/')
+            .then(res => this.$router.push('/'))
         }
     },
 }
