@@ -47,9 +47,11 @@ const store = new Vuex.createStore({
                 state.chartItems.unshift(chartItem)
                 localStorage.setItem(chartItem.id, chartItem.qty)
             }else if( chartItemIndex > -1 && itemIndex > -1){
-                state.chartItems[chartItemIndex].qty += +chartItem.qty
-                state.items[itemIndex].cropQuantity -= +chartItem.qty
-                localStorage.setItem(chartItem.id,  state.chartItems[chartItemIndex].qty)
+                if(+chartItem.qty < state.chartItems[chartItemIndex].qty){
+                    state.chartItems[chartItemIndex].qty += +chartItem.qty
+                    state.items[itemIndex].cropQuantity -= +chartItem.qty
+                    localStorage.setItem(chartItem.id,  state.chartItems[chartItemIndex].qty)
+                }
             }else{
                 throw new Error("some thing went wrong in adding to chart functon")
             }
@@ -66,7 +68,7 @@ const store = new Vuex.createStore({
     },
     actions: {
         fetchSampleItems(context) {
-            fetch('https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/samples.json')
+            fetch('https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/samples.json?auth=' + context.getters.getToken)
                 .then(res => res.json())
                 .then(items => {
                     let arr = [];
@@ -89,7 +91,7 @@ const store = new Vuex.createStore({
                 .catch(err => console.log(err))
         },
         postSampleItem(context, item) {
-            fetch('https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/samples.json', {
+            fetch('https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/samples.json?auth=' + context.getters.getToken, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -103,7 +105,7 @@ const store = new Vuex.createStore({
                 }).catch(err => new Error(err))
         },
         editSampleItem(context, item) {
-            fetch(`https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/samples/${item.id}.json`, {
+            fetch(`https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/samples/${item.id}.json?auth=${context.getters.getToken}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -122,7 +124,7 @@ const store = new Vuex.createStore({
             console.log(item);
             const result = confirm('Are You shure to delete '+ item.cropName)
             if(result){
-                fetch(`https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/samples/${id}.json`, {
+                fetch(`https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/samples/${id}.json?auth=${context.getters.getToken}`, {
                     method: 'DELETE'
                     }).then(res => {
                         context.commit('deleteItem', id)
@@ -151,10 +153,36 @@ const store = new Vuex.createStore({
             })
             .then(res => res.json())
             .then(data => {
+                const expiresAt = new Date().getTime() + +data.expiresIn * 10
                 context.commit('setLogedInUser', data)
                 context.commit('setToken', data.idToken)
+                localStorage.setItem('idToken', data.idToken)
+                localStorage.setItem('expiresAt', expiresAt)
             })
             .catch(err => console.error(err))
+        },
+        getUserData(context){
+            const idToken = localStorage.getItem('idToken')
+            if(idToken){
+            return fetch(`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${obj.API_KEY}`,{
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    idToken: idToken
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                const user = {...data.users[0], idToken}
+                console.log(user);
+                    const expiresAt = new Date().getTime() + +user.expiresIn * 10
+                    context.commit('setLogedInUser', user)
+                    context.commit('setToken', user.idToken)
+            })
+            .catch(err => console.error(err))
+            }
         },
         addItemToChart(context, chartItem) {
             context.commit('addItemToChart', chartItem)
