@@ -47,20 +47,27 @@ const store = new Vuex.createStore({
                 state.chartItems.unshift(chartItem)
                 localStorage.setItem(chartItem.id, chartItem.qty)
             }else if( chartItemIndex > -1 && itemIndex > -1){
-                if(+chartItem.qty < state.chartItems[chartItemIndex].qty){
                     state.chartItems[chartItemIndex].qty += +chartItem.qty
                     state.items[itemIndex].cropQuantity -= +chartItem.qty
                     localStorage.setItem(chartItem.id,  state.chartItems[chartItemIndex].qty)
-                }
             }else{
                 throw new Error("some thing went wrong in adding to chart functon")
+            }
+        },
+        initializeChart(state, chartItem){
+            const chartItemIndex = state.chartItems.findIndex(e => e.id === chartItem.id)
+            const itemIndex = state.items.findIndex(e => e.id === chartItem.id)
+            if( chartItemIndex > -1 && itemIndex > -1){
+                    state.items[itemIndex].cropQuantity -= +chartItem.qty
+            }else{
+                throw new Error("some thing went wrong in initialize to chart functon")
             }
         },
         deleteItemFromChart(state, chartItem) {
             const chartItemIndex = state.chartItems.findIndex(e => e.id === chartItem.id)
             const itemIndex = state.items.findIndex(e => e.id === chartItem.id)
             if(chartItemIndex > -1 && itemIndex > -1){
-                state.items[itemIndex].cropQuantity += chartItem.qty
+                state.items[itemIndex].cropQuantity += +chartItem.qty
                 state.chartItems.splice(chartItemIndex, 1)
                 localStorage.removeItem(chartItem.id)
             }
@@ -79,14 +86,25 @@ const store = new Vuex.createStore({
                     context.commit('setItems', arr)
                     return arr
                 }).then(sampleArr => {
-                    sampleArr.forEach(e => {
-                        if(localStorage[e.id]) {
-                            context.commit('addItemToChart', {
-                                id: e.id,
-                                qty: +localStorage.getItem(e.id)
-                            })
-                        }
-                    })
+                    const lengthOfChart = context.getters.getChartItems.length
+                        sampleArr.forEach(e => {
+                            if(lengthOfChart === 0){
+                                if(localStorage[e.id]) {
+                                    context.commit('addItemToChart', {
+                                        id: e.id,
+                                        qty: +localStorage.getItem(e.id)
+                                    })
+                                }
+                            }else if(lengthOfChart > 0){
+                                if(localStorage[e.id]) {
+                                    context.commit('initializeChart', {
+                                        id: e.id,
+                                        qty: +localStorage.getItem(e.id)
+                                    })
+                                }
+                            }
+                        })
+
                 })
                 .catch(err => console.log(err))
         },
@@ -120,8 +138,7 @@ const store = new Vuex.createStore({
                 .catch(err => console.error(err))
         },
         deleteSampleItem(context, id) {
-            const item = context.getters.getItems.find(e => e.id === id)
-            console.log(item);
+            const item = context.getters.getItems.find(e => e.id === id) 
             const result = confirm('Are You shure to delete '+ item.cropName)
             if(result){
                 fetch(`https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/samples/${id}.json?auth=${context.getters.getToken}`, {
@@ -160,6 +177,12 @@ const store = new Vuex.createStore({
                 localStorage.setItem('expiresAt', expiresAt)
             })
             .catch(err => console.error(err))
+        },
+        logoutUser(context){
+            context.commit('setLogedInUser', null)
+            context.commit('setToken', null) 
+            localStorage.removeItem('idToken')
+            localStorage.removeItem('expiresAt')
         },
         getUserData(context){
             const idToken = localStorage.getItem('idToken')

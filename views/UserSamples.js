@@ -18,7 +18,7 @@ export default {
                 info="edit"
             >New Sample</sample-list>
         </base-section> -->
-
+        <base-button class="btn" @click="logoutUser">Logout</base-button>
         <base-section v-if="items.length > 0" id="sampleVarietyList">
             <sample-list 
                 :items="items"
@@ -56,6 +56,10 @@ export default {
         },
         showForm(state) {
             this.displayForm = state
+        },
+        logoutUser(){
+            this.$store.dispatch('logoutUser')
+            this.$router.push('/')
         }
     }
 }
