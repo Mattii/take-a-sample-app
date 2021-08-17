@@ -8,11 +8,11 @@ export default {
             <form @submit.prevent="loginUser">
                 <div>
                     <label for="userEmail">User E-mail</label>
-                    <input id="userEmail" v-model="userEmail" type="email" placeholder="Enter your e-mail"/>
+                    <input id="userEmail" v-model="userEmail" type="email" placeholder="Enter your e-mail" required/>
                 </div>
                 <div>
                     <label for="userPassword">User Password</label>
-                    <input id="userPassword" v-model="userPassword" type="password" placeholder="Enter your password"/>
+                    <input id="userPassword" v-model="userPassword" type="password" placeholder="Enter your password" required/>
                     </div>
                 <div>
                     <base-button class="btn btn-to-action">Login</base-button>

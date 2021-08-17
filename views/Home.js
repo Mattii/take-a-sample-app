@@ -49,14 +49,6 @@ export default {
     created() {
         if(this.$store.getters.getToken){
             this.$store.dispatch('fetchSampleItems')
-        }else {
-            const expiresAt = localStorage.getItem('expiresAt')
-            const nowTime = new Date().getTime()
-            if(+expiresAt > nowTime){
-                this.$store.dispatch('getUserData').then(() => {
-                this.$store.dispatch('fetchSampleItems')
-              })
-            }
         }
     },
     beforeRouteEnter (to, from, next) {

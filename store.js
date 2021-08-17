@@ -145,6 +145,7 @@ const store = new Vuex.createStore({
                     method: 'DELETE'
                     }).then(res => {
                         context.commit('deleteItem', id)
+                        console.log('[Success]: deleted data from data base');
                     }).catch(err => new Error(err))
             } else {
                 alert('Operation was canceld!')
@@ -170,11 +171,14 @@ const store = new Vuex.createStore({
             })
             .then(res => res.json())
             .then(data => {
-                const expiresAt = new Date().getTime() + +data.expiresIn * 10
+                const expiresAt = new Date().getTime() + +data.expiresIn * 100
                 context.commit('setLogedInUser', data)
                 context.commit('setToken', data.idToken)
                 localStorage.setItem('idToken', data.idToken)
                 localStorage.setItem('expiresAt', expiresAt)
+                window.expTimer = setTimeout(() => {
+                    context.dispatch('logoutUser')
+                }, +data.expiresIn * 100)
             })
             .catch(err => console.error(err))
         },
@@ -183,6 +187,7 @@ const store = new Vuex.createStore({
             context.commit('setToken', null) 
             localStorage.removeItem('idToken')
             localStorage.removeItem('expiresAt')
+            if(window.expTimer) clearTimeout(window.expTimer)
         },
         getUserData(context){
             const idToken = localStorage.getItem('idToken')
@@ -200,9 +205,13 @@ const store = new Vuex.createStore({
             .then(data => {
                 const user = {...data.users[0], idToken}
                 console.log(user);
-                    const expiresAt = new Date().getTime() + +user.expiresIn * 10
+                    const timeToExpires = +localStorage.getItem('expiresAt') - new Date().getTime()
                     context.commit('setLogedInUser', user)
                     context.commit('setToken', user.idToken)
+                    console.log(timeToExpires);
+                    window.expTimer = setTimeout(() => {
+                        context.dispatch('logoutUser')
+                    }, timeToExpires)
             })
             .catch(err => console.error(err))
             }

@@ -1,6 +1,6 @@
 export default {
     template: `
-        <header>
+        <header class="myElement">
             <router-link to="/" class="logo">
                 <img src="/img/pie-chart.svg" alt="pie-chart">
                 <h1><slot></slot></h1>
@@ -24,5 +24,14 @@ export default {
         }
     },
     methods: {
-    }
+    },
+    mounted() {
+        const el = document.querySelector(".myElement")
+        const observer = new IntersectionObserver( 
+        ([e]) => e.target.classList.toggle("is-pinned", e.intersectionRatio < 1),
+        { threshold: [1] }
+        );
+
+        observer.observe(el);
+    },
 }
