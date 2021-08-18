@@ -1,16 +1,18 @@
 export default {
     template: `
-        <header class="myElement">
-            <router-link to="/" class="logo">
-                <img src="/img/pie-chart.svg" alt="pie-chart">
-                <h1><slot></slot></h1>
-            </router-link>
-            <nav class="header-nav">
-                <router-link to="/">Home</router-link>
-                <router-link :to="{name: 'samples'}">Samples</router-link>
-                <router-link v-if="!idToken" :to="{name: 'login.user'}">Login</router-link>
-                <router-link v-else :to="{name: 'user.samples'}">User</router-link>
-            </nav>
+        <header ref="myElement" id="header-element">
+            <div class="main-nav-header">
+                <router-link to="/" class="logo">
+                    <img src="/img/pie-chart.svg" alt="pie-chart">
+                    <h1><slot></slot></h1>
+                </router-link>
+                <nav class="header-nav">
+                    <router-link to="/">Home</router-link>
+                    <router-link :to="{name: 'samples'}">Samples</router-link>
+                    <router-link v-if="!idToken" :to="{name: 'login.user'}">Login</router-link>
+                    <router-link v-else :to="{name: 'user.samples'}">User</router-link>
+                </nav>
+            </div>
         </header>
     `,
     data() {
@@ -26,12 +28,12 @@ export default {
     methods: {
     },
     mounted() {
-        const el = document.querySelector(".myElement")
+        //const el = document.querySelector(".myElement")
         const observer = new IntersectionObserver( 
         ([e]) => e.target.classList.toggle("is-pinned", e.intersectionRatio < 1),
         { threshold: [1] }
         );
 
-        observer.observe(el);
+        observer.observe(this.$refs.myElement);
     },
 }

@@ -7,9 +7,11 @@ export default {
         <nav class="add-sample-nav">
 		        <base-button @click="showAddForm" class="btn">Add</base-button>
 	    </nav>
-    	<section id="addingForm" v-if="displayForm">
-			<add-sample-form></add-sample-form>
-        </section>
+        <teleport to='#header-element'>
+            <section id="addingForm" v-if="displayForm">
+                <add-sample-form></add-sample-form>
+            </section>
+        </teleport>
         <main>
         <!-- <base-section v-if="newSample.length > 0" id="newSampleVarietyList">
             <sample-list 

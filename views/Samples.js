@@ -9,6 +9,7 @@ export default {
         <nav class="add-sample-nav">
 		        <base-button @click="showAddForm" class="btn btn-to-action">Order<span v-if="chartItems.length > 0" class="chart-counter">{{ chartItems.length }}</span></base-button>
 	    </nav>
+        <teleport to="#header-element">
     	<section class="showSection" v-if="showSection">
             <div>
                 <h2>Order</h2>
@@ -19,6 +20,7 @@ export default {
                 <component :is="currentTabComponent" :chartItems="chartItems" class="tab"></component>
             </keep-alive>
         </section>
+        </teleport>
         <main>
         <!-- <base-section v-if="newSample.length > 0" id="newSampleVarietyList">
             <sample-list 
