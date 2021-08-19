@@ -67,29 +67,32 @@ export default {
     methods: {
         sendOrderToCustomerService(){
             if(this.isFilled){
-                const chart = []
+                const chart = {}
                 const items = this.$store.getters.getItems
+                let numOfLines = 0
                 this.chartItems.forEach(element => {
                     const item = items.find(e => element.id === e.id)
                     if(item){
-                        chart.push({
+                        numOfLines++
+                        chart[item.id] = {
                             ...item,
                             chartQty: element.qty
-                        })
+                        }
                     }
                 });
-                const order = {
-                    chart,
+                const details = {
                     paymentTerm: this.paymentTerm,
                     orderCustomer: this.orderCustomer.toUpperCase(),
                     orderRemark: this.orderRemark,
-                    orderedBy: this.$store.getters.getLogedInUser.email,
-                    orderedAt: new Date().toLocaleString()
+                    orderedBy: this.$store.getters.getLogedInUser.localId,
+                    userEmail: this.$store.getters.getLogedInUser.email,
+                    orderedAt: new Date().toLocaleString(),
+                    chartLines: numOfLines
                 }
                 this.paymentTerm = ''
                 this.orderRemark = ''
                 this.orderCustomer = ''
-                this.$store.dispatch('makeOrder', order)
+                this.$store.dispatch('makeOrder', {details, chart})
             }
         }
     },

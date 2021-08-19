@@ -83,7 +83,7 @@ export default {
         </div>
         
         <base-button class="btn btn-primery btn-to-action" type="submit">{{!isEdited ? 'Add sample' : 'Edit sample'}}</base-button>
-        <base-button class="btn btn-cancel" type="reset" @click="clearForm">Cancle</base-button>
+        <base-button class="btn btn-primery btn-cancel" type="reset" @click="clearForm">Cancle</base-button>
     </form>
     </div>
     `,

@@ -82,7 +82,7 @@ header .logo img {
 .is-pinned{
 	border-bottom: 1px solid lightgrey;
 	background: rgba(255, 255, 255, 0.7);
-	box-shadow: 0 3px 8px 0 rgba(57, 65, 177, 0.37);
+	box-shadow: 0 3px 8px 0 rgba(94, 99, 174, 0.37);
 }
 
 @media (max-width: 780px) {
@@ -622,6 +622,9 @@ main {
 .btn-to-action {
 	background-color: var(--primary-variant);
 	border: 2px solid var(--primary);
+}
+.btn-primery{
+	place-self: center stretch;
 }
 .btn-to-action:hover{
 	transition: .3s;

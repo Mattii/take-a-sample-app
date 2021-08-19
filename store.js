@@ -204,11 +204,10 @@ const store = new Vuex.createStore({
             .then(res => res.json())
             .then(data => {
                 const user = {...data.users[0], idToken}
-                console.log(user);
                     const timeToExpires = +localStorage.getItem('expiresAt') - new Date().getTime()
                     context.commit('setLogedInUser', user)
                     context.commit('setToken', user.idToken)
-                    console.log(timeToExpires);
+
                     window.expTimer = setTimeout(() => {
                         context.dispatch('logoutUser')
                     }, timeToExpires)
@@ -223,7 +222,37 @@ const store = new Vuex.createStore({
             context.commit( 'deleteItemFromChart', chartItem)
         },
         makeOrder(context, order){
-            context.dispatch('makeEmail', order)
+            fetch('https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/orders.json?auth=' + context.getters.getToken, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(order.details)
+            })
+            .then(res => res.json())
+            .then(data => {
+                const obj = {}
+                obj[data.name] = order.chart
+                    fetch(`https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/users/${context.getters.getLogedInUser.localId}/.json?auth=${context.getters.getToken}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({order: [data.name]})
+                    })
+                return fetch('https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/charts.json?auth=' + context.getters.getToken, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(obj)
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                context.dispatch('makeEmail', order)
+            }).catch(err => console.error(err))
         },
         makeEmail(context, order) {
             console.log(order);
