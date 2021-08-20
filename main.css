@@ -193,12 +193,10 @@ header .logo img {
 }
 
 @media (max-width: 480px) {
-	#addingForm,
-	.showSection {
+	#addingForm {
 		padding: calc(58px + .5rem) 0 0 0;
 		width: 100vw;
 		height: 100vh;
-		position: fixed;
 		z-index: 9;
 		top: 0;
 	}
@@ -287,7 +285,11 @@ header .logo img {
 }
 @media (max-width: 480px) {
 	.showSection {
-		padding: calc(58px + 1rem) 1rem 1rem 1rem !important;
+		padding: 1rem !important;
+		width: 99vw;
+		height: calc(100vh - 51px);
+		z-index: 9;
+		top: 0;
 	}
 	.showSection > h2{
 		padding: 0 1rem;
@@ -376,6 +378,7 @@ main {
 	position: relative;
 	transition: .3s ease-out;
 	box-shadow: 0 .3rem .6rem 0 rgba(108, 108, 108, 0.2);
+	overflow: hidden;
 }
 
 .sample-list-item div{
@@ -520,7 +523,35 @@ main {
 	gap: 2rem;
 	background-size: cover;
     background-position: center;
+    box-shadow: 0 0.3rem 0.6rem 0 rgb(108 108 108 / 20%);
 }
+.hero-element img {
+	position: absolute;
+}
+.hero-element img:nth-child(1) {
+	transform: translate(15%, 15%) scale(.7);
+}
+.hero-element img:nth-child(2) {	
+	transform: translate(100%, 40%) scale(1.4);
+	filter: blur(3px);
+}
+.hero-element img:nth-child(3) {
+	transform: translate(100%, -30%) scale(.6);
+	filter: blur(1px);
+}
+.hero-element img:nth-child(4) {
+	transform: translate(-10%, -40%) scale(.3);
+	filter: blur(9px);
+}
+.hero-element img:nth-child(5) {
+	transform: translate(150%, 0) scale(.3);
+	filter: blur(12px);
+}
+.hero-element img:nth-child(6) {
+	transform: translate(50%, -30%) scale(.3) rotateZ(135deg);
+	filter: blur(9px);
+}
+
 
 .hero-element h2{
 	z-index: 1;
