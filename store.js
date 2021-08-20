@@ -27,8 +27,11 @@ const store = new Vuex.createStore({
         setToken(state, token) {
             state.tokenId = token
         },
-        setLogedInUser(state, name) {
-            state.logedInUser = name
+        setLogedInUser(state, user) {
+            state.logedInUser = { ...state.logedInUser, ...user}
+        },
+        clearLogedInUser(state){
+            state.logedInUser = null
         },
         setEditedId(state, id) {
             state.editedItemId = id
@@ -70,6 +73,13 @@ const store = new Vuex.createStore({
                 state.items[itemIndex].cropQuantity += +chartItem.qty
                 state.chartItems.splice(chartItemIndex, 1)
                 localStorage.removeItem(chartItem.id)
+            }
+        },
+        addOrderToUser(state, id){
+            if(state.logedInUser.orders){
+                state.logedInUser.orders.push(id)
+            }else{
+                state.logedInUser['orders'] = [id]
             }
         }
     },
@@ -179,15 +189,25 @@ const store = new Vuex.createStore({
                 window.expTimer = setTimeout(() => {
                     context.dispatch('logoutUser')
                 }, +data.expiresIn * 1000)
+                return data
+            }).then(res => {
+                return context.dispatch('dbUserData', res)
             })
             .catch(err => console.error(err))
         },
         logoutUser(context){
-            context.commit('setLogedInUser', null)
-            context.commit('setToken', null) 
+            context.commit('clearLogedInUser')
+            context.commit('setToken', null)
+            context.commit('setItems', [])
             localStorage.removeItem('idToken')
             localStorage.removeItem('expiresAt')
             if(window.expTimer) clearTimeout(window.expTimer)
+        },
+        dbUserData(context, data){
+            return fetch(`https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/users/${data.localId}.json?auth=${context.getters.getToken}`)
+            .then(res => res.json()).then(data => {
+                context.commit('setLogedInUser', data)
+            })
         },
         getUserData(context){
             const idToken = localStorage.getItem('idToken')
@@ -211,6 +231,10 @@ const store = new Vuex.createStore({
                     window.expTimer = setTimeout(() => {
                         context.dispatch('logoutUser')
                     }, timeToExpires)
+                    return data.users[0]
+            })
+            .then(res => {
+                return context.dispatch('dbUserData', res)
             })
             .catch(err => console.error(err))
             }
@@ -232,13 +256,15 @@ const store = new Vuex.createStore({
             .then(res => res.json())
             .then(data => {
                 const obj = {}
+                context.commit('addOrderToUser', data.name)
                 obj[data.name] = order.chart
-                    fetch(`https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/users/${context.getters.getLogedInUser.localId}/.json?auth=${context.getters.getToken}`, {
+                const getLogedInUser = context.getters.getLogedInUser
+                    fetch(`https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/users/${getLogedInUser.localId}/.json?auth=${context.getters.getToken}`, {
                         method: 'PATCH',
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({order: [data.name]})
+                        body: JSON.stringify({orders: getLogedInUser.orders})
                     })
                 return fetch('https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/charts.json?auth=' + context.getters.getToken, {
                     method: 'PATCH',
