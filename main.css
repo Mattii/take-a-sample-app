@@ -87,7 +87,6 @@ header .logo img {
 
 @media (max-width: 780px) {
 	.main-nav-header {
-		justify-content: center;
 		padding: .6rem 1.5rem;
 	}
 	.main-nav-header h1{
@@ -113,6 +112,17 @@ header .logo img {
 	align-items: center;
 	gap: 1rem;
 }
+.mobile-nav {
+    display: none;
+    align-items: center;
+    gap: 1rem;
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    width: 100vw;
+    background: var(--secondary-variant);
+    justify-content: space-evenly;
+}
 .router-link-active{
 	padding: 0.3rem .6rem;
     border: 2px solid var(--secondary-variant);
@@ -120,12 +130,19 @@ header .logo img {
 	border-radius: 1rem;
 	outline: none;
 }
-
+@media (max-width: 480px) {
+	.header-nav {
+		display: none;
+	}
+	.mobile-nav{
+		display: flex;
+	}
+}
 
 .add-sample-nav{
 	position: fixed;
-	bottom: 1.5rem;
-	right: 1.5rem;
+	bottom: 3rem;
+	right: 1rem;
 	z-index: 10;
 }
 
@@ -352,14 +369,15 @@ main {
 
 @media (max-width: 480px) {
 	.base-section{
-		padding:1rem;
+		padding: .5rem 1rem;
 	}
 }
 
 
-.sample-list-wrapper h2{
-	padding: 0 .5rem 1rem .5rem;
+.sample-list-wrapper h1{
+	padding:0 0 1rem 0;
 	font-family: var(--display-font);
+	font-size: 2rem;
 }
 
 .sample-list{

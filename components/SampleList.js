@@ -4,7 +4,7 @@ import SampleListItem from "./SampleListItem.js";
 export default {
     template: `
     <div class="sample-list-wrapper">
-        <h2><slot></slot> ({{ items.length }})</h2>
+        <h1><slot></slot> ({{ items.length }})</h1>
         <ul class="sample-list">
             <sample-list-item 
                 v-for="item in items" 

@@ -11,7 +11,7 @@ export default {
         </base-section>
         <base-section v-if="newSample.length > 0 && isToken" id="newSampleVarietyList">
             <div class="sample-list-wrapper">
-                <h2>New Sample ({{ newSample.length }})</h2>
+                <h1>New samples ({{ newSample.length }})</h1>
                 <ul class="sample-list">
                     <router-link
                         v-for="item in newSample" 
@@ -24,7 +24,7 @@ export default {
 
         <base-section v-if="oldItems.length > 0 && isToken" id="sampleVarietyList">
             <div class="sample-list-wrapper">
-                <h2>Old Sample ({{ oldItems.length }})</h2>
+                <h1>Old Sample ({{ oldItems.length }})</h1>
                 <ul class="sample-list">
                     <router-link
                         v-for="item in oldItems" 
