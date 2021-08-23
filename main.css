@@ -347,7 +347,7 @@ main {
 	}
 }
 
-@media (max-width: 360px) {
+@media (max-width: 480px) {
 	.base-section{
 		padding:1rem;
 	}
@@ -469,7 +469,7 @@ main {
 	}
 }
 
-@media (max-width: 360px) {
+@media (max-width: 480px) {
 	.sample-list {
 		grid-template-columns: repeat(1, 1fr);
 		gap: 1.5rem;
@@ -477,6 +477,7 @@ main {
 	.sample-list-item {
 		gap: .5rem;
 		padding: 1rem;
+		max-width: none;
 	}
 	.sample-list-item img:last-child{
 		display: none;
@@ -557,12 +558,14 @@ main {
 	z-index: 1;
 	font-size: 3rem;
 	font-family: var(--display-font);
+	font-family: 'Roboto Slab', serif;
 	letter-spacing: .1rem;
 }
 .hero-element a{
 	z-index: 1;
 	justify-self: start;
 	grid-column-start: 1;
+    place-self: left;
 }
 .hero-element h2 span{
 	background-color: var(--primary-variant);
@@ -595,11 +598,42 @@ main {
 		padding: 5rem 2rem 2rem 2rem;
 		grid-template-columns: 1fr;
 		gap: 5rem;
+		min-height: 70vh;
 	}
 	.hero-element h2{
-		font-size: 1.5rem;
-		font-family: 'Roboto Slab', serif;
+		font-size: 2rem;
 		letter-spacing: 0;
+	}
+	.hero-element a{
+		font-size: 1.2rem;
+		place-self: center stretch;
+	}
+	.hero-element img:nth-child(1) {
+		left: -10rem;
+		bottom: -5rem;
+		transform: scale(.4);
+	}
+	.hero-element img:nth-child(2) {
+		bottom: -17rem;
+		right: -11rem;	
+		transform: scale(1);
+		filter: blur(3px);
+	}
+	.hero-element img:nth-child(3) {
+		transform: translate(100%, -30%) scale(.6);
+		filter: blur(1px);
+	}
+	.hero-element img:nth-child(4) {
+		transform: translate(-10%, -40%) scale(.3);
+		filter: blur(9px);
+	}
+	.hero-element img:nth-child(5) {
+		transform: translate(150%, 0) scale(.3);
+		filter: blur(12px);
+	}
+	.hero-element img:nth-child(6) {
+		transform: translate(50%, -30%) scale(.3) rotateZ(135deg);
+		filter: blur(9px);
 	}
 }
 /* 
@@ -634,7 +668,7 @@ main {
 */
 
 .btn {
-	padding: 0.3rem .9rem;
+	padding: 0.4rem .9rem;
     border: none;
     border: 2px solid var(--secondary-variant);
 	background-color: var(--surface) ;
@@ -689,20 +723,25 @@ main {
 .login {
 	margin-top: 1rem;
 	min-width: 25vw;
-	height: 67vh;
+	min-height: 67vh;
 }
 .login h1 {
 	font-family: var(--display-font);
 	font-size: 2rem;
 	padding-bottom: 2rem;
+	text-align: centre;
 } 
 .login div{
 	display: flex;
 	flex-direction: column;
 }
+.login div:last-child{
+	gap: 1rem;
+}
 .login form{
 	display: grid;
-	gap: 1REM;
+	gap: 2rem;
+	font-size: 1.2rem;
 }
 @media (max-width: 1250px) {
 	.login {
@@ -724,7 +763,8 @@ main {
 
 @media (max-width: 480px) {
 	.login {
-		min-width: 80vw;
+		min-height: 67vh;
+		padding: 2rem;
 	}
 }
 

@@ -1,6 +1,6 @@
 export default {
     template: `
-            <div class="hero-element" style="background-image: url();">
+            <div class="hero-element">
                 <img src="./img/vegetables/ogórek.png">
                 <img src="./img/vegetables/pomidor.png">
                 <img src="./img/vegetables/rzodkiewka.png">

@@ -2,9 +2,8 @@ export default {
     template: `
     <main>
         <base-section>
-            <button class="btn"  @click="this.$router.back()">Go Back</button>
 	    <div class="login">
-            <h1>Hello please login</h1>
+            <h1>Hello &#x1F44B;<br /> please login</h1>
             <form @submit.prevent="loginUser">
                 <div>
                     <label for="userEmail">User E-mail</label>

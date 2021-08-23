@@ -1,4 +1,4 @@
-import obj from './dotenv.js'
+import obj from '/dotenv.js'
 
 const store = new Vuex.createStore({
     state() {
