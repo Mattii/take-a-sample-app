@@ -146,6 +146,7 @@ header .logo img {
 	margin-top: 1rem;
     display: flex;
     justify-content: space-between;
+	font-size: 1rem;
 }
 
 #sampleAddForm div{
@@ -194,7 +195,7 @@ header .logo img {
 
 @media (max-width: 480px) {
 	#addingForm {
-		padding: calc(58px + .5rem) 0 0 0;
+		padding: 0;
 		width: 100vw;
 		height: 100vh;
 		z-index: 9;
@@ -202,6 +203,7 @@ header .logo img {
 	}
 	#addingForm h2 {
 		padding: .5rem 2rem;
+		font-size: 2rem;
 	}
 	#sampleAddForm{
 		padding: 0 2rem 1rem 2rem;
@@ -211,6 +213,7 @@ header .logo img {
 		justify-content: space-between;
 		height: calc(100% - 51px);
 		gap: 1rem;
+		font-size: 1.3rem;
 	}
 
 }
@@ -379,6 +382,7 @@ main {
 	transition: .3s ease-out;
 	box-shadow: 0 .3rem .6rem 0 rgba(108, 108, 108, 0.2);
 	overflow: hidden;
+	font-size: 1.3rem;
 }
 
 .sample-list-item div{
@@ -395,7 +399,7 @@ main {
 }
 .varietyLabel{
 	color: #00000060;
-	font-size: small;
+	font-size: 1rem;
 }
 .sample-list-item div p:last-child{
 	font-weight: 550;
@@ -654,6 +658,7 @@ main {
     border-bottom: 2px solid #aaa;
 	outline: none;
 	background-color: transparent;
+	font-size: 1.1rem;
 }
 
 #shopping-list input:focus-visible,
@@ -676,6 +681,7 @@ main {
 	outline: none;
 	cursor: pointer;
     text-align: center;
+	font-size: 1.1rem;
 }
 .btn:hover{
 	background-color: var(--secondary) ;
