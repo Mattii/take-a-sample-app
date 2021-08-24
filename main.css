@@ -6,7 +6,7 @@
 	scroll-behavior: smooth;
 }
 :root {
-	--background: #eeeeee;
+	--background: rgb(250, 250, 250);
 	--surface: #ffffff;
 	--primary: #ffcd00;
 	--primary-variant: #ffa733;
@@ -22,6 +22,7 @@
 }
 body{
 	font-family: sans-serif;
+	background-color: var(--background);
 }
 a {
 	text-decoration: none;
@@ -115,33 +116,45 @@ header .logo img {
 .mobile-nav {
     display: none;
     align-items: center;
-    gap: 1rem;
     position: fixed;
     bottom: 0;
     z-index: 10;
     width: 100vw;
-    background: var(--secondary-variant);
-    justify-content: space-evenly;
+	height: 42px;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1rem;
+	background-color: rgba(255, 255, 255, 0.7);
+	backdrop-filter: blur( 7px );
+	-webkit-backdrop-filter: blur( 7px );
+	border: 1px solid rgba( 255, 255, 255, 0.3 );
+	border-bottom-left-radius: .3rem;
+	border-bottom-right-radius: .3rem;
+}
+.mobile-nav a{
+	justify-self: stretch;
+	width: 100%;
+    height: 100%;    
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	outline: none;
 }
 .router-link-active{
-	padding: 0.3rem .6rem;
-    border: 2px solid var(--secondary-variant);
-	background-color: var(--surface) ;
-	border-radius: 1rem;
-	outline: none;
+	color: var(--secondary-variant);
+    border-top: 1px solid var(--secondary-variant);
 }
 @media (max-width: 480px) {
 	.header-nav {
 		display: none;
 	}
 	.mobile-nav{
-		display: flex;
+		display: grid;
 	}
 }
 
 .add-sample-nav{
 	position: fixed;
-	bottom: 3rem;
+	bottom: 4rem;
 	right: 1rem;
 	z-index: 10;
 }
@@ -351,7 +364,6 @@ main {
 
 .base-section{
     overflow: hidden;
-	background-color: var(--surface);
 	padding: 1rem 6rem;
 }
 
@@ -547,6 +559,7 @@ main {
 	background-size: cover;
     background-position: center;
     box-shadow: 0 0.3rem 0.6rem 0 rgb(108 108 108 / 20%);
+	background-color: var(--surface);
 }
 .hero-element img {
 	position: absolute;
