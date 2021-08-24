@@ -21,7 +21,7 @@
 @media (prefers-color-scheme: dark) {
 	:root {
 		--background: #111;
-		--surface: rgba(0, 0, 0, .1);
+		--surface: rgba(255, 255, 255, .05);
 		--primary: #ffcd00;
 		--primary-variant: #ffa733;
 		--secondary: #00d7df;
@@ -97,8 +97,8 @@ header .logo img {
 }
 .is-pinned{
 	border-bottom: 1px solid var(--border);
-	background: var(--surface);
-	box-shadow: 0 3px 8px 0 rgba(94, 99, 174, 0.37);
+	background-color: var(--surface);
+	box-shadow: 0 3px 8px 0 var(--border);
 }
 
 @media (max-width: 780px) {
@@ -143,6 +143,7 @@ header .logo img {
 	border-top: 1px solid var(--border);
 	border-bottom-left-radius: .3rem;
 	border-bottom-right-radius: .3rem;
+	background-color: var(--surface);
 }
 .mobile-nav > a{
 	justify-self: stretch;
