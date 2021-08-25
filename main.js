@@ -4,11 +4,9 @@ import router from "./router.js";
 import BaseButton from "./components/UI/BaseButton.js";
 import BaseSection from "./components/UI/BaseSection.js";
 import TheHeader from "./components/TheHeader.js";
+import TheMobileNav from "./components/TheMobileNav.js";
 
 const shoppingListApp = Vue.createApp({
-    computed: {
-        idToken(){return store.getters.getToken}
-    },
     watch: {
         idToken(newValue, oldValue){
             if(newValue === null){
@@ -28,6 +26,7 @@ const shoppingListApp = Vue.createApp({
     },
 })
 .component('TheHeader', TheHeader)
+.component('TheMobileNav', TheMobileNav)
 .component('BaseButton', BaseButton)
 .component('BaseSection', BaseSection);
 shoppingListApp.use(store);

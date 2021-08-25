@@ -9,12 +9,7 @@
 <body>
 <div id="shopping-list">
 	<the-header>TaS</the-header>
-	<nav class="mobile-nav">
-		<router-link to="/">Home</router-link>
-		<router-link :to="{name: 'samples'}">Samples</router-link>
-		<router-link v-if="!idToken" :to="{name: 'login.user'}">Login</router-link>
-		<router-link v-else :to="{name: 'user.samples'}">User</router-link>
-	</nav>
+	<the-mobile-nav></the-mobile-nav>
 	<router-view v-slot="{ Component }">
 		<transition name="fade" mode="out-in">
 		  <component :is="Component" />

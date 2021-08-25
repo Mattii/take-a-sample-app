@@ -5,7 +5,7 @@ export default {
     template: `
         <div>
         <nav class="add-sample-nav">
-		        <base-button @click="showAddForm" class="btn">Add</base-button>
+		        <base-button @click="showAddForm"><img width="42" src="../img/add.svg"/></base-button>
 	    </nav>
         <teleport to='#header-element'>
             <section id="addingForm" v-if="displayForm">
