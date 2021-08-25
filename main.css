@@ -200,7 +200,10 @@ header .logo img {
 	justify-content: space-between;
 
 }
+#sampleAddForm label{
+	font-size: 85%;
 
+}
 @media (max-width: 1250px) {
 	#sampleAddForm{
 		display: grid;
@@ -242,13 +245,13 @@ header .logo img {
 	#addingForm {
 		padding: 0;
 		width: 100vw;
-		height: 100vh;
+		height: calc(100% - 51px);
 		z-index: 9;
 		top: 0;
 	}
 	#addingForm h2 {
 		padding: .5rem 2rem;
-		font-size: 2rem;
+		font-size: 1.5rem;
 	}
 	#sampleAddForm{
 		padding: 0 2rem 1rem 2rem;
@@ -445,10 +448,11 @@ main {
 	color: var(--on-surface);
 	opacity: .4;
 	font-size: .8rem;
+    letter-spacing: 1px;
 }
 .sample-list-item div p:last-child{
 	font-weight: 550;
-	font-size: 101%;
+	font-size: 1rem;
 }
 
 .sample-list-item img{
@@ -527,7 +531,6 @@ main {
 		gap: .5rem;
 		padding: 1rem;
 		max-width: none;
-		font-size: 1.3rem;
 	}
 	.sample-list-item img:last-child{
 		display: none;
@@ -706,6 +709,7 @@ main {
 	outline: none;
 	background-color: transparent;
 	font-size: 1.1rem;
+	color: var(--on-surface);
 }
 
 #shopping-list input:focus-visible,
@@ -728,7 +732,7 @@ main {
 	outline: none;
 	cursor: pointer;
     text-align: center;
-	font-size: 1.1rem;
+	font-size: 1rem;
 	color: var(--on-surface);
 }
 .btn:hover{
@@ -772,6 +776,12 @@ main {
 	width: 3rem;
 	height: 3rem;
 	border-radius: 50%;
+}
+
+@media (max-width: 480px) {
+	.btn{
+		place-self: stretch;
+	}
 }
 
 .login {
