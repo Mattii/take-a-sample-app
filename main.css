@@ -67,8 +67,6 @@ header{
 	color: var(--on-surface);
 	z-index: 10;
 	transition: .1s;
-	backdrop-filter: blur( 7px );
-	-webkit-backdrop-filter: blur( 7px );
 	border-bottom-left-radius: .3rem;
 	border-bottom-right-radius: .3rem;
 }
@@ -96,9 +94,11 @@ header .logo img {
 	}
 }
 .is-pinned{
-	border-bottom: 1px solid var(--border);
-	background-color: var(--surface);
-	box-shadow: 0 3px 8px 0 var(--border);
+	background: rgba( 0, 0, 0, 0.10 );
+	box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+	backdrop-filter: blur( 9.5px );
+	-webkit-backdrop-filter: blur( 9.5px );
+	border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 @media (max-width: 780px) {
@@ -138,12 +138,11 @@ header .logo img {
 	height: 42px;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 1rem;
-	backdrop-filter: blur( 7px );
-	-webkit-backdrop-filter: blur( 7px );
-	border-top: 1px solid var(--border);
-	border-bottom-left-radius: .3rem;
-	border-bottom-right-radius: .3rem;
-	background-color: var(--surface);
+	background: rgba( 0, 0, 0, 0.10 );
+	box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+	backdrop-filter: blur( 9.5px );
+	-webkit-backdrop-filter: blur( 9.5px );
+	border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 .mobile-nav > a{
 	justify-self: stretch;
