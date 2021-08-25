@@ -5,7 +5,7 @@ export default {
     template: `
         <div>
         <nav class="add-sample-nav">
-		        <base-button @click="showAddForm"><img width="42" src="../img/add.svg"/></base-button>
+		        <base-button @click="showAddForm"><img width="52" src="../img/add.svg"/></base-button>
 	    </nav>
         <teleport to='#header-element'>
             <section id="addingForm" v-if="displayForm">
@@ -20,7 +20,6 @@ export default {
                 info="edit"
             >New Sample</sample-list>
         </base-section> -->
-        <base-button class="btn" @click="logoutUser">Logout</base-button>
         <base-section v-if="items.length > 0" id="sampleVarietyList">
             <sample-list 
                 :items="items"
@@ -58,10 +57,6 @@ export default {
         },
         showForm(state) {
             this.displayForm = state
-        },
-        logoutUser(){
-            this.$store.dispatch('logoutUser')
-            // this.$router.push('/')
         }
     }
 }

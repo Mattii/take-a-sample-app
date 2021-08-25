@@ -7,7 +7,7 @@ export default {
     template: `
         <div style="min-height: 79vh">
         <nav class="add-sample-nav">
-		        <base-button @click="showAddForm" class="btn btn-to-action">Order<span v-if="chartItems.length > 0" class="chart-counter">{{ chartItems.length }}</span></base-button>
+                <base-button @click="showAddForm"><img width="52" src="../img/basket.svg"/><span v-if="chartItems.length > 0" class="chart-counter">{{ chartItems.length }}</span></base-button>
 	    </nav>
         <teleport to="#header-element">
     	<section class="showSection" v-if="showSection">

@@ -8,6 +8,7 @@ import TheMobileNav from "./components/TheMobileNav.js";
 
 const shoppingListApp = Vue.createApp({
     watch: {
+        // żeby wylogowywało po uruchominiu timera trzeba zamontować watcher na karzdym views
         idToken(newValue, oldValue){
             if(newValue === null){
                 this.$router.push('/')

@@ -87,7 +87,8 @@ export default {
                     orderedBy: this.$store.getters.getLogedInUser.localId,
                     userEmail: this.$store.getters.getLogedInUser.email,
                     orderedAt: new Date().toLocaleString(),
-                    chartLines: numOfLines
+                    chartLines: numOfLines,
+                    confirm: false
                 }
                 this.paymentTerm = ''
                 this.orderRemark = ''

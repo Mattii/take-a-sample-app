@@ -206,7 +206,7 @@ header .logo img {
 
 }
 #sampleAddForm label{
-	font-size: 85%;
+	font-size: 1rem;
 
 }
 @media (max-width: 1250px) {
@@ -739,6 +739,7 @@ main {
     text-align: center;
 	font-size: 1rem;
 	color: var(--on-surface);
+	transition: .3s;
 }
 
 .btn:active{
