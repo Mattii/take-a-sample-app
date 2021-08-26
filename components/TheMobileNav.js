@@ -9,7 +9,6 @@ export default {
         </nav>
     `,
     computed: {
-        idToken(){return this.$store.getters.getToken},
-        userId(){return this.$store.getters.getLogedInUser.localId}
+        idToken(){return this.$store.getters.getToken}
     },
 }

@@ -3,7 +3,7 @@ export default {
         <header ref="myElement" id="header-element">
             <div class="main-nav-header">
                 <router-link to="/" class="logo">
-                    <img src="/img/pie-chart.svg" alt="pie-chart">
+                    <img src="/img/pie-chart.svg" width="42" height="42" alt="pie-chart">
                     <h1><slot></slot></h1>
                 </router-link>
                 <nav class="header-nav">
