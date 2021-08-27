@@ -21,9 +21,9 @@
 }
 @media (prefers-color-scheme: dark) {
 	:root {
-		--background: #010101;
-		--surface: rgba( 255, 255, 255, 0.10 );
-		--nav-surface: rgba(255, 255, 255, 0.15 );
+		--background: #111;
+		--surface: rgba( 255, 255, 255, 0.07 );
+		--nav-surface: rgba(255, 255, 255, 0.10 );
 		--primary: #ffcd00;
 		--primary-variant: #ffa733;
 		--secondary: #00d7df;
@@ -40,6 +40,9 @@ body{
 	font-family: sans-serif;
 	background-color: var(--background);
 	color: var(--on-surface);
+}
+li{
+	list-style: none;
 }
 a {
 	text-decoration: none;
@@ -164,6 +167,7 @@ header{
 .router-link-active{
 	color: var(--secondary-variant);
     border-top: 1px solid var(--secondary-variant);
+	transition: .3s;
 }
 @media (max-width: 480px) {
 	.header-nav {
@@ -209,6 +213,7 @@ header{
 }
 #sampleAddForm label{
 	font-size: .7rem;
+	letter-spacing: 2px;
 }
 @media (max-width: 1600px) {
 	#sampleAddForm{
@@ -538,6 +543,9 @@ main {
 }
 
 @media (max-width: 480px) {
+	.sample-list-wrapper h1{
+		font-size: 1.6rem;
+	}
 	.sample-list {
 		grid-template-columns: repeat(1, 1fr);
 		gap: 1.5rem;
@@ -926,7 +934,7 @@ footer {
 /* page transition */
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.4s ease-in;
+  transition: opacity 0.3s ease-in;
 }
 
 .fade-enter-from,
