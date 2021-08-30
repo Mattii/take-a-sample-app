@@ -181,14 +181,14 @@ const store = new Vuex.createStore({
             })
             .then(res => res.json())
             .then(data => {
-                const expiresAt = new Date().getTime() + +data.expiresIn * 100
+                const expiresAt = new Date().getTime() + +data.expiresIn * 1000
                 context.commit('setLogedInUser', data)
                 context.commit('setToken', data.idToken)
                 localStorage.setItem('idToken', data.idToken)
                 localStorage.setItem('expiresAt', expiresAt)
                 window.expTimer = setTimeout(() => {
                     context.dispatch('logoutUser')
-                }, +data.expiresIn * 100)
+                }, +data.expiresIn * 1000)
                 return data
             }).then(res => {
                 return context.dispatch('dbUserData', res)

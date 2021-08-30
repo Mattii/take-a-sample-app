@@ -2,12 +2,23 @@ import SmallSampleCard from "../components/Home/SmallSampleCard.js"
 export default {
     template: `
     <main>
-        <section class="user-details">
-            <base-button class="btn" @click="logoutUser">Logout</base-button>
-            <router-link class="btn" :to="{ name: 'user.samples' }">Edit Sample</router-link>
-            {{ userData.name || "test" }}
-	    </section>
-        <base-section class="user-orders">
+        <base-section class="user-details" v-if="!!userData">
+            <img class="user-img" :src="'img/' + userData.imageUrl" :alt="userData.name"/>
+            <div class="introduction">
+                <p class="varietyLabel">{{ userData.position }}</p>
+                <p>{{ userData.name }}</p>
+            </div>
+            <div class="introduction-details card">
+                    <p>Orders: {{ userData.orders.length }}</p>
+                    <p>Main crop: {{ userData.crop }}</p>
+                    <p>Rgion: {{ userData.region }}</p>  
+            </div>
+            <div class="user-actions">
+                <router-link class="btn" v-if="userData.privileges == 'admin'" :to="{ name: 'user.samples' }"><img width="32" src="../img/edit.svg"/>Edit</router-link>
+                <base-button class="btn" @click="logoutUser"><img width="32" src="../img/logout.svg"/>Logout</base-button>    
+            </div>
+	    </base-section>
+        <base-section class="user-orders" v-if="!!userData">
             <div class="sample-list-wrapper">
                 <h1>Last orders ({{ userData.orders.length || 0 }})</h1>
                 <ul>
@@ -15,7 +26,7 @@ export default {
                 </ul>
             </div>
         </base-section>
-        <base-section class="user-saples">
+        <base-section class="user-samples" v-if="!!userSamples">
             <div class="sample-list-wrapper">
                 <h1>Crop samples ({{ userSamples.length }})</h1>
                 <ul class="sample-list" v-for="(item, index) in userSamples" :key="index">
@@ -47,8 +58,8 @@ export default {
     },
     methods: {
         logoutUser(){
-            this.$store.dispatch('logoutUser')
             this.$router.push('/')
+            this.$store.dispatch('logoutUser')
         }
     },
 }

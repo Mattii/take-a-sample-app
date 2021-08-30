@@ -466,7 +466,7 @@ main {
 }
 .varietyLabel{
 	color: var(--on-surface);
-	opacity: .4;
+	opacity: .6;
 	font-size: .8rem;
     letter-spacing: 1px;
 }
@@ -475,7 +475,7 @@ main {
 	font-size: 1rem;
 }
 
-.sample-list-item img{
+.sample-list-item img:first-child{
 	transition: .3s ease-out;
 	z-index: 0;
 	position: absolute;
@@ -749,7 +749,7 @@ main {
 .btn {
 	padding: 0.4rem .9rem;
     border: none;
-    border: 2px solid var(--secondary-variant);
+    border: 1px solid var(--secondary-variant);
 	background-color: transparent ;
 	border-radius: 1rem;
 	outline: none;
@@ -942,64 +942,47 @@ footer {
   opacity: 0;
 }
 
-/*
-.remark{ 
+.card{
+	border-radius: 1rem;
+	border:1px solid var(--border);
+	padding: 1rem;
+	background-color: var(--surface);
+	box-shadow: 0 0.3rem 0.6rem 0 rgb(108 108 108 / 20%);
+}
+
+.user-details{
+	display: grid;
+	gap:1rem 1.5rem;
+	grid-template-columns: repeat(3, 1fr);
+}
+.user-img{
+	border-radius: 1rem;
+	width: 7rem;
+	background-image: linear-gradient(137deg, var(--primary), var(--primary-variant), var(--primary-variant));
+	border:1px solid var(--border);
+	box-shadow: 0 0.3rem 0.6rem 0 rgb(108 108 108 / 20%);
+}
+.user-details div{
+	grid-column: span 2;
 	display: flex;
-	justify-content: space-around;
-	grid-column: 1 / span 2;
-}
-.remarkList {
-	grid-column: 1 / span 2;
-	list-style: disc;
-	margin-left: 1rem;
-}
-.slampleList{
-	position: relative;
-	display: grid;
-	grid-gap: 1.5rem;
-}
-
-.sampleListItem{
-	position: relative;
-	display: grid;
-	grid-gap: .5rem;
-	grid-template-columns: 1fr 2fr;
-	border-left: 1.6rem solid #00AF91;
-    padding: 0 0 .3rem .3rem;
-}
-
-.sampleListItem::before {
-	content: url(/img/lettuce.svg);
-	width:1.3rem;
-	height: 1.3rem;
-	position: absolute;
-	right: calc(100% + .2rem);
-	top: 1rem;
-}
-.slampleList p{
-	align-self: center;
-	justify-self: start;
-}
-.expired{
-	color: red;
-}
-.slampleList p:first-child{
-	font-size: .8rem;
-	opacity: .5;
-}
-
-.varietyStock{
-	grid-column: 1 / span 2;
-}
-.varietyListActions{
-    display: flex;
-	justify-content: space-evenly;
-	grid-column: 1 / span 2;
-}
-@media (max-width: 450px) {
+	flex-direction: column;
+	gap: .5rem;
+	justify-content: center;
 
 }
+.introduction p:nth-child(2){
+	font-weight: 550;
+	font-size: 2rem;
+}
+.introduction p:nth-child(2)::first-letter{
+	text-transform: uppercase;
+}
+.user-actions{
+	grid-column: span 3 !important;
+	flex-direction: row !important;
+	justify-content: start !important;
+}
 
-@media (max-width: 360px) {
-
-} */
+.introduction-details{
+	grid-column: span 3 !important;
+}
