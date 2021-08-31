@@ -14,13 +14,16 @@ export default {
                     <p>Rgion: {{ userData.region }}</p>  
             </div>
             <div class="user-actions">
-                <router-link class="btn" v-if="userData.privileges == 'admin'" :to="{ name: 'user.samples' }"><img width="32" src="../img/edit.svg"/>Edit</router-link>
-                <base-button class="btn" @click="logoutUser"><img width="32" src="../img/logout.svg"/>Logout</base-button>    
+                <router-link class="btn" v-if="userData.privileges == 'admin'" :to="{ name: 'user.samples' }"><img width="24" src="../img/edit.svg"/><p>Edytuj Samp...</p></router-link>
+                <base-button class="btn" @click="logoutUser"><img width="24" src="../img/logout.svg"/><p>Wyloguj</p></base-button>    
             </div>
 	    </base-section>
         <base-section class="user-orders" v-if="!!userData">
             <div class="sample-list-wrapper">
-                <h1>Last orders ({{ userData.orders.length || 0 }})</h1>
+                <div class="card section-header">
+                    <h1>Ostatnie zamówienia</h1>
+                    <span>({{ userData.orders.length }})</span>
+                </div>
                 <ul>
                     <li v-for="(item, index) in userData.orders" :key="index">{{ item }}</li>
                 </ul>
@@ -28,9 +31,16 @@ export default {
         </base-section>
         <base-section class="user-samples" v-if="!!userSamples">
             <div class="sample-list-wrapper">
-                <h1>Crop samples ({{ userSamples.length }})</h1>
-                <ul class="sample-list" v-for="(item, index) in userSamples" :key="index">
-                    <small-sample-card :item="item"></small-sample-card>
+            <div class="card section-header">
+                    <h1>Crop samples</h1>
+                    <span>({{ userSamples.length }})</span>
+                </div>
+                <ul class="sample-list">
+                    <router-link
+                            v-for="item in userSamples" 
+                            :key="item.id" :to="{name: 'details.show', params: {id: item.id}}">
+                            <small-sample-card :item="item" />
+                    </router-link>
                 </ul>
             </div>
         </base-section>
