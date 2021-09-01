@@ -62,7 +62,7 @@ export default {
         <div>
             <label for="cropFormPackingDate">Packing date</label>
             <input 
-                type="date" 
+                type="date-local" 
                 id="cropFormPackingDate" 
                 v-model="cropFormPackingDate" 
                 required
@@ -127,26 +127,26 @@ export default {
                 const indexItem = this.$store.getters.getItems.findIndex(e => e.id === this.editedId)
                 const editedItem = {
                     ...this.$store.getters.getItems[indexItem],
-                    updatedAt: new Date().toLocaleString(),
+                    updatedAt: new Date().getTime(),
                     updatedBy: this.logedInUser,
                     cropSegment: this.cropFormSegment,						
                     cropName: this.cropFormName,
                     cropPacking: this.cropFormPackingType,
                     cropQuantity: this.cropFormPackQuantity,
-                    packingDate: this.cropFormPackingDate,
+                    packingDate: new Date(this.cropFormPackingDate).getTime(),
                     cropBatch: this.cropFormBatch,
                 }
                 this.$store.dispatch('editSampleItem', editedItem)
                 this.isEdited = false
             } else {
                 const newItem = {
-                    createdAt: new Date().toLocaleString(),
+                    createdAt: new Date().getTime(),
                     creator: this.logedInUser,
                     cropSegment: this.cropFormSegment,						
                     cropName: this.cropFormName,
                     cropPacking: this.cropFormPackingType,
                     cropQuantity: this.cropFormPackQuantity,
-                    packingDate: this.cropFormPackingDate,
+                    packingDate:  new Date(this.cropFormPackingDate).getTime(),
                     cropBatch: this.cropFormBatch,
                     remarks: [],
                 }
@@ -171,7 +171,7 @@ export default {
             this.cropFormName = editedVariety.cropName
             this.cropFormPackingType = editedVariety.cropPacking
             this.cropFormPackQuantity = editedVariety.cropQuantity
-            this.cropFormPackingDate = editedVariety.packingDate
+            this.cropFormPackingDate = new Date(editedVariety.packingDate).toLocaleDateString()
             this.cropFormBatch = editedVariety.cropBatch
             this.editedId = id
         },

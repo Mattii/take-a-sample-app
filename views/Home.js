@@ -60,10 +60,10 @@ export default {
             return this.$store.getters.getItems.filter(e => e.cropQuantity > 0)
         },
         newSample() {
-            return this.items.filter(e => new Date(e.createdAt).getTime() > new Date().getTime() - (63158400000 / 50))
+            return this.items.filter(e => e.createdAt > new Date().getTime() - 2678400000 / 2)
         },
         oldItems() {
-            return this.items.filter(e => new Date(e.packingDate).getTime() + 63158400000 < new Date().getTime())
+            return this.items.filter(e => e.packingDate + 63158400000 < new Date().getTime())
         },
         isToken() {
             return this.$store.getters.getToken

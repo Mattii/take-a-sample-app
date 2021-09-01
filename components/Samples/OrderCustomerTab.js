@@ -82,11 +82,11 @@ export default {
                 });
                 const details = {
                     paymentTerm: this.paymentTerm,
-                    orderCustomer: this.orderCustomer.toUpperCase(),
+                    orderCustomer: this.orderCustomer,
                     orderRemark: this.orderRemark,
                     orderedBy: this.$store.getters.getLogedInUser.localId,
                     userEmail: this.$store.getters.getLogedInUser.email,
-                    orderedAt: new Date().toLocaleString(),
+                    orderedAt: new Date().getTime(),
                     chartLines: numOfLines,
                     confirm: false
                 }

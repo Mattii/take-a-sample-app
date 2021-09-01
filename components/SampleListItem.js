@@ -19,7 +19,7 @@ export default {
         </div>
         <div>
             <p class="varietyLabel">data pakowania</p>
-            <p class="variety-packing-date" :class="{'expired-date': expired(item.packingDate)}">{{ item.packingDate }}</p>
+            <p class="variety-packing-date" :class="{'expired-date': expired(item.packingDate)}">{{ toDateString(item.packingDate) }}</p>
         </div>
         <p class="remark-counter" v-if="item.remarks && item.remarks.length > 0">
         there is {{ item.remarks.length }} remark
@@ -61,10 +61,13 @@ export default {
             return this.item.cropQuantity - this.toChartQnt
         },
         newSample() {
-            return new Date(this.item.createdAt).getTime() > new Date().getTime() - (63158400000 / 100)
+            return this.item.createdAt > new Date().getTime() - 2678400000 / 2
         },
     },
     methods: {
+        toDateString(date){
+            return new Date(1629158400000).toLocaleDateString('en-GB', {month: 'numeric', year: 'numeric'})
+        },
         increaseAmount() {
             if(this.itemChartDifrence > 0){
                 this.toChartQnt++
@@ -96,7 +99,7 @@ export default {
                 resolve()
             })
             editPromis.then(() => {
-                    this.$store.dispatch( 'editedSampleId', id)
+                this.$store.dispatch( 'editedSampleId', id)
             })
             
         }

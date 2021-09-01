@@ -19,7 +19,7 @@ export default {
         </div>
         <div>
             <p class="varietyLabel">data pakowania</p>
-            <p class="variety-packing-date" :class="{'expired-date': expired(item.packingDate)}">{{ item.packingDate }}</p>
+            <p class="variety-packing-date" :class="{'expired-date': expired(item.packingDate)}">{{ toDateString(item.packingDate) }}</p>
         </div>
         <p class="remark-counter" v-if="item.remarks && item.remarks.length > 0">
         there is {{ item.remarks.length }} remark
@@ -43,5 +43,8 @@ export default {
         const expDatePlusTwoYears = expDate + 63158400000
         return expDatePlusTwoYears < now
     },
+    toDateString(date){
+      return new Date(1629158400000).toLocaleDateString('en-GB', {month: 'numeric', year: 'numeric'})
+    }
   },
 };
