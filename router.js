@@ -37,6 +37,13 @@ const routes = [
       component: () => import("./views/UserSamples.js"), 
       meta: { requiresAuth: true }
     },
+    {
+      path: '/user/orders',
+      name: 'user.orders',
+      props: route => ({id: route.params.id}),
+      component: () => import('./views/UserOrders.js'),
+      meta: { requiresAuth: true},
+    },
     { 
       path: '/:pathMatch(.*)*',
       name: 'notfound', 

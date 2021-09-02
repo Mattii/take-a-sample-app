@@ -9,30 +9,22 @@ export default {
                 <p>{{ userData.name }}</p>
             </div>
             <div class="introduction-details card">
-                    <p>Orders: {{ userData.orders.length }}</p>
-                    <p>Main crop: {{ userData.crop }}</p>
-                    <p>Rgion: {{ userData.region }}</p>  
+                    
+                <p>Main crop: {{ userData.crop }}</p>
+                <p>Rgion: {{ userData.region }}</p>  
+                <router-link :to="{name: 'user.orders', params: {id: userData.localId }}">
+                    <p  v-if="!!userData.orders">Moje zamówienia {{ userData.orders.length }}</p>
+                </router-link>
             </div>
             <div class="user-actions">
                 <router-link class="btn" v-if="userData.privileges == 'admin'" :to="{ name: 'user.samples' }"><img width="24" src="../img/edit.svg"/><p>Edytuj Samp...</p></router-link>
                 <base-button class="btn" @click="logoutUser"><img width="24" src="../img/logout.svg"/><p>Wyloguj</p></base-button>    
             </div>
 	    </base-section>
-        <base-section class="user-orders" v-if="!!userData">
-            <div class="sample-list-wrapper">
-                <div class="card section-header">
-                    <h1>Ostatnie zamówienia</h1>
-                    <span>({{ userData.orders.length }})</span>
-                </div>
-                <ul>
-                    <li v-for="(item, index) in userData.orders" :key="index">{{ item }}</li>
-                </ul>
-            </div>
-        </base-section>
         <base-section class="user-samples" v-if="!!userSamples">
             <div class="sample-list-wrapper">
             <div class="card section-header">
-                    <h1>Crop samples</h1>
+                    <h1>Moje sample</h1>
                     <span>({{ userSamples.length }})</span>
                 </div>
                 <ul class="sample-list">
