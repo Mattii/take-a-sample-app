@@ -54,10 +54,10 @@ a {
 button{
 	cursor: pointer;
     border-radius: 50%;
-    cursor: pointer;
     appearance: none;
     border: none;
     background: transparent;
+	font-size: 1rem;
 }
 
 #shopping-list {
@@ -675,8 +675,7 @@ main {
 	.hero-element {
 		padding: 5rem 2rem 2rem 2rem;
 		grid-template-columns: 1fr;
-		gap: 5rem;
-		min-height: 70vh;
+		gap: 3rem;
 	}
 	.hero-element h2{
 		font-size: 2rem;
@@ -974,7 +973,7 @@ footer {
 	grid-column: span 2;
 	display: flex;
 	flex-direction: column;
-	gap: .5rem;
+	gap: .6rem;
 	justify-content: center;
 
 }
@@ -993,4 +992,21 @@ footer {
 
 .introduction-details{
 	grid-column: span 3 !important;
+}
+.introduction-details a,
+.introduction-details button{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	color: var(--secondary-variant);
+}
+
+.svg{
+	width: 1.5rem;
+	fill: var(--secondary-variant);
+}
+.box-closed{
+	fill: var(--secondary-variant);
+	stroke: var(--secondary-variant);
 }

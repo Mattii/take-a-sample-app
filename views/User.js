@@ -1,4 +1,7 @@
 import SmallSampleCard from "../components/Home/SmallSampleCard.js"
+import BoxSvg from "../components/UI/BoxSvg.js"
+import EditSvg from "../components/UI/EditSvg.js"
+import LogoutSvg from "../components/UI/LogoutSvg.js"
 export default {
     template: `
     <main>
@@ -9,16 +12,25 @@ export default {
                 <p>{{ userData.name }}</p>
             </div>
             <div class="introduction-details card">
-                    
+                <base-button @click="logoutUser">
+                    <p>Wyloguj</p>
+                    <logout-svg></logout-svg>
+                </base-button>
                 <p>Main crop: {{ userData.crop }}</p>
-                <p>Rgion: {{ userData.region }}</p>  
-                <router-link :to="{name: 'user.orders', params: {id: userData.localId }}">
-                    <p  v-if="!!userData.orders">Moje zamówienia {{ userData.orders.length }}</p>
+                <p>Rgion: {{ userData.region }}</p>
+                <router-link v-if="userData.privileges == 'admin'" :to="{ name: 'user.samples' }">
+                    <p>Edytuj sample</p>
+                    <edit-svg></edit-svg>
+                </router-link> 
+                <router-link v-if="!!userData.orders" :to="{name: 'user.orders', params: {id: userData.localId }}">
+                    <p>Moje zamówienia</p>
+                    <span style="display: flex;align-items: center;gap:.5rem">
+                        <p>{{ userData.orders.length }}</p>
+                        <box-svg></box-svg>
+                    </span>
                 </router-link>
             </div>
-            <div class="user-actions">
-                <router-link class="btn" v-if="userData.privileges == 'admin'" :to="{ name: 'user.samples' }"><img width="24" src="../img/edit.svg"/><p>Edytuj Samp...</p></router-link>
-                <base-button class="btn" @click="logoutUser"><img width="24" src="../img/logout.svg"/><p>Wyloguj</p></base-button>    
+            <div class="user-actions">    
             </div>
 	    </base-section>
         <base-section class="user-samples" v-if="!!userSamples">
@@ -40,6 +52,9 @@ export default {
     `,
     components: {
         SmallSampleCard,
+        BoxSvg,
+        EditSvg,
+        LogoutSvg
     },
     watch: {
         // żeby wylogowywało po uruchominiu timera trzeba zamontować watcher na karzdym views

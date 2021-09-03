@@ -21,6 +21,7 @@ export default {
                 </ul>
             </div>
         </base-section>
+        <base-section v-else><div class="card">Brak nowych sampli</div></base-section>
 
         <base-section v-if="oldItems.length > 0 && isToken" id="sampleVarietyList">
             <div class="sample-list-wrapper">
