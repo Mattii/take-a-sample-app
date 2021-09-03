@@ -44,7 +44,7 @@ export default {
         return expDatePlusTwoYears < now
     },
     toDateString(date){
-      return new Date(1629158400000).toLocaleDateString('en-GB', {month: 'numeric', year: 'numeric'})
+      return new Date(date).toLocaleDateString('en-GB', {month: 'numeric', year: 'numeric'})
     }
   },
 };

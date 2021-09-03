@@ -19,7 +19,7 @@ export default {
                 <p>Main crop: {{ userData.crop }}</p>
                 <p>Rgion: {{ userData.region }}</p>
                 <router-link v-if="userData.privileges == 'admin'" :to="{ name: 'user.samples' }">
-                    <p>Edytuj sample</p>
+                    <p>Dodaj sample</p>
                     <edit-svg></edit-svg>
                 </router-link> 
                 <router-link v-if="!!userData.orders" :to="{name: 'user.orders', params: {id: userData.localId }}">

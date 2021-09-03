@@ -1,9 +1,17 @@
 export default {
     template: `
+        <div>
+        <h1 class="card" style="margin:0 1rem; padding:2rem 1rem">Wysyłki sampli</h1>
         <base-section>
-            <h1 v-for="(order, key) in orders" :key="key">{{ order.orderCustomer }}</h1>
+            <ul class="card-wrapper">
+                <li class="card" v-for="(order, key) in orders" :key="key">
+                    <h2>{{ order.orderCustomer }}</h2>
+                </li>
+            </ul>
         </base-section>
+    </div>
     `,
+    name: 'UserOrders',
     props: {
         id: {
             type: String,

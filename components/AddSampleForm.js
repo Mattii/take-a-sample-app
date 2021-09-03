@@ -62,7 +62,7 @@ export default {
         <div>
             <label for="cropFormPackingDate">Packing date</label>
             <input 
-                type="date-local" 
+                type="date" 
                 id="cropFormPackingDate" 
                 v-model="cropFormPackingDate" 
                 required
@@ -87,6 +87,7 @@ export default {
     </form>
     </div>
     `,
+    name: 'AddSampleForm',
     data(){
         return {
             isEdited: false,
@@ -171,7 +172,7 @@ export default {
             this.cropFormName = editedVariety.cropName
             this.cropFormPackingType = editedVariety.cropPacking
             this.cropFormPackQuantity = editedVariety.cropQuantity
-            this.cropFormPackingDate = new Date(editedVariety.packingDate).toLocaleDateString()
+            this.cropFormPackingDate = new Date(1630627200000).toISOString().split('T')[0]
             this.cropFormBatch = editedVariety.cropBatch
             this.editedId = id
         },
