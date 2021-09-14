@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
 *{
 	margin: 0;
 	padding: 0;
@@ -22,7 +23,7 @@
 }
 @media (prefers-color-scheme: dark) {
 	body {
-		--background: #111;
+		--background: #222;
 		--surface: rgba( 255, 255, 255, 0.07 );
 		--nav-surface: rgba(255, 255, 255, 0.10 );
 		--primary: #ffcd00;
@@ -38,8 +39,8 @@
   
 
 body{
-	--display-font: 'Roboto Slab', serif;
-	font-family: sans-serif;
+	--display-font: 'Ubuntu', sans-serif;
+	font-family:sans-serif;
 	background-color: var(--background);
 	color: var(--on-surface);
 }
@@ -544,9 +545,14 @@ main {
 }
 
 @media (max-width: 480px) {
-	.sample-list-wrapper h1{
-		font-size: 1.6rem;
+	.base-section-header{
+		padding:0 0 1rem 1rem;
 	}
+	.base-section-header h1{
+		font-size: 1.6rem;
+		padding-bottom: .3rem;
+	}
+
 	.sample-list {
 		grid-template-columns: repeat(1, 1fr);
 		gap: 1.5rem;
@@ -679,6 +685,7 @@ main {
 	}
 	.hero-element h2{
 		font-size: 2rem;
+		font-family: var(--display-font);
 		letter-spacing: 0;
 	}
 	.hero-element a{
@@ -945,7 +952,7 @@ footer {
 .card{
 	border-radius: 1rem;
 	border:1px solid var(--border);
-	padding: 1rem;
+	padding: 1rem !important;
 	background-color: var(--surface);
 	box-shadow: 0 0.3rem 0.6rem 0 rgb(108 108 108 / 20%);
 }

@@ -6,9 +6,9 @@ import OrderCustomerTab from "../components/Samples/OrderCustomerTab.js";
 export default {
     template: `
         <div style="min-height: 79vh">
-            <teleport to="#main-nav-header">
+            <teleport to="#main-nav-search">
                 <div class="serch-sample">
-                    <input v-model="searchString" type="text" placeholder="Wyszukaj pruby..."/>
+                    <input v-model.trim="searchString" type="text" placeholder="Wyszukaj pruby..."/>
                 </div>
             </teleport>
         <nav class="add-sample-nav">
@@ -38,7 +38,7 @@ export default {
             <sample-list 
                 :items="items"
                 @show-form="showForm"
-            >Sample on stock</sample-list>
+            ></sample-list>
         </base-section>
         </main>
         </div>
@@ -60,7 +60,7 @@ export default {
     },
     computed: {
         items() {
-            return this.$store.getters.getItems.filter(e => e.cropQuantity > 0 && e.cropName.includes(this.searchString))
+            return this.$store.getters.getItems.filter(e => e.cropQuantity > 0 && e.cropName.includes(this.searchString.toLowerCase()))
         },
         chartItems() {
             return this.$store.getters.getChartItems
