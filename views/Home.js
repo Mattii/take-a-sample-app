@@ -16,11 +16,19 @@ export default {
                     <p class="varietyLabel">wstaione w ciągu 30 dni</p>
                 </div>
                 <ul class="sample-list" v-if="isToken">
-                    <li 
+                    <li class="card"
                         v-for="(order, key) in orders"
-                        :key="key">{{ order }}</li>
+                        :key="key">
+                            <p class="varietyLabel">zamówione  {{ new Date(order.orderedAt).toLocaleString() }}</p>
+                            <h2><div><span v-if="!order.confirm">&#9203;</span><span v-else>&#9989;</span>  {{ order.orderCustomer.toLocaleUpperCase()}}</div></h2>
+                            <p class="varietyLabel">{{ order.userName[0].toLocaleUpperCase() + order.userName.substring(1) }}</p>
+                            <p>&#128176; &#128198; {{ order.paymentTerm }}</p>
+                            <p>{{ order.chartLines}} lini</p>
+                            <p v-if="order.orderRemark">{{ order.orderRemark }}</p>
+                            
+                    </li>
                 </ul>
-                <div v-if="!isToken" class="card">
+                <div v-if="!isToken" class="card duble">
                     <p>Najnowsze zamówienia możliwe do przeglądania jedynie po zalogowaniu</p>
                 </div>
             </div>
@@ -38,10 +46,10 @@ export default {
                         <small-sample-card :item="item" />
                     </router-link>
                 </ul>
-                <div v-else-if="newSample.length == 0 && isToken" class="card">
+                <div v-else-if="newSample.length == 0 && isToken" class="card duble">
                     <p>w ostatnim czasie nie zostały przyjęte żadne nowe pruby</p>
                 </div>
-                <div v-if="!isToken" class="card">
+                <div v-if="!isToken" class="card duble">
                     <p>Zaloguj się by móc oglądać najnowsze pruby</p>
                 </div>
             </div>
@@ -59,10 +67,10 @@ export default {
                         <small-sample-card :item="item" />
                     </router-link>
                 </ul>
-                <div v-else-if="oldItems.length == 0 && isToken" class="card">
+                <div v-else-if="oldItems.length == 0 && isToken" class="card duble">
                     <p>Brak prub starszych niż dwa lata</p>
                 </div>
-                <div v-if="!isToken" class="card">
+                <div v-if="!isToken" class="card duble">
                     <p>Zaloguj się by móc oglądać przeterminowane pruby</p>
                 </div>
             </div>
@@ -113,5 +121,8 @@ export default {
         }
     },
     methods:{
+        toDateString(date){
+            return new Date(date).toLocaleDateString('en-GB', {month: 'numeric', year: 'numeric'})
+        },
     },
 }

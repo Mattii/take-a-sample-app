@@ -470,7 +470,6 @@ main {
 	color: var(--on-surface);
 	opacity: .6;
 	font-size: .8rem;
-    letter-spacing: 1px;
 }
 .sample-list-item div p:last-child{
 	font-weight: 550;
@@ -955,6 +954,9 @@ footer {
 	padding: 1rem !important;
 	background-color: var(--surface);
 	box-shadow: 0 0.3rem 0.6rem 0 rgb(108 108 108 / 20%);
+}
+.duble{
+	padding: 2rem 1rem !important;
 }
 .card-wrapper{
 	display: flex;
