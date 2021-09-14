@@ -1,7 +1,7 @@
 export default {
     template: `
         <header ref="myElement" id="header-element">
-            <div class="main-nav-header">
+            <div class="main-nav-header" id="main-nav-header">
                 <div class="logo">
                     <img src="/img/pie-chart.svg" width="42" height="42" alt="pie-chart">
                     <h1><slot></slot></h1>

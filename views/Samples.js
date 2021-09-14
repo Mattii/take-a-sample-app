@@ -6,6 +6,11 @@ import OrderCustomerTab from "../components/Samples/OrderCustomerTab.js";
 export default {
     template: `
         <div style="min-height: 79vh">
+            <teleport to="#main-nav-header">
+                <div class="serch-sample">
+                    <input v-model="searchString" type="text" placeholder="Wyszukaj pruby..."/>
+                </div>
+            </teleport>
         <nav class="add-sample-nav">
                 <base-button @click="showAddForm"><img width="52" src="../img/basket.svg"/><span v-if="chartItems.length > 0" class="chart-counter">{{ chartItems.length }}</span></base-button>
 	    </nav>
@@ -50,11 +55,12 @@ export default {
             showSection: false,
             currentTab: 'Items',
             tabs:['Items','Customer'],
+            searchString: '',
         }
     },
     computed: {
         items() {
-            return this.$store.getters.getItems.filter(e => e.cropQuantity > 0)
+            return this.$store.getters.getItems.filter(e => e.cropQuantity > 0 && e.cropName.includes(this.searchString))
         },
         chartItems() {
             return this.$store.getters.getChartItems
