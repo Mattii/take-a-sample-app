@@ -13,7 +13,7 @@ export default {
             <div class="sample-list-wrapper">
                 <div class="base-section-header">
                     <h1>ostatnie zamówienia...  </h1>
-                    <p>wstaione w ciągu 30 dni</p>
+                    <p class="varietyLabel">wstaione w ciągu 30 dni</p>
                 </div>
                 <ul class="sample-list" v-if="isToken">
                     <li 
@@ -21,7 +21,7 @@ export default {
                         :key="key">{{ order }}</li>
                 </ul>
                 <div v-if="!isToken" class="card">
-                    <p>Najnowsze zamówienia możliwe do przeglądzeni jedynie po zalogowaniu</p>
+                    <p>Najnowsze zamówienia możliwe do przeglądania jedynie po zalogowaniu</p>
                 </div>
             </div>
         </base-section>
@@ -29,7 +29,7 @@ export default {
             <div class="sample-list-wrapper">
                 <div class="base-section-header">
                     <h1>najnowsze pruby...  </h1>
-                    <p>przyjęte w ciągu 30 dni</p>
+                    <p class="varietyLabel">przyjęte w ciągu 30 dni</p>
                 </div>
                 <ul class="sample-list" v-if="newSample.length > 0 && isToken">
                     <router-link
@@ -39,10 +39,10 @@ export default {
                     </router-link>
                 </ul>
                 <div v-else-if="newSample.length == 0 && isToken" class="card">
-                    <p>w ostatnim czasie nie zostały prztyjęte żadne nowe pruby</p>
+                    <p>w ostatnim czasie nie zostały przyjęte żadne nowe pruby</p>
                 </div>
                 <div v-if="!isToken" class="card">
-                    <p>Zaloguj się by móc oblądać najnowsze pruby</p>
+                    <p>Zaloguj się by móc oglądać najnowsze pruby</p>
                 </div>
             </div>
         </base-section>
@@ -50,7 +50,7 @@ export default {
             <div class="sample-list-wrapper">
                 <div class="base-section-header">
                     <h1>przeterminowane pruby...  </h1>
-                    <p>data ważności powyżej dwóch lat</p>
+                    <p class="varietyLabel">data ważności powyżej dwóch lat</p>
                 </div>
                 <ul class="sample-list" v-if="oldItems.length > 0 && isToken">
                     <router-link
@@ -63,7 +63,7 @@ export default {
                     <p>Brak prub starszych niż dwa lata</p>
                 </div>
                 <div v-if="!isToken" class="card">
-                    <p>Zaloguj się by móc oblądać przeterminowane pruby</p>
+                    <p>Zaloguj się by móc oglądać przeterminowane pruby</p>
                 </div>
             </div>
         </base-section>
@@ -80,12 +80,18 @@ export default {
             orders: {}
         }
     },
-    created() {
-        if(this.$store.getters.getToken){
+    updated(){
+        console.log('updated');
+    },
+    async created() {
+        const expiresAt = localStorage.getItem('expiresAt')
+        const nowTime = new Date().getTime()
+        if(expiresAt && !+expiresAt < nowTime){
+            console.log('Token is exp:', +expiresAt < nowTime);
+            this.$store.dispatch('getUserData').then(() => {
             this.$store.dispatch('fetchSampleItems')
-            fetch('https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/orders.json?auth=' + this.$store.getters.getToken)
-            .then(res => res.json())
-            .then(orders => {this.orders = orders})
+            this.$store.dispatch('fetchLastOrders').then(orders => this.orders = orders)
+          })
         }
     },
     beforeRouteEnter (to, from, next) {

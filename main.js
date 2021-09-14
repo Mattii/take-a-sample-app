@@ -16,14 +16,7 @@ const shoppingListApp = Vue.createApp({
         }
     },
     created() {
-            const expiresAt = localStorage.getItem('expiresAt')
-            const nowTime = new Date().getTime()
-            if(expiresAt && !+expiresAt < nowTime){
-                console.log('Token is exp:', +expiresAt < nowTime);
-                this.$store.dispatch('getUserData').then(() => {
-                this.$store.dispatch('fetchSampleItems')
-              })
-            }
+
     },
 })
 .component('TheHeader', TheHeader)

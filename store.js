@@ -278,14 +278,19 @@ const store = new Vuex.createStore({
             })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 context.dispatch('makeEmail', order)
             }).catch(err => console.error(err))
         },
         makeEmail(context, order) {
-            console.log(order);
             window.location.href = 
             `mailto:zamowienia@enzazaden.pl?subject=Sample order&body=name:%0D%0A${order.orderedBy} `
+        },
+        fetchLastOrders(context){
+            return fetch('https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/orders.json?auth=' + context.getters.getToken)
+            .then(res => res.json())
+            .then(orders => {
+                return orders
+            })
         }
     },
     getters: {

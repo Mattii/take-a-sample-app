@@ -6,7 +6,7 @@ export default {
     <div class="sample-list-wrapper">
         <div class="base-section-header">
             <h1>dostępne pruby...  </h1>
-            <p> ({{ items.length }}) batchy </p>
+            <p class="varietyLabel"> ({{ items.length }}) batchy </p>
         </div>
         <ul class="sample-list">
             <sample-list-item 

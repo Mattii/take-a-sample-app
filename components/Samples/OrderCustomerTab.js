@@ -85,7 +85,7 @@ export default {
                     orderCustomer: this.orderCustomer,
                     orderRemark: this.orderRemark,
                     orderedBy: this.$store.getters.getLogedInUser.localId,
-                    userEmail: this.$store.getters.getLogedInUser.email,
+                    userName: this.$store.getters.getLogedInUser.name,
                     orderedAt: new Date().getTime(),
                     chartLines: numOfLines,
                     confirm: false

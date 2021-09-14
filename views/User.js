@@ -35,9 +35,9 @@ export default {
 	    </base-section>
         <base-section class="user-samples" v-if="!!userSamples">
             <div class="sample-list-wrapper">
-            <div class="card section-header">
-                    <h1>Moje sample</h1>
-                    <span>({{ userSamples.length }})</span>
+                <div class="base-section-header">
+                    <h1>moje sample...  </h1>
+                    <p class="varietyLabel">opiekujesz się {{ userSamples.length }} prubami</p>
                 </div>
                 <ul class="sample-list">
                     <router-link
