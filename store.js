@@ -228,11 +228,12 @@ const store = new Vuex.createStore({
                     const timeToExpires = +localStorage.getItem('expiresAt') - new Date().getTime()
                     context.commit('setLogedInUser', user)
                     context.commit('setToken', user.idToken)
-
-                    window.expTimer = setTimeout(() => {
-                        console.log('log out timeout timer ');
-                        context.dispatch('logoutUser')
-                    }, timeToExpires)
+                    if(!window.expTimer){
+                        window.expTimer = setTimeout(() => {
+                            console.log('log out timeout timer ');
+                            context.dispatch('logoutUser')
+                        }, timeToExpires)
+                    }
                     return data.users[0]
             })
             .then(res => {

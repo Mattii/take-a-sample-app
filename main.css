@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@700&display=swap');
 *{
 	margin: 0;
 	padding: 0;
@@ -39,7 +38,7 @@
   
 
 body{
-	--display-font: 'Ubuntu', sans-serif;
+	--display-font: 'Antonio', sans-serif;
 	font-family:sans-serif;
 	background-color: var(--background);
 	color: var(--on-surface);
@@ -59,6 +58,9 @@ button{
     border: none;
     background: transparent;
 	font-size: 1rem;
+}
+button:focus{
+	outline: none;
 }
 
 #shopping-list {
@@ -480,12 +482,9 @@ main {
 	transition: .3s ease-out;
 	z-index: 0;
 	position: absolute;
-}
-.sample-list-item img:first-child{
-	transform: rotate(45deg);
-	width: 6rem;
-	right: -1rem;
-	top: -1rem;
+	width: 12rem;
+	right: -4rem;
+	top: -4rem;
 }
 .sample-list-item img:last-child{
     width: 4rem;
@@ -651,8 +650,7 @@ main {
     place-self: left;
 }
 .hero-element h2 span{
-	background-color: var(--primary-variant);
-	padding: 0 1rem;
+	color: var(--primary-variant);
 }
 @media (max-width: 1250px) {
 	.hero-element {
@@ -692,8 +690,8 @@ main {
 		place-self: center stretch;
 	}
 	.hero-element img:nth-child(1) {
-		left: -10rem;
-		bottom: -5rem;
+		left: -14rem;
+		bottom: -9rem;
 		transform: scale(.4);
 	}
 	.hero-element img:nth-child(2) {
@@ -703,7 +701,7 @@ main {
 		filter: blur(3px);
 	}
 	.hero-element img:nth-child(3) {
-		transform: translate(100%, -30%) scale(.6);
+		transform: translate(18%, -48%) scale(.6);
 		filter: blur(1px);
 	}
 	.hero-element img:nth-child(4) {
@@ -711,11 +709,11 @@ main {
 		filter: blur(9px);
 	}
 	.hero-element img:nth-child(5) {
-		transform: translate(150%, 0) scale(.3);
+		transform: translate(-1%, -7%) rotate(15deg) scale(.2);
 		filter: blur(12px);
 	}
 	.hero-element img:nth-child(6) {
-		transform: translate(50%, -30%) scale(.3) rotateZ(135deg);
+		transform: translate(-45%, -47%) scale(.3) rotate(230deg);
 		filter: blur(9px);
 	}
 }
