@@ -286,10 +286,18 @@ const store = new Vuex.createStore({
             `mailto:zamowienia@enzazaden.pl?subject=Sample order&body=name:%0D%0A${order.orderedBy} `
         },
         fetchLastOrders(context){
-            return fetch('https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/orders.json?auth=' + context.getters.getToken)
+            const monthTime = new Date().getTime() - 2592000000
+            return fetch(`https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/orders.json?orderBy="orderedAt"&startAt=${monthTime}&auth=${context.getters.getToken}`)
             .then(res => res.json())
             .then(orders => {
-                return orders
+                const arr = []
+                for(let key in orders){
+                    arr.unshift({
+                        ...orders[key],
+                        id: key
+                    })
+                }
+                return arr
             })
         }
     },

@@ -1024,3 +1024,37 @@ footer {
 	fill: var(--secondary-variant);
 	stroke: var(--secondary-variant);
 }
+
+
+.order-list-item{
+	position: relative;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: .6rem;
+	overflow: hidden;
+}
+.order-list-item div{
+	z-index: 1;
+}
+
+.order-list-item div:nth-child(1){
+	grid-column: span 3;
+}
+.order-list-item div:nth-child(3){
+	grid-column: span 2;
+}
+.order-list-item div:nth-child(4){
+	grid-column: span 2;
+}
+.order-list-item div:nth-child(6){
+	grid-column: span 4;
+}
+.order-list-item .svg{
+	position: absolute;
+	width: 10rem;
+    bottom: -30%;
+    right: -10%;
+	z-index: 0;
+	filter: blur(1px);
+	opacity: .3;
+}

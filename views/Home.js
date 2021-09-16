@@ -2,6 +2,7 @@
 import HeroBaner from "../components/Home/HeroBaner.js";
 import LoginBaner from "../components/Home/LoginBaner.js";
 import SmallSampleCard from "../components/Home/SmallSampleCard.js";
+import BoxSvg from "../components/UI/BoxSvg.js"
 export default {
     template: `
         <main>
@@ -16,16 +17,31 @@ export default {
                     <p class="varietyLabel">wstaione w ciągu 30 dni</p>
                 </div>
                 <ul class="sample-list" v-if="isToken">
-                    <li class="card"
+                    <li class="card order-list-item"
                         v-for="(order, key) in orders"
                         :key="key">
-                            <p class="varietyLabel">zamówione  {{ new Date(order.orderedAt).toLocaleString() }}</p>
-                            <h2><div><span v-if="!order.confirm">&#9203;</span><span v-else>&#9989;</span>  {{ order.orderCustomer.toLocaleUpperCase()}}</div></h2>
-                            <p class="varietyLabel">{{ order.userName[0].toLocaleUpperCase() + order.userName.substring(1) }}</p>
-                            <p>&#128176; &#128198; {{ order.paymentTerm }}</p>
-                            <p>{{ order.chartLines}} lini</p>
-                            <p v-if="order.orderRemark">{{ order.orderRemark }}</p>
-                            
+                        <div>
+                            <p class="varietyLabel">{{ order.userName[0].toLocaleUpperCase() + order.userName.substring(1) }}, zamówione  {{ new Date(order.orderedAt).toLocaleDateString() }}</p>
+                            <h2>{{ order.orderCustomer.toLocaleUpperCase()}}</h2>
+                        </div>
+                        <div>
+                            <p class="varietyLabel">status</p>
+                            <p v-if="!order.confirm">do realizacji</p>
+                            <p v-else>zrealizowane</p>
+                        </div>
+                        <div>
+                            <p class="varietyLabel"> termin płatnośi</p>
+                            <p>{{ order.paymentTerm }}</p>
+                        </div>
+                        <div>
+                            <p class="varietyLabel">linie zamówienia</p>
+                            <p>{{ order.chartLines}}</p>
+                        </div>
+                        <box-svg></box-svg>
+                        <div v-if="order.orderRemark">
+                            <p class="varietyLabel">uwagi</p>
+                            <p>{{ order.orderRemark }}</p>
+                        </div>
                     </li>
                 </ul>
                 <div v-if="!isToken" class="card duble">
@@ -82,10 +98,11 @@ export default {
         'HeroBaner': HeroBaner,
         'LoginBaner': LoginBaner,
         'SmallSampleCard': SmallSampleCard,
+        'BoxSvg': BoxSvg,
     },
     data(){
         return {
-            orders: {}
+            orders: []
         }
     },
     updated(){
@@ -94,7 +111,7 @@ export default {
     async created() {
         const expiresAt = localStorage.getItem('expiresAt')
         const nowTime = new Date().getTime()
-        if(expiresAt && !+expiresAt < nowTime){
+        if(expiresAt && !(+expiresAt < nowTime)){
             console.log('Token is exp:', +expiresAt < nowTime);
             this.$store.dispatch('getUserData').then(() => {
             this.$store.dispatch('fetchSampleItems')
