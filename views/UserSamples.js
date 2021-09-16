@@ -4,6 +4,11 @@ import SampleList from "../components/SampleList.js";
 export default {
     template: `
         <div>
+        <teleport to="#main-nav-search">
+                <div class="serch-sample">
+                    <input v-model="searchString" type="text" placeholder="Wyszukaj pruby..."/>
+                </div>
+        </teleport>
         <nav class="add-sample-nav">
 		        <base-button @click="showAddForm"><img width="52" src="../img/add.svg"/></base-button>
 	    </nav>
@@ -30,19 +35,21 @@ export default {
         </main>
         </div>
     `,
-     components: { 
+    name:'UserSamples',
+    components: { 
         'SampleList': SampleList, 
         'AddSampleForm': AddSampleForm 
     },
     data(){
         return {
             displayForm: false,
-            isEdited: null
+            isEdited: null,
+            searchString: '',
         }
     },
     computed: {
         items() {
-            return this.$store.getters.getItems
+            return this.$store.getters.getItems.filter(e => e.cropName.includes(this.searchString.toLowerCase()))
         },
         newSample() {
             return this.items.filter(e => new Date(e.createdAt).getTime() > new Date().getTime() - (63158400000 / 100))
