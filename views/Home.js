@@ -7,8 +7,7 @@ export default {
     template: `
         <main>
         <base-section>
-            <hero-baner v-if="isToken"/>
-            <login-baner v-else />
+            <hero-baner/>
         </base-section>
         <base-section>
             <div class="sample-list-wrapper">

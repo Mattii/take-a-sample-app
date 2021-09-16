@@ -298,6 +298,8 @@ const store = new Vuex.createStore({
                     })
                 }
                 return arr
+            }).catch(err => {
+                console.log(err);
             })
         }
     },
