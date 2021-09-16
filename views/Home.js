@@ -2,7 +2,7 @@
 import HeroBaner from "../components/Home/HeroBaner.js";
 import LoginBaner from "../components/Home/LoginBaner.js";
 import SmallSampleCard from "../components/Home/SmallSampleCard.js";
-import BoxSvg from "../components/UI/BoxSvg.js"
+import OrderCard from "../components/Orders/OrderCard.js";
 export default {
     template: `
         <main>
@@ -16,32 +16,14 @@ export default {
                     <p class="varietyLabel">wstaione w ciągu 30 dni</p>
                 </div>
                 <ul class="sample-list" v-if="isToken">
-                    <li class="card order-list-item"
-                        v-for="(order, key) in orders"
-                        :key="key">
-                        <div>
-                            <p class="varietyLabel">{{ order.userName[0].toLocaleUpperCase() + order.userName.substring(1) }}, zamówione  {{ new Date(order.orderedAt).toLocaleDateString() }}</p>
-                            <h2>{{ order.orderCustomer.toLocaleUpperCase()}}</h2>
-                        </div>
-                        <div>
-                            <p class="varietyLabel">status</p>
-                            <p v-if="!order.confirm">do realizacji</p>
-                            <p v-else>zrealizowane</p>
-                        </div>
-                        <div>
-                            <p class="varietyLabel"> termin płatnośi</p>
-                            <p>{{ order.paymentTerm }}</p>
-                        </div>
-                        <div>
-                            <p class="varietyLabel">linie zamówienia</p>
-                            <p>{{ order.chartLines}}</p>
-                        </div>
-                        <box-svg></box-svg>
-                        <div v-if="order.orderRemark">
-                            <p class="varietyLabel">uwagi</p>
-                            <p>{{ order.orderRemark }}</p>
-                        </div>
-                    </li>
+                    <router-link
+                        v-if="orders.length > 0"
+                        v-for="order in orders"
+                        :key="order.id"
+                        :to="{name: 'order.show', params:{id: order.id}}"
+                        >
+                        <order-card :order="order"></order-card>
+                    </router-link>
                 </ul>
                 <div v-if="!isToken" class="card duble">
                     <p>Najnowsze zamówienia możliwe do przeglądania jedynie po zalogowaniu</p>
@@ -97,7 +79,7 @@ export default {
         'HeroBaner': HeroBaner,
         'LoginBaner': LoginBaner,
         'SmallSampleCard': SmallSampleCard,
-        'BoxSvg': BoxSvg,
+        'OrderCard': OrderCard,
     },
     data(){
         return {

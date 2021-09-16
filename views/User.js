@@ -22,7 +22,7 @@ export default {
                     <p>Dodaj sample</p>
                     <edit-svg></edit-svg>
                 </router-link> 
-                <router-link v-if="!!userData.orders" :to="{name: 'user.orders', params: {id: userData.localId }}">
+                <router-link v-if="!!userData.orders" :to="{name: 'user.orders'}">
                     <p>Moje zamówienia</p>
                     <span style="display: flex;align-items: center;gap:.5rem">
                         <p>{{ userData.orders.length }}</p>

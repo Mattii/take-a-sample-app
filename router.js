@@ -25,6 +25,13 @@ const routes = [
       meta: { requiresAuth: true } 
     },
     {
+      path:'/order/:id',
+      name:'order.show',
+      props: route => ({orderId: route.params.id}),
+      component: () => import("./views/Order.js"),
+      meta: { requiresAuth: true },
+    },
+    {
       path: '/user',
       name: 'user',
       component: () => import('./views/User.js'),
@@ -40,7 +47,6 @@ const routes = [
     {
       path: '/user/orders',
       name: 'user.orders',
-      props: route => ({id: route.params.id}),
       component: () => import('./views/UserOrders.js'),
       meta: { requiresAuth: true},
     },
