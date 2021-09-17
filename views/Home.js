@@ -74,6 +74,14 @@ export default {
         </base-section>
         </main>
     `,
+    watch: {
+        // żeby wylogowywało po uruchominiu timera trzeba zamontować watcher na karzdym views
+        isToken(newValue, oldValue){
+            if(newValue === null){
+                this.$router.push('/')
+            }
+        }
+    },    
     name: 'Home',
     components: { 
         'HeroBaner': HeroBaner,
