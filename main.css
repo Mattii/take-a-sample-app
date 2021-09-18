@@ -549,6 +549,7 @@ main {
 	.base-section-header h1{
 		font-size: 1.6rem;
 		padding-bottom: .3rem;
+		font-family: var(--display-font);
 	}
 
 	.sample-list {
@@ -1069,4 +1070,24 @@ footer {
     right: -30%;
     z-index: -1;
     width: 200px;
+}
+
+.order-details{
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1rem;
+}
+.order-details div:nth-child(1) {
+	grid-column: span 2;
+	padding: 0 1rem;
+    align-self: center;
+}
+.order-details div:nth-child(3) {
+	grid-column: span 3;
+}
+.order-details div:nth-child(4) {
+	padding-left: 1rem;
+}
+.order-details div:nth-child(5) {
+	grid-column: span 3;
 }
