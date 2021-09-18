@@ -36,9 +36,9 @@ const store = new Vuex.createStore({
         setEditedId(state, id) {
             state.editedItemId = id
         },
-        setRemark(state, remark){
-            const itemIndex = state.items.findIndex(e => e.id === remark.id)
-            state.items[itemIndex].remarks.unshift(remark.payload)
+        setRemark(state, remarks){
+            const itemIndex = state.items.findIndex(e => e.id === remarks.id)
+            state.items[itemIndex].remarks = remarks.payload
         },
         addItemToChart(state, chartItem) {
             const chartItemIndex = state.chartItems.findIndex(e => e.id === chartItem.id)
@@ -165,6 +165,18 @@ const store = new Vuex.createStore({
             context.commit('setEditedId', id)
         },
         additionOfRemark(context, remark){
+            fetch(`https://tas-sample-app-default-rtdb.europe-west1.firebasedatabase.app/samples/${remark.id}.json?auth=${context.getters.getToken}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({remarks: remark.payload})
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(err => console.error(err))
             context.commit('setRemark', remark)
         },
         loginUser(context, { email, password }) {

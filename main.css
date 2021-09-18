@@ -866,12 +866,30 @@ main {
 }
 
 .variety-details-wraper {
-	height: 75vh;
 }
 .variety-details {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+.variety-batch-details{
 	display: grid;
 	gap: 1rem;
+	grid-template-columns: repeat(2, 1fr);
+	padding:0 1rem;
 }
+.remarks{
+	display: flex;
+	flex-direction: column;
+	gap: .3rem;
+}
+.remark{
+	padding: 0 1rem;
+}
+.remark textarea{
+	width: 100%;
+}
+
 .variety-details h1{
 	padding-top: 1rem;
 	font-size: 2rem;
