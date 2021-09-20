@@ -5,7 +5,7 @@ export default {
     template: `
     <div class="sample-list-wrapper">
         <div class="base-section-header">
-            <h1>dostępne pruby...  </h1>
+            <h1>dostępne próby...  </h1>
             <p class="varietyLabel"> ({{ items.length }}) batchy </p>
         </div>
         <ul class="sample-list">

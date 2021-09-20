@@ -6,7 +6,7 @@ export default {
         <div>
         <teleport to="#main-nav-search">
                 <div class="serch-sample">
-                    <input v-model="searchString" type="text" placeholder="Wyszukaj pruby..."/>
+                    <input v-model="searchString" type="text" placeholder="Wyszukaj próby..."/>
                 </div>
         </teleport>
         <nav class="add-sample-nav">

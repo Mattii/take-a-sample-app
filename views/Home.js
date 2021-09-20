@@ -33,7 +33,7 @@ export default {
         <base-section id="newSampleVarietyList">
             <div class="sample-list-wrapper">
                 <div class="base-section-header">
-                    <h1>najnowsze pruby...  </h1>
+                    <h1>najnowsze próby...  </h1>
                     <p class="varietyLabel">przyjęte w ciągu 30 dni</p>
                 </div>
                 <ul class="sample-list" v-if="newSample.length > 0 && isToken">
@@ -44,17 +44,17 @@ export default {
                     </router-link>
                 </ul>
                 <div v-else-if="newSample.length == 0 && isToken" class="card duble">
-                    <p>w ostatnim czasie nie zostały przyjęte żadne nowe pruby</p>
+                    <p>w ostatnim czasie nie zostały przyjęte żadne nowe próby</p>
                 </div>
                 <div v-if="!isToken" class="card duble">
-                    <p>Zaloguj się by móc oglądać najnowsze pruby</p>
+                    <p>Zaloguj się by móc oglądać najnowsze próby</p>
                 </div>
             </div>
         </base-section>
         <base-section id="sampleVarietyList">
             <div class="sample-list-wrapper">
                 <div class="base-section-header">
-                    <h1>przeterminowane pruby...  </h1>
+                    <h1>przeterminowane próby...  </h1>
                     <p class="varietyLabel">data ważności powyżej dwóch lat</p>
                 </div>
                 <ul class="sample-list" v-if="oldItems.length > 0 && isToken">
@@ -68,7 +68,7 @@ export default {
                     <p>Brak prub starszych niż dwa lata</p>
                 </div>
                 <div v-if="!isToken" class="card duble">
-                    <p>Zaloguj się by móc oglądać przeterminowane pruby</p>
+                    <p>Zaloguj się by móc oglądać przeterminowane próby</p>
                 </div>
             </div>
         </base-section>
