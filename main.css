@@ -31,7 +31,7 @@
 		--secondary-variant: #00b6bd;
 		--error: #b00020;
 		--border: rgba( 255, 255, 255, 0.1 );
-		--on-primary: #ffffff;
+		--on-primary: #222;
 		--on-surface: whitesmoke;
 	}
   }
@@ -464,9 +464,8 @@ main {
 	align-self: center;
 }
 .varietyImages{
-	z-index: 0 !important;
-	position: absolute;
-    right: 0;
+	z-index: -1 !important;
+
 }
 .varietyLabel{
 	color: var(--on-surface);
@@ -487,9 +486,11 @@ main {
 	top: -4rem;
 }
 .sample-list-item img:last-child{
-    width: 4rem;
-    right: 9rem;
-    top: 7rem;
+	transition: .3s ease-out;
+	position: absolute;
+	width: 4rem;
+    left: 2rem;
+    top: 0rem;
 	filter: blur(3px);
 }
 
@@ -517,12 +518,15 @@ main {
 		box-shadow: 0 .6rem .6rem -.3rem rgba(108, 108, 108, 0.3);
 	}
 	.sample-list-item:hover img:first-child{
-		transform: scale(1.1) rotate(45deg);
+		transform: scale(1.1);
 		filter: blur(2px);
 	}
 	.sample-list-item:hover img:last-child{
 		transform: scale(.90);
 		filter: blur(0);
+	}
+	.base-section-header{
+		padding:0 0 2rem 1rem;
 	}
 }
 
@@ -789,6 +793,7 @@ main {
 }
 .btn:disabled:hover {
     background-color: whitesmoke;
+	color: var(--on-primary);
 }
 .btn-cancel{
 	border: 2px solid var(--error);
