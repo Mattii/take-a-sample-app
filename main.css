@@ -464,7 +464,7 @@ main {
 	align-self: center;
 }
 .varietyImages{
-	z-index: -1 !important;
+	z-index: 0 !important;
 
 }
 .varietyLabel{
