@@ -1037,16 +1037,33 @@ footer {
 	align-items: center;
 	color: var(--secondary-variant);
 }
-
+.my-crops ul{
+	display: flex;
+	flex-wrap: wrap;
+	gap: .6rem;
+}
+.my-crops li p{
+	font-size: .8rem;
+}
+.my-crops li{
+	padding: .3rem .6rem;
+	border: 1px solid var(--on-surface);
+	border-radius: 1rem;
+	display: flex;
+	gap: .3rem;
+	align-items: center;
+}
 .svg{
 	width: 1.5rem;
-	fill: var(--secondary-variant);
+	fill: var(--on-surface);
 }
 .box-closed{
 	fill: var(--secondary-variant);
 	stroke: var(--secondary-variant);
 }
-
+.my-crops .svg{
+	width: 1.2rem !important;
+}
 
 .order-list-item{
 	position: relative;

@@ -2,6 +2,7 @@ import SmallSampleCard from "../components/Home/SmallSampleCard.js"
 import BoxSvg from "../components/UI/BoxSvg.js"
 import EditSvg from "../components/UI/EditSvg.js"
 import LogoutSvg from "../components/UI/LogoutSvg.js"
+import VegetableSvgIcons from "../components/UI/VegetableSvgIcons.js"
 export default {
     template: `
     <main>
@@ -16,7 +17,15 @@ export default {
                     <p>Wyloguj</p>
                     <logout-svg></logout-svg>
                 </base-button>
-                <p>Main crop: {{ userData.crop }}</p>
+                <div class="my-crops">
+                <p>Moje odmiany:</p>
+                    <ul>
+                        <li
+                        v-for="(crop, index) in userData.crops"
+                        :key="index"
+                        ><vegetable-svg-icons :cropType="crop"></vegetable-svg-icons> <p>{{ toCropName(crop) }}</p> </li>
+                    </ul>
+                </div>
                 <p>Rgion: {{ userData.region }}</p>
                 <router-link v-if="userData.privileges == 'admin'" :to="{ name: 'user.samples' }">
                     <p>Dodaj sample</p>
@@ -55,7 +64,8 @@ export default {
         SmallSampleCard,
         BoxSvg,
         EditSvg,
-        LogoutSvg
+        LogoutSvg,
+        VegetableSvgIcons
     },
     watch: {
         // żeby wylogowywało po uruchominiu timera trzeba zamontować watcher na karzdym views
@@ -78,6 +88,24 @@ export default {
         logoutUser(){
             this.$router.push('/')
             this.$store.dispatch('logoutUser')
+        },
+        toCropName(crop){
+            let cropName = ""
+            switch (crop) {
+                case 'cc':
+                    cropName = "ogórek"
+                    break;
+                case 'to':
+                    cropName = "pomidor"
+                    break;
+                case 'all':
+                    cropName = "wszystkie"
+                    break;
+                default:
+                    console.error("brak takiej odmiany :[");
+                    break;
+            }
+            return cropName
         }
     },
 }
