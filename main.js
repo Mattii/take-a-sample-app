@@ -15,8 +15,13 @@ const shoppingListApp = Vue.createApp({
             }
         }
     },
-    created() {
-
+    async created() {
+        const expiresAt = localStorage.getItem('expiresAt')
+        const nowTime = new Date().getTime()
+        console.log('[create App] Token is exp:', +expiresAt < nowTime, 'data can be fetched', expiresAt && !(+expiresAt < nowTime))
+        if(expiresAt && !(+expiresAt < nowTime)){
+            this.$store.commit('setToken', localStorage.getItem('idToken'))
+        }
     },
 })
 .component('TheHeader', TheHeader)

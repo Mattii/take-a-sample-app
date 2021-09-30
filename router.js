@@ -4,7 +4,7 @@ import store from "./store.js";
 const routes = [
     { path: '/',
       name: 'Home',
-      component: Home 
+      component: Home,
     },
     { 
       path: '/login', 
@@ -63,8 +63,13 @@ const router = VueRouter.createRouter({
 
 router.beforeEach( (to, from, next) => {
   // ...
-  if(to.meta.requiresAuth && !store.getters.getToken) next({name: 'login.user'})
-  else next()
+  console.log('[router before each]:',to.meta.requiresAuth,' token is not present: ', !store.getters.getToken,'you shall not pass: ', (to.meta.requiresAuth && !store.getters.getToken));
+  if(to.matched.some(record => record.meta.requiresAuth)){
+    if(!store.getters.getToken) next({name: 'login.user'})
+    else next()
+  } else {
+    next()
+  }
 })
 
 export default router

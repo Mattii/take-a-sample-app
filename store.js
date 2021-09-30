@@ -310,6 +310,7 @@ const store = new Vuex.createStore({
                         id: key
                     })
                 }
+                console.log('[Success]: fetch last orders');
                 return arr
             }).catch(err => {
                 console.log(err);

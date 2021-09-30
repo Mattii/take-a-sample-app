@@ -98,14 +98,11 @@ export default {
         console.log('updated');
     },
     async created() {
-        const expiresAt = localStorage.getItem('expiresAt')
-        const nowTime = new Date().getTime()
-        if(expiresAt && !(+expiresAt < nowTime)){
-            console.log('Token is exp:', +expiresAt < nowTime);
+        if(this.$store.getters.getToken){
             this.$store.dispatch('getUserData').then(() => {
-            this.$store.dispatch('fetchSampleItems')
+                this.$store.dispatch('fetchSampleItems')
+            })
             this.$store.dispatch('fetchLastOrders').then(orders => this.orders = orders)
-          })
         }
     },
     beforeRouteEnter (to, from, next) {
