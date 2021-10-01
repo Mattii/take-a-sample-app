@@ -84,6 +84,9 @@ export default {
             return this.$store.getters.getItems.filter(e => e.cropSegment == 'pomidor') || []
         }
     },
+    created() {
+        
+    },
     methods: {
         logoutUser(){
             this.$router.push('/')

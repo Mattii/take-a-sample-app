@@ -70,8 +70,8 @@ export default {
                             there is {{ item.remarks.length }} remark
                             </p>
                             <div class="varietyImages">
-                                <img :src="'./img/vegetables/'+ item.cropSegment +'.png'" alt="lt_butter_leaf" >		
-                                <img :src="'./img/vegetables/'+ item.cropSegment +'.png'" alt="lt_butter_leaf" >
+                                <img :src="'../img/vegetables/'+ item.cropSegment +'.png'" :alt="item.cropSegment" >		
+                                <img :src="'../img/vegetables/'+ item.cropSegment +'.png'" :alt="item.cropSegment" >
                             </div>
                         </li>
                     </router-link>

@@ -99,9 +99,7 @@ export default {
     },
     async created() {
         if(this.$store.getters.getToken){
-            this.$store.dispatch('getUserData').then(() => {
-                this.$store.dispatch('fetchSampleItems')
-            })
+            this.$store.dispatch('fetchSampleItems')
             this.$store.dispatch('fetchLastOrders').then(orders => this.orders = orders)
         }
     },

@@ -21,6 +21,9 @@ const shoppingListApp = Vue.createApp({
         console.log('[create App] Token is exp:', +expiresAt < nowTime, 'data can be fetched', expiresAt && !(+expiresAt < nowTime))
         if(expiresAt && !(+expiresAt < nowTime)){
             this.$store.commit('setToken', localStorage.getItem('idToken'))
+            this.$store.dispatch('getUserData').then(() => {
+                this.$store.dispatch('fetchSampleItems')
+            })
         }
     },
 })
