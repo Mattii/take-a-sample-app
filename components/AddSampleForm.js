@@ -93,6 +93,7 @@ export default {
             isEdited: false,
             cropFormSegment: null,
             cropSegments: [
+                'sałata',
                 'pomidor',
                 'ogórek',
                 'papryka',
@@ -100,8 +101,8 @@ export default {
                 'rzodkiewka',
                 'kapusta',
             ],
-            cropFormName: '',
-            cropFormPackingType: '',
+            cropFormName: null,
+            cropFormPackingType: null,
             cropPackings: [
                 '100',
                 '250',
@@ -180,6 +181,33 @@ export default {
     computed: {
         logedInUser() {
             return this.$store.getters.getLogedInUser.email
+        },
+        cropCode(){
+            let cropName = ""
+            switch (this.cropFormSegment) {
+                    case 'ogórek':
+                        cropName = "cc"
+                        break;
+                    case 'pomidor':
+                        cropName = "to"
+                        break;
+                    case 'cebula':
+                        cropName = "on"
+                        break;
+                    case 'sałata':
+                        cropName = "lt"
+                        break;
+                    case 'rzodkiewka':
+                        cropName = "rd"
+                        break;    
+                    case 'kapusta':
+                        cropName = "cb"
+                        break;                          
+                    default:
+                        cropName = "unknown"
+                        break;
+                }
+                return cropName
         },
         editedId: {
             get: function() {
