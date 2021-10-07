@@ -1048,7 +1048,7 @@ footer {
 .my-crops li{
 	padding: .3rem .6rem;
 	border: 1px solid var(--on-surface);
-	border-radius: 1rem;
+	border-radius: .6rem;
 	display: flex;
 	gap: .3rem;
 	align-items: center;

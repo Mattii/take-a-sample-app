@@ -50,6 +50,12 @@ const routes = [
       component: () => import('./views/UserOrders.js'),
       meta: { requiresAuth: true},
     },
+    {
+      path: '/user/edit',
+      name: 'user.password',
+      component: () => import('./views/ResetPassword.js'),
+      meta: { requiresAuth: true},
+    },
     { 
       path: '/:pathMatch(.*)*',
       name: 'notfound', 

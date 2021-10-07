@@ -207,6 +207,21 @@ const store = new Vuex.createStore({
             })
             .catch(err => console.error(err))
         },
+        sendResetPasswordMail(context, newPassword){
+            const idToken = context.getters.getLogedInUser.idToken
+            return fetch(`https://identitytoolkit.googleapis.com/v1/accounts:update?key=${obj.API_KEY}`, {
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    idToken,
+                    password: newPassword,
+                    returnSecureToken: false
+                }),
+            })
+            .then(res => res.json())
+        },
         logoutUser(context){
             console.log('log out timeout timer ')
             context.commit('clearLogedInUser')

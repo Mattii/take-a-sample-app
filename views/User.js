@@ -3,6 +3,7 @@ import BoxSvg from "../components/UI/BoxSvg.js"
 import EditSvg from "../components/UI/EditSvg.js"
 import LogoutSvg from "../components/UI/LogoutSvg.js"
 import VegetableSvgIcons from "../components/UI/VegetableSvgIcons.js"
+import PasswordSvg from "../components/UI/PasswordSvg.js"
 export default {
     template: `
     <main>
@@ -17,6 +18,10 @@ export default {
                     <p>Wyloguj</p>
                     <logout-svg></logout-svg>
                 </base-button>
+                <router-link :to="{name: 'user.password'}">
+                    <p>Zmień hasło</p>
+                    <password-svg></password-svg>
+                </router-link>
                 <div class="my-crops">
                 <p>Moje odmiany:</p>
                     <ul>
@@ -65,7 +70,8 @@ export default {
         BoxSvg,
         EditSvg,
         LogoutSvg,
-        VegetableSvgIcons
+        VegetableSvgIcons,
+        PasswordSvg
     },
     watch: {
         // żeby wylogowywało po uruchominiu timera trzeba zamontować watcher na karzdym views
