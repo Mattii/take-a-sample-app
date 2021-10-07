@@ -207,7 +207,7 @@ const store = new Vuex.createStore({
             })
             .catch(err => console.error(err))
         },
-        sendResetPasswordMail(context, newPassword){
+        resetPassword(context, newPassword){
             const idToken = context.getters.getLogedInUser.idToken
             return fetch(`https://identitytoolkit.googleapis.com/v1/accounts:update?key=${obj.API_KEY}`, {
                 method: 'POST',
