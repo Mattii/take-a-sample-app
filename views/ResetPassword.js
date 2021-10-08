@@ -14,7 +14,7 @@ export default {
                         <input id="confirmPassword" v-model.trim="confirmPassword" type="password" placeholder="Confirm your password" required/>
                     </div>
                 <div>
-                    <base-button class="btn btn-to-action" :disabled="!theSame">Login</base-button>
+                    <base-button class="btn btn-to-action" :disabled="!theSame">Zmień hasło</base-button>
                     <base-button class="btn btn-cancel" type="reset">Cancel</base-button>
                 </div>	
             </form>
@@ -38,7 +38,8 @@ export default {
     methods: {
         resetPassword(){
             this.$store.dispatch('resetPassword', this.newPassword).then(data => {
-                this.$router.push({name: 'Home'})
+                console.log(data);
+                this.$router.push({name: 'user'})
             })
         },
     },

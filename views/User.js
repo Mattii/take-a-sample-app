@@ -7,9 +7,9 @@ import PasswordSvg from "../components/UI/PasswordSvg.js"
 export default {
     template: `
     <main>
-        <base-section class="user-details" v-if="!!userData">
-            <img class="user-img" :src="'img/' + userData.imageUrl" :alt="userData.name"/>
-            <div class="introduction">
+        <base-section class="user-details">
+            <img v-if="!!userData" class="user-img" :src="'img/' + userData.imageUrl" :alt="userData.name"/>
+            <div class="introduction" v-if="!!userData">
                 <p class="varietyLabel">{{ userData.position }}</p>
                 <p>{{ userData.name }}</p>
             </div>
@@ -22,8 +22,8 @@ export default {
                     <p>Zmień hasło</p>
                     <password-svg></password-svg>
                 </router-link>
-                <div class="my-crops">
-                <p>Moje odmiany:</p>
+                <div class="my-crops" v-if="!!userData">
+                    <p>Moje odmiany:</p>
                     <ul>
                         <li
                         v-for="(crop, index) in userData.crops"
@@ -31,12 +31,12 @@ export default {
                         ><vegetable-svg-icons :cropType="crop"></vegetable-svg-icons> <p>{{ toCropName(crop) }}</p> </li>
                     </ul>
                 </div>
-                <p>Rgion: {{ userData.region }}</p>
-                <router-link v-if="userData.privileges == 'admin'" :to="{ name: 'user.samples' }">
+                <p v-if="!!userData">Rgion: {{ userData.region }}</p>
+                <router-link v-if="!!userData && userData.privileges == 'admin'" :to="{ name: 'user.samples' }">
                     <p>Dodaj sample</p>
                     <edit-svg></edit-svg>
                 </router-link> 
-                <router-link v-if="!!userData.orders" :to="{name: 'user.orders'}">
+                <router-link v-if="!!userData && !!userData.orders" :to="{name: 'user.orders'}">
                     <p>Moje zamówienia</p>
                     <span style="display: flex;align-items: center;gap:.5rem">
                         <p>{{ userData.orders.length }}</p>
